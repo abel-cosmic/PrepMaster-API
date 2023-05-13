@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cad54b41-1ec9-40f2-9b21-b01c4eb72d33" name="Changes" comment="added classes&#10;&#10;added table attributes&#10;&#10;i have just added the tables without the relationship&#10;and i have decided to make a separate table for choice&#10;because each choice has a relationship with eachother.&#10;and i have not yet implemented this yet ." />
+    <list default="true" id="cad54b41-1ec9-40f2-9b21-b01c4eb72d33" name="Changes" comment="added classes&#10;&#10;update image" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -108,7 +108,7 @@
       <updated>1683999560723</updated>
       <workItem from="1683999566788" duration="3932000" />
       <workItem from="1684004071654" duration="362000" />
-      <workItem from="1684004447319" duration="5319000" />
+      <workItem from="1684004447319" duration="5812000" />
     </task>
     <task id="LOCAL-00001" summary="added classes&#10;&#10;i have added the classes for our &#10;entity table with the necessary attributes&#10;but i have not added the associative entities &#10;because we will add them using embeddable and extra.">
       <created>1684006500535</created>
@@ -131,7 +131,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684009767041</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="added classes&#10;&#10;update image">
+      <created>1684010247151</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1684010247152</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -151,6 +158,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added classes&#10;&#10;i have added the classes for our &#10;entity table with the necessary attributes&#10;but i have not added the associative entities &#10;because we will add them using embeddable and extra." />
     <MESSAGE value="added classes&#10;&#10;added table attributes&#10;&#10;i have just added the tables without the relationship&#10;and i have decided to make a separate table for choice&#10;because each choice has a relationship with eachother.&#10;and i have not yet implemented this yet ." />
-    <option name="LAST_COMMIT_MESSAGE" value="added classes&#10;&#10;added table attributes&#10;&#10;i have just added the tables without the relationship&#10;and i have decided to make a separate table for choice&#10;because each choice has a relationship with eachother.&#10;and i have not yet implemented this yet ." />
+    <MESSAGE value="added classes&#10;&#10;update image" />
+    <option name="LAST_COMMIT_MESSAGE" value="added classes&#10;&#10;update image" />
   </component>
 </project>
