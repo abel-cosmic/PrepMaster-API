@@ -1,11 +1,46 @@
 package com.prepmaster.demo.bundle;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
+import static jakarta.persistence.GenerationType.SEQUENCE;
+
+@Entity(name = "Bundle")
+@Table(name = "bundle")
 public class Bundle {
+    @Id
+    @SequenceGenerator(
+            name = "bundle_sequence",
+            sequenceName = "bundle_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = SEQUENCE,
+            generator = "bundle_sequence"
+    )
+    @Column(
+            name = "id",
+            updatable = false
+    )
     private Long id;
+    @Column(
+            name = "name",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String name;
+    @Column(
+            name = "description",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String description;
+    @Column(
+            name = "timeAllowed",
+            nullable = false,
+            columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
+    )
     private LocalDate timeAllowed;
 
     public Bundle() {

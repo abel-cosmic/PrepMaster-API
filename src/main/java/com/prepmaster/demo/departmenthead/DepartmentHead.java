@@ -1,12 +1,69 @@
 package com.prepmaster.demo.departmenthead;
 
+import jakarta.persistence.*;
+
+import static jakarta.persistence.GenerationType.SEQUENCE;
+@Entity(name = "DepartmentHead")
+@Table(
+        name = "department_head",
+        uniqueConstraints = {
+                @UniqueConstraint(
+                        name = "department_head_email_unique",
+                        columnNames = "email")
+        }
+)
+
 public class DepartmentHead {
+    @Id
+    @SequenceGenerator(
+            name = "department_head_sequence",
+            sequenceName = "department_head_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = SEQUENCE,
+            generator = "department_head_sequence"
+    )
+    @Column(
+            name = "id",
+            updatable = false
+    )
     private Long id;
+    @Column(
+            name = "first_name",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String firstName;
+    @Column(
+            name = "last_name",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String lastName;
+    @Column(
+            name = "email",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String email;
+    @Column(
+            name = "phone_number",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String phoneNumber;
+    @Column(
+            name = "gender",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String gender;
+    @Column(
+            name = "password",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String password;
 
     public DepartmentHead() {

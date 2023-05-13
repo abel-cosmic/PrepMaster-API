@@ -1,13 +1,58 @@
 package com.prepmaster.demo.question;
 
+import jakarta.persistence.*;
+
 import java.util.List;
 
+import static jakarta.persistence.GenerationType.SEQUENCE;
+
+@Entity(name = "Question")
+@Table(name = "question")
 public class Question {
+    @Id
+    @SequenceGenerator(
+            name = "question_sequence",
+            sequenceName = "question_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = SEQUENCE,
+            generator = "question_sequence"
+    )
+    @Column(
+            name = "id",
+            updatable = false
+    )
     private Long id;
+    @Column(
+            name = "question",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String question;
+    @Column(
+            name = "choices",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private List<String> choices;
+    @Column(
+            name = "answer",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private char answer;
+    @Column(
+            name = "explanation",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String explanation;
+    @Column(
+            name = "difficulty",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String difficulty;
 
     public Question() {

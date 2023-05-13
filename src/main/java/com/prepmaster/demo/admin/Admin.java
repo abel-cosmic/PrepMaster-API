@@ -1,9 +1,51 @@
 package com.prepmaster.demo.admin;
 
+import jakarta.persistence.*;
+
+import static jakarta.persistence.GenerationType.SEQUENCE;
+
+@Entity(name = "Admin")
+@Table(
+        name = "admin",
+        uniqueConstraints = {
+                @UniqueConstraint(
+                        name = "admin_email_unique",
+                        columnNames = "email")
+        }
+)
 public class Admin {
+    @Id
+    @SequenceGenerator(
+            name = "admin_sequence",
+            sequenceName = "admin_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = SEQUENCE,
+            generator = "admin_sequence"
+    )
+    @Column(
+            name = "id",
+            updatable = false
+    )
     private Long id;
+    @Column(
+            name = "email",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String email;
+    @Column(
+            name = "organization",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String organization;
+    @Column(
+            name = "password",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String password;
 
     public Admin() {

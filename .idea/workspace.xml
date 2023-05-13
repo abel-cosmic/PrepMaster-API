@@ -4,20 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cad54b41-1ec9-40f2-9b21-b01c4eb72d33" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prepmaster/demo/admin/Admin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prepmaster/demo/bundle/Bundle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prepmaster/demo/course/Course.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prepmaster/demo/department/Department.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prepmaster/demo/departmenthead/DepartmentHead.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prepmaster/demo/question/Question.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prepmaster/demo/student/Student.java" afterDir="false" />
+    <list default="true" id="cad54b41-1ec9-40f2-9b21-b01c4eb72d33" name="Changes" comment="added classes&#10;&#10;i have added the classes for our &#10;entity table with the necessary attributes&#10;but i have not added the associative entities &#10;because we will add them using embeddable and extra.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/PREPMASTER.drawio" beforeDir="false" afterPath="$PROJECT_DIR$/images/PREPMASTER.drawio" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prepmaster/demo/admin/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prepmaster/demo/admin/Admin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prepmaster/demo/bundle/Bundle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prepmaster/demo/bundle/Bundle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prepmaster/demo/course/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prepmaster/demo/course/Course.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prepmaster/demo/department/Department.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prepmaster/demo/department/Department.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prepmaster/demo/departmenthead/DepartmentHead.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prepmaster/demo/departmenthead/DepartmentHead.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prepmaster/demo/question/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prepmaster/demo/question/Question.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,6 +69,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "abel",
+    "last_opened_file_path": "/home/abelcosmic/IdeaProjects/spring-data-jpa-course",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -121,8 +117,16 @@
       <updated>1683999560723</updated>
       <workItem from="1683999566788" duration="3932000" />
       <workItem from="1684004071654" duration="362000" />
-      <workItem from="1684004447319" duration="1755000" />
+      <workItem from="1684004447319" duration="4637000" />
     </task>
+    <task id="LOCAL-00001" summary="added classes&#10;&#10;i have added the classes for our &#10;entity table with the necessary attributes&#10;but i have not added the associative entities &#10;because we will add them using embeddable and extra.">
+      <created>1684006500535</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1684006500535</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -138,5 +142,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="added classes&#10;&#10;i have added the classes for our &#10;entity table with the necessary attributes&#10;but i have not added the associative entities &#10;because we will add them using embeddable and extra." />
+    <option name="LAST_COMMIT_MESSAGE" value="added classes&#10;&#10;i have added the classes for our &#10;entity table with the necessary attributes&#10;but i have not added the associative entities &#10;because we will add them using embeddable and extra." />
   </component>
 </project>

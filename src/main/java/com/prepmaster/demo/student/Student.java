@@ -1,12 +1,70 @@
 package com.prepmaster.demo.student;
 
+import jakarta.persistence.*;
+
+import static jakarta.persistence.GenerationType.SEQUENCE;
+
+@Entity(name = "Student")
+@Table(
+        name = "student",
+        uniqueConstraints = {
+                @UniqueConstraint(
+                        name = "student_email_unique",
+                        columnNames = "name")
+        }
+)
 public class Student {
+    @Id
+    @SequenceGenerator(
+            name = "student_sequence",
+            sequenceName = "student_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = SEQUENCE,
+            generator = "student_sequence"
+    )
+    @Column(
+            name = "id",
+            updatable = false
+    )
     private Long id;
+    @Column(
+            name = "first_name",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String firstName;
+    @Column(
+            name = "last_name",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String lastName;
+    @Column(
+            name = "email",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String email;
+    @Column(
+            name = "phone_number",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
+
     private String phoneNumber;
+    @Column(
+            name = "gender",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String gender;
+    @Column(
+            name = "password",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String password;
 
     public Student() {

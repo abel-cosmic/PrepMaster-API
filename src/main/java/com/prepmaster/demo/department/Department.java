@@ -1,8 +1,45 @@
 package com.prepmaster.demo.department;
 
+import jakarta.persistence.*;
+
+import static jakarta.persistence.GenerationType.SEQUENCE;
+
+@Entity(name = "Department")
+@Table(
+        name = "department",
+        uniqueConstraints = {
+                @UniqueConstraint(
+                        name = "department_name_unique",
+                        columnNames = "name")
+        }
+)
 public class Department {
+    @Id
+    @SequenceGenerator(
+            name = "department_sequence",
+            sequenceName = "department_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = SEQUENCE,
+            generator = "department_sequence"
+    )
+    @Column(
+            name = "id",
+            updatable = false
+    )
     private Long id;
+    @Column(
+            name = "name",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String name;
+    @Column(
+            name = "description",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String description;
 
     public Department() {
