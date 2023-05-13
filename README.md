@@ -40,7 +40,7 @@ To set up the Prepmaster API locally, follow these steps:
 
 Here is the Entity Relationship Diagram (ERD) for the Prepmaster API database:
 
-![EERD for PrepMaster](images/PREPMASTER.drawio)
+![EERD for PrepMaster](images/PREPMASTER.drawio.png)
 
 ## UI Show-Off
 
