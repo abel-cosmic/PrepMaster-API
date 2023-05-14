@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cad54b41-1ec9-40f2-9b21-b01c4eb72d33" name="Changes" comment="added classes&#10;&#10;update image" />
+    <list default="true" id="cad54b41-1ec9-40f2-9b21-b01c4eb72d33" name="Changes" comment="added relationships&#10;&#10;i have updated the following things &#10;1. the erd dagi you forgot to add the cardinality for admin_id in department_head.(i have corrected the arrangement too :).&#10;2. i have tried to see if the relationships are coming correctly">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,7 +23,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="abel" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -58,6 +61,7 @@
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "abel",
     "last_opened_file_path": "/home/abelcosmic/IdeaProjects/spring-data-jpa-course",
@@ -66,6 +70,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
     "spring.configuration.checksum": "fe01ce2a7fbac8fafaed7c982a04e229",
     "vue.rearranger.settings.migration": "true"
   },
@@ -108,7 +113,9 @@
       <updated>1683999560723</updated>
       <workItem from="1683999566788" duration="3932000" />
       <workItem from="1684004071654" duration="362000" />
-      <workItem from="1684004447319" duration="5812000" />
+      <workItem from="1684004447319" duration="6054000" />
+      <workItem from="1684073752334" duration="229000" />
+      <workItem from="1684073992491" duration="4785000" />
     </task>
     <task id="LOCAL-00001" summary="added classes&#10;&#10;i have added the classes for our &#10;entity table with the necessary attributes&#10;but i have not added the associative entities &#10;because we will add them using embeddable and extra.">
       <created>1684006500535</created>
@@ -138,7 +145,28 @@
       <option name="project" value="LOCAL" />
       <updated>1684010247152</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="added classes&#10;&#10;update image">
+      <created>1684010448237</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1684010448237</updated>
+    </task>
+    <task id="LOCAL-00006" summary="added choice table &#10;&#10;i have added the neccessary table on my side &#10;now i will join their relationship and work on the tables i did &#10;until now.">
+      <created>1684074792625</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1684074792625</updated>
+    </task>
+    <task id="LOCAL-00007" summary="added relationships&#10;&#10;i have updated the following things &#10;1. the erd dagi you forgot to add the cardinality for admin_id in department_head.(i have corrected the arrangement too :).&#10;2. i have tried to see if the relationships are coming correctly">
+      <created>1684079850874</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1684079850874</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -149,7 +177,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="abel" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -159,6 +199,19 @@
     <MESSAGE value="added classes&#10;&#10;i have added the classes for our &#10;entity table with the necessary attributes&#10;but i have not added the associative entities &#10;because we will add them using embeddable and extra." />
     <MESSAGE value="added classes&#10;&#10;added table attributes&#10;&#10;i have just added the tables without the relationship&#10;and i have decided to make a separate table for choice&#10;because each choice has a relationship with eachother.&#10;and i have not yet implemented this yet ." />
     <MESSAGE value="added classes&#10;&#10;update image" />
-    <option name="LAST_COMMIT_MESSAGE" value="added classes&#10;&#10;update image" />
+    <MESSAGE value="added choice table &#10;&#10;i have added the neccessary table on my side &#10;now i will join their relationship and work on the tables i did &#10;until now." />
+    <MESSAGE value="added relationships&#10;&#10;i have updated the following things &#10;1. the erd dagi you forgot to add the cardinality for admin_id in department_head.(i have corrected the arrangement too :).&#10;2. i have tried to see if the relationships are coming correctly" />
+    <option name="LAST_COMMIT_MESSAGE" value="added relationships&#10;&#10;i have updated the following things &#10;1. the erd dagi you forgot to add the cardinality for admin_id in department_head.(i have corrected the arrangement too :).&#10;2. i have tried to see if the relationships are coming correctly" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/prepmaster/demo/departmenthead/DepartmentHead.java</url>
+          <line>107</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

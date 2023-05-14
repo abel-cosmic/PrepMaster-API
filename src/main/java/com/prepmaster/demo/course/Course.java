@@ -1,5 +1,6 @@
 package com.prepmaster.demo.course;
 
+import com.prepmaster.demo.department.Department;
 import jakarta.persistence.*;
 
 import static jakarta.persistence.GenerationType.SEQUENCE;
@@ -29,6 +30,12 @@ public class Course {
             updatable = false
     )
     private Long id;
+    @ManyToOne
+    @JoinColumn(
+            name = "department_id",
+            referencedColumnName = "id"
+    )
+    private Department department;
     @Column(
             name = "name",
             nullable = false,
@@ -54,6 +61,14 @@ public class Course {
         this.id = id;
         this.name = name;
         this.description = description;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     public Long getId() {

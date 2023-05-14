@@ -1,5 +1,7 @@
 package com.prepmaster.demo.bundle;
 
+import com.prepmaster.demo.course.Course;
+import com.prepmaster.demo.teacher.Teacher;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -30,6 +32,18 @@ public class Bundle {
             columnDefinition = "TEXT"
     )
     private String name;
+    @ManyToOne
+    @JoinColumn(
+            name = "course_id",
+            referencedColumnName = "id"
+    )
+    private Course course;
+    @ManyToOne
+    @JoinColumn(
+            name = "teacher_id",
+            referencedColumnName = "id"
+    )
+    private Teacher teacher;
     @Column(
             name = "description",
             nullable = false,
@@ -64,6 +78,22 @@ public class Bundle {
         this.name = name;
         this.description = description;
         this.timeAllowed = timeAllowed;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
     }
 
     public Long getId() {

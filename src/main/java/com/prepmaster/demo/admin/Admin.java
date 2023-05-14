@@ -1,6 +1,11 @@
 package com.prepmaster.demo.admin;
 
+import com.prepmaster.demo.department.Department;
+import com.prepmaster.demo.student.Student;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static jakarta.persistence.GenerationType.SEQUENCE;
 
@@ -29,6 +34,12 @@ public class Admin {
             updatable = false
     )
     private Long id;
+    @OneToMany(
+            mappedBy = "department",
+            orphanRemoval = true,
+            cascade =CascadeType.ALL
+    )
+    private List<Department> departments = new ArrayList<>();
     @Column(
             name = "email",
             nullable = false,
@@ -67,6 +78,7 @@ public class Admin {
         this.password = password;
     }
 
+
     public Long getId() {
         return id;
     }
@@ -93,6 +105,14 @@ public class Admin {
 
     public String getPassword() {
         return password;
+    }
+
+    public List<Department> getDepartments() {
+        return departments;
+    }
+
+    public void setDepartments(List<Department> departments) {
+        this.departments = departments;
     }
 
     public void setPassword(String password) {
