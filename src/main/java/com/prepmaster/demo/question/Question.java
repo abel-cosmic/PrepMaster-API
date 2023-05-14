@@ -1,5 +1,6 @@
 package com.prepmaster.demo.question;
 
+import com.prepmaster.demo.bundle.Bundle;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -30,12 +31,22 @@ public class Question {
             columnDefinition = "TEXT"
     )
     private String question;
+    @ManyToOne
+    @JoinColumn(
+            name = "bundle_id",
+            referencedColumnName = "id"
+    )
+    private Bundle bundle;
     @Column(
             name = "choices",
             nullable = false,
             columnDefinition = "TEXT"
     )
-    private List<String> choices;
+    @OneToMany(
+            mappedBy = "question",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<Choices> choices;
     @Column(
             name = "answer",
             nullable = false,
@@ -60,7 +71,7 @@ public class Question {
 
     public Question(
             String question,
-            List<String> choices,
+            List<Choices> choices,
             char answer,
             String explanation,
             String difficulty) {
@@ -74,7 +85,7 @@ public class Question {
     public Question(
             Long id,
             String question,
-            List<String> choices,
+            List<Choices> choices,
             char answer,
             String explanation,
             String difficulty) {
@@ -84,6 +95,14 @@ public class Question {
         this.answer = answer;
         this.explanation = explanation;
         this.difficulty = difficulty;
+    }
+
+    public Bundle getBundle() {
+        return bundle;
+    }
+
+    public void setBundle(Bundle bundle) {
+        this.bundle = bundle;
     }
 
     public Long getId() {
@@ -102,11 +121,11 @@ public class Question {
         this.question = question;
     }
 
-    public List<String> getChoices() {
+    public List<Choices> getChoices() {
         return choices;
     }
 
-    public void setChoices(List<String> choices) {
+    public void setChoices(List<Choices> choices) {
         this.choices = choices;
     }
 

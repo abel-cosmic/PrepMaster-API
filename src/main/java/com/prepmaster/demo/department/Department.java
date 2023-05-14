@@ -1,6 +1,11 @@
 package com.prepmaster.demo.department;
 
+import com.prepmaster.demo.admin.Admin;
+import com.prepmaster.demo.student.Student;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static jakarta.persistence.GenerationType.SEQUENCE;
 
@@ -29,6 +34,18 @@ public class Department {
             updatable = false
     )
     private Long id;
+    @ManyToOne
+    @JoinColumn(
+            name = "admin_id",
+            referencedColumnName = "id"
+    )
+    private Admin admin;
+    @OneToMany(
+            mappedBy = "student",
+            orphanRemoval = true,
+            cascade ={CascadeType.PERSIST,CascadeType.REMOVE}
+    )
+    private List<Student> students = new ArrayList<>();
     @Column(
             name = "name",
             nullable = false,
@@ -80,6 +97,35 @@ public class Department {
         this.description = description;
     }
 
+    public Admin getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
+    public void addStudent(Student student){
+        if(!this.students.contains(student)){
+            this.students.add(student);
+            student.setDepartment(this);
+        }
+    }
+    public void removeStudent(Student student){
+        if(this.students.contains(student)){
+            this.students.remove(student);
+            student.setDepartment(null);
+        }
+    }
+
+
     @Override
     public String toString() {
         return "Department{" +
@@ -88,5 +134,6 @@ public class Department {
                 ", description='" + description + '\'' +
                 '}';
     }
+
 }
 

@@ -4,10 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cad54b41-1ec9-40f2-9b21-b01c4eb72d33" name="Changes" comment="added classes&#10;&#10;update image">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/prepmaster/demo/course/Choices.java" afterDir="false" />
+    <list default="true" id="cad54b41-1ec9-40f2-9b21-b01c4eb72d33" name="Changes" comment="added choice table &#10;&#10;i have added the neccessary table on my side &#10;now i will join their relationship and work on the tables i did &#10;until now.">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/prepmaster/demo/PrepMasterApiApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prepmaster/demo/PrepMasterApiApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prepmaster/demo/admin/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prepmaster/demo/admin/Admin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prepmaster/demo/bundle/Bundle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prepmaster/demo/bundle/Bundle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prepmaster/demo/course/Choices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prepmaster/demo/question/Choices.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prepmaster/demo/course/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prepmaster/demo/course/Course.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prepmaster/demo/department/Department.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prepmaster/demo/department/Department.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prepmaster/demo/departmenthead/DepartmentHead.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prepmaster/demo/departmenthead/DepartmentHead.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/prepmaster/demo/question/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prepmaster/demo/question/Question.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/prepmaster/demo/student/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prepmaster/demo/student/Student.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/prepmaster/demo/teacher/Teacher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/prepmaster/demo/teacher/Teacher.java" afterDir="false" />
     </list>
@@ -26,7 +32,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="abel" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -52,37 +58,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Notification.DisplayName-DoNotAsk-Vcs Important Messages&quot;: &quot;VCS important messages&quot;,
-    &quot;Notification.DoNotAsk-Vcs Important Messages&quot;: &quot;true&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;abel&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/abelcosmic/IdeaProjects/spring-data-jpa-course&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;fe01ce2a7fbac8fafaed7c982a04e229&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Notification.DisplayName-DoNotAsk-Vcs Important Messages": "VCS important messages",
+    "Notification.DoNotAsk-Vcs Important Messages": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/abelcosmic/IdeaProjects/spring-data-jpa-course",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "spring.configuration.checksum": "fe01ce2a7fbac8fafaed7c982a04e229",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;ChangesTree.GroupingKeys&quot;: [
-      &quot;directory&quot;,
-      &quot;module&quot;
+  "keyToStringList": {
+    "ChangesTree.GroupingKeys": [
+      "directory",
+      "module"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="PrepMaster-API" />
@@ -117,7 +124,7 @@
       <workItem from="1684004071654" duration="362000" />
       <workItem from="1684004447319" duration="6054000" />
       <workItem from="1684073752334" duration="229000" />
-      <workItem from="1684073992491" duration="738000" />
+      <workItem from="1684073992491" duration="4785000" />
     </task>
     <task id="LOCAL-00001" summary="added classes&#10;&#10;i have added the classes for our &#10;entity table with the necessary attributes&#10;but i have not added the associative entities &#10;because we will add them using embeddable and extra.">
       <created>1684006500535</created>
@@ -154,7 +161,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684010448237</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="added choice table &#10;&#10;i have added the neccessary table on my side &#10;now i will join their relationship and work on the tables i did &#10;until now.">
+      <created>1684074792625</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1684074792625</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -175,6 +189,18 @@
     <MESSAGE value="added classes&#10;&#10;i have added the classes for our &#10;entity table with the necessary attributes&#10;but i have not added the associative entities &#10;because we will add them using embeddable and extra." />
     <MESSAGE value="added classes&#10;&#10;added table attributes&#10;&#10;i have just added the tables without the relationship&#10;and i have decided to make a separate table for choice&#10;because each choice has a relationship with eachother.&#10;and i have not yet implemented this yet ." />
     <MESSAGE value="added classes&#10;&#10;update image" />
-    <option name="LAST_COMMIT_MESSAGE" value="added classes&#10;&#10;update image" />
+    <MESSAGE value="added choice table &#10;&#10;i have added the neccessary table on my side &#10;now i will join their relationship and work on the tables i did &#10;until now." />
+    <option name="LAST_COMMIT_MESSAGE" value="added choice table &#10;&#10;i have added the neccessary table on my side &#10;now i will join their relationship and work on the tables i did &#10;until now." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/prepmaster/demo/departmenthead/DepartmentHead.java</url>
+          <line>107</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
