@@ -66,6 +66,19 @@ public class Teacher {
             columnDefinition = "TEXT"
     )
     private String password;
+
+    @ManyToOne(
+            fetch = FetchType.LAZY //Why
+    )
+    @JoinColumn(
+            name = "department_id",
+            nullable = false,
+            referencedColumnName = "id",
+            foreignKey = @ForeignKey(
+                    name = "department_teacher_id_fk"
+            )
+    )
+    private Department department;
     public Teacher() {
     }
 
@@ -155,6 +168,15 @@ public class Teacher {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     @Override

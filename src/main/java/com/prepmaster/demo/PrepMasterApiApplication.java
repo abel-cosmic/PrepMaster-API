@@ -3,10 +3,13 @@ package com.prepmaster.demo;
 import com.github.javafaker.Faker;
 import com.prepmaster.demo.admin.Admin;
 import com.prepmaster.demo.admin.AdminRepository;
+import com.prepmaster.demo.course.Course;
 import com.prepmaster.demo.department.Department;
 import com.prepmaster.demo.department.DepartmentRepository;
 import com.prepmaster.demo.departmenthead.DepartmentHead;
 import com.prepmaster.demo.departmenthead.DepartmentHeadRepository;
+import com.prepmaster.demo.student.Student;
+import com.prepmaster.demo.teacher.Teacher;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -43,6 +46,9 @@ public class PrepMasterApiApplication {
 
 			Department department = makeDepartment();
 			department.setDepartmentHead(departmentHead);//cascade type all for department head in department
+			department.addCourse(makeCourse());
+			department.addTeacher(makeTeacher());
+			department.addStudent(makeStudent());
 
 			admin.addDepartment(department);//Note that you cant just make a department without having an admin it will not work
 			adminRepository.save(admin);
@@ -60,7 +66,7 @@ public class PrepMasterApiApplication {
 				faker.name().lastName(),
 				faker.internet().emailAddress(),
 				faker.phoneNumber().cellPhone(),
-				faker.random().nextInt(2) == 0 ? "Male" : "Female",
+				faker.random().nextInt(2) == 0 ? "M" : "F",
 				faker.internet().password()
 		);
 	}
@@ -69,6 +75,35 @@ public class PrepMasterApiApplication {
 		return new Department(
 				faker.job().field(),
 				faker.lorem().paragraph()
+		);
+	}
+	private Course makeCourse() {
+		Faker faker = new Faker();
+		return new Course(
+				faker.job().title(),
+				faker.lorem().paragraph()
+		);
+	}
+	private Teacher makeTeacher() {
+		Faker faker = new Faker();
+		return new Teacher(
+				faker.name().firstName(),
+				faker.name().lastName(),
+				faker.internet().emailAddress(),
+				faker.phoneNumber().cellPhone(),
+				faker.random().nextInt(2) == 0 ? "M" : "F",
+				faker.internet().password()
+		);
+	}
+	private Student makeStudent() {
+		Faker faker = new Faker();
+		return new Student(
+				faker.name().firstName(),
+				faker.name().lastName(),
+				faker.internet().emailAddress(),
+				faker.phoneNumber().cellPhone(),
+				faker.random().nextInt(2) == 0 ? "M" : "F",
+				faker.internet().password()
 		);
 	}
 }
