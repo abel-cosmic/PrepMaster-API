@@ -8,7 +8,7 @@ Prepmaster API is a Spring Boot application developed as a Maven project. It pro
 - Spring Boot
 - Maven
 - PostgreSQL
-- Renderer (API Hosting)
+- Render.com (API Hosting)
 
 ## Dependencies
 
