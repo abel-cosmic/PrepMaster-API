@@ -1,5 +1,6 @@
 package com.prepmaster.demo.admin;
 
+import com.prepmaster.demo.departmenthead.DepartmentHead;
 import com.prepmaster.demo.department.Department;
 import com.prepmaster.demo.student.Student;
 import jakarta.persistence.*;
@@ -34,12 +35,7 @@ public class Admin {
             updatable = false
     )
     private Long id;
-    @OneToMany(
-            mappedBy = "department",
-            orphanRemoval = true,
-            cascade =CascadeType.ALL
-    )
-    private List<Department> departments = new ArrayList<>();
+
     @Column(
             name = "email",
             nullable = false,
@@ -58,6 +54,20 @@ public class Admin {
             columnDefinition = "TEXT"
     )
     private String password;
+    @OneToMany(
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, //DOC: makes department heads if they doesn't exist
+            mappedBy = "admin"
+            //DOC: fetch is lazy by default for 1-N relationships
+            //DOC: orphan type is false by default so if this is deleted Department heads tied to this won't be
+    )
+    private List<DepartmentHead> departmentHeads = new ArrayList<>();
+    @OneToMany(
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, //DOC: makes department heads if they doesn't exist
+            mappedBy = "admin"
+            //DOC: fetch is lazy by default for 1-N relationships
+            //DOC: orphan type is false by default so if this is deleted Department heads tied to this won't be
+    )
+    private List<Department> departments = new ArrayList<>();
 
     public Admin() {
     }
@@ -77,7 +87,6 @@ public class Admin {
         this.organization = organization;
         this.password = password;
     }
-
 
     public Long getId() {
         return id;
@@ -107,18 +116,44 @@ public class Admin {
         return password;
     }
 
-    public List<Department> getDepartments() {
-        return departments;
-    }
-
-    public void setDepartments(List<Department> departments) {
-        this.departments = departments;
-    }
-
     public void setPassword(String password) {
         this.password = password;
     }
 
+    public List<DepartmentHead> getDepartmentHeads() {
+        return departmentHeads;
+    }
+
+    public void setDepartmentHeads(List<DepartmentHead> departmentHeads) {
+        this.departmentHeads = departmentHeads;
+    }
+
+    public void addDepartmentHead(DepartmentHead departmentHead){
+        if (!departmentHeads.contains(departmentHead) ){
+            this.departmentHeads.add(departmentHead);
+            departmentHead.setAdmin(this);
+        }
+    }
+
+    public void removeDepartmentHead(DepartmentHead departmentHead){
+        if (departmentHeads.contains(departmentHead) ){
+            this.departmentHeads.remove(departmentHead);
+            departmentHead.setAdmin(null);
+        }
+    }
+    public void addDepartment(Department department){
+        if (!departments.contains(department) ){
+            this.departments.add(department);
+            department.setAdmin(this);
+        }
+    }
+
+    public void removeDepartment(Department department){
+        if (departments.contains(department) ){
+            this.departments.remove(department);
+            department.setAdmin(null);
+        }
+    }
     @Override
     public String toString() {
         return "Admin{" +

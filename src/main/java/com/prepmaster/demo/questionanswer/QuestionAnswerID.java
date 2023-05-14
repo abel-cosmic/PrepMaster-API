@@ -1,4 +1,4 @@
-package com.prepmaster.demo.question_answer;
+package com.prepmaster.demo.questionanswer;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;

@@ -9,7 +9,10 @@ target/
 .classpath
 .settings/
 *.iml
-workspace.xml
+.idea/workspace.xml
+.idea/dataSources.xml
+.idea/encodings.xml
+.idea/misc.xml
 
 # Build-related files
 mvnw
@@ -29,6 +32,7 @@ mvnw.cmd
 # Environment-specific files (remove or modify as needed)
 application-dev.properties
 application-prod.properties
+application.properties
 
 # Maven
 target/

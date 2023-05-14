@@ -23,9 +23,7 @@ public class Choices {
             updatable = false
     )
     private Long id;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "question_id")
-    private Question question;
+
     @Column(
             name = "first_name",
             nullable = false,
@@ -43,14 +41,6 @@ public class Choices {
     public Choices(Long id, String choiceText) {
         this.id = id;
         this.choiceText = choiceText;
-    }
-
-    public Question getQuestion() {
-        return question;
-    }
-
-    public void setQuestion(Question question) {
-        this.question = question;
     }
 
     public Long getId() {

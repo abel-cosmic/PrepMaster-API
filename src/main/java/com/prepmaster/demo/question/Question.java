@@ -31,22 +31,6 @@ public class Question {
             columnDefinition = "TEXT"
     )
     private String question;
-    @ManyToOne
-    @JoinColumn(
-            name = "bundle_id",
-            referencedColumnName = "id"
-    )
-    private Bundle bundle;
-    @Column(
-            name = "choices",
-            nullable = false,
-            columnDefinition = "TEXT"
-    )
-    @OneToMany(
-            mappedBy = "question",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true)
-    private List<Choices> choices;
     @Column(
             name = "answer",
             nullable = false,
@@ -76,7 +60,7 @@ public class Question {
             String explanation,
             String difficulty) {
         this.question = question;
-        this.choices = choices;
+//        this.choices = choices;
         this.answer = answer;
         this.explanation = explanation;
         this.difficulty = difficulty;
@@ -91,19 +75,12 @@ public class Question {
             String difficulty) {
         this.id = id;
         this.question = question;
-        this.choices = choices;
+//        this.choices = choices;
         this.answer = answer;
         this.explanation = explanation;
         this.difficulty = difficulty;
     }
 
-    public Bundle getBundle() {
-        return bundle;
-    }
-
-    public void setBundle(Bundle bundle) {
-        this.bundle = bundle;
-    }
 
     public Long getId() {
         return id;
@@ -119,14 +96,6 @@ public class Question {
 
     public void setQuestion(String question) {
         this.question = question;
-    }
-
-    public List<Choices> getChoices() {
-        return choices;
-    }
-
-    public void setChoices(List<Choices> choices) {
-        this.choices = choices;
     }
 
     public char getAnswer() {
@@ -158,7 +127,7 @@ public class Question {
         return "Question{" +
                 "id=" + id +
                 ", question='" + question + '\'' +
-                ", choices=" + choices +
+//                ", choices=" + choices +
                 ", answer=" + answer +
                 ", explanation='" + explanation + '\'' +
                 ", difficulty='" + difficulty + '\'' +

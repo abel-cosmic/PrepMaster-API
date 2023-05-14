@@ -30,12 +30,6 @@ public class Course {
             updatable = false
     )
     private Long id;
-    @ManyToOne
-    @JoinColumn(
-            name = "department_id",
-            referencedColumnName = "id"
-    )
-    private Department department;
     @Column(
             name = "name",
             nullable = false,
@@ -48,7 +42,6 @@ public class Course {
             columnDefinition = "TEXT"
     )
     private String description;
-
     public Course() {
     }
 
@@ -61,14 +54,6 @@ public class Course {
         this.id = id;
         this.name = name;
         this.description = description;
-    }
-
-    public Department getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(Department department) {
-        this.department = department;
     }
 
     public Long getId() {
@@ -94,6 +79,15 @@ public class Course {
     public void setDescription(String description) {
         this.description = description;
     }
+
+
+//    public Department getDepartment() {
+//        return department;
+//    }
+//
+//    public void setDepartment(Department department) {
+//        this.department = department;
+//    }
 
     @Override
     public String toString() {

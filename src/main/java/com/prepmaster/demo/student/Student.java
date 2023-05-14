@@ -30,12 +30,12 @@ public class Student {
             updatable = false
     )
     private Long id;
-    @ManyToOne
-    @JoinColumn(
-            name = "department_id",
-            referencedColumnName = "id"
-    )
-    private Department department;
+//    @ManyToOne
+//    @JoinColumn(
+//            name = "department_id",
+//            referencedColumnName = "id"
+//    )
+//    private Department department;
     @Column(
             name = "first_name",
             nullable = false,
@@ -176,13 +176,5 @@ public class Student {
                 ", gender='" + gender + '\'' +
                 ", password='" + password + '\'' +
                 '}';
-    }
-
-    public Department getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(Department department) {
-        this.department = department;
     }
 }

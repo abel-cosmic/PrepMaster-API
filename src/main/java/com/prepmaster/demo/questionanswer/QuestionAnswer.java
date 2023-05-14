@@ -1,4 +1,4 @@
-package com.prepmaster.demo.question_answer;
+package com.prepmaster.demo.questionanswer;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
@@ -15,14 +15,14 @@ public class QuestionAnswer {
     private QuestionAnswerID id;
 
     @Column(
-            name = "answer_chossen",
+            name = "answer_chosen",
             updatable = false,
             columnDefinition = "TEXT"
     )
-    private char AnswerChoosen;
+    private char AnswerChosen;
 
-    public QuestionAnswer(char answerChoosen) {
-        AnswerChoosen = answerChoosen;
+    public QuestionAnswer(char answerChosen) {
+        AnswerChosen = answerChosen;
     }
 
     public QuestionAnswer() {

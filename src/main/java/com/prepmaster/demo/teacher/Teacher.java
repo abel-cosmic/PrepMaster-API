@@ -29,12 +29,6 @@ public class Teacher {
             updatable = false
     )
     private Long id;
-    @ManyToOne
-    @JoinColumn(
-            name = "department_id",
-            referencedColumnName = "id"
-    )
-    private Department department;
     @Column(
             name = "first_name",
             nullable = false,
@@ -72,7 +66,6 @@ public class Teacher {
             columnDefinition = "TEXT"
     )
     private String password;
-
     public Teacher() {
     }
 

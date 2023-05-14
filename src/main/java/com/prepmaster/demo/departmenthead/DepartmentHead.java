@@ -1,5 +1,6 @@
 package com.prepmaster.demo.departmenthead;
 
+import com.prepmaster.demo.admin.Admin;
 import com.prepmaster.demo.department.Department;
 import jakarta.persistence.*;
 
@@ -13,7 +14,6 @@ import static jakarta.persistence.GenerationType.SEQUENCE;
                         columnNames = "email")
         }
 )
-
 public class DepartmentHead {
     @Id
     @SequenceGenerator(
@@ -30,12 +30,6 @@ public class DepartmentHead {
             updatable = false
     )
     private Long id;
-    @OneToOne
-    @JoinColumn(
-            name = "department_id",
-            referencedColumnName = "id"
-    )
-    private Department department;
     @Column(
             name = "first_name",
             nullable = false,
@@ -73,6 +67,23 @@ public class DepartmentHead {
     )
     private String password;
 
+    @ManyToOne(
+            fetch = FetchType.EAGER
+    )
+    @JoinColumn(
+            name = "admin_id",
+            nullable = false,
+            referencedColumnName = "id",
+            foreignKey = @ForeignKey(
+                    name = "admin_department_head_id_fk"
+            )
+    )
+    private Admin admin;
+
+    @OneToOne(
+            mappedBy = "departmentHead"
+    )
+    private Department department;
     public DepartmentHead() {
     }
 
@@ -108,12 +119,14 @@ public class DepartmentHead {
         this.password = password;
     }
 
-    public Department getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(Department department) {
-        this.department = department;
+    public DepartmentHead(String firstName, String lastName, String email, String phoneNumber, String gender, String password, Admin admin) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.gender = gender;
+        this.password = password;
+        this.admin = admin;
     }
 
     public Long getId() {
@@ -170,6 +183,14 @@ public class DepartmentHead {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Admin getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
     }
 
     @Override
