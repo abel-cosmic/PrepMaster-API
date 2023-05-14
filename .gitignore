@@ -1,0 +1,30 @@
+# Compiled output
+target/
+
+# IDE-specific files and directories
+.idea/
+.vscode/
+.project
+.classpath
+.settings/
+*.iml
+workspace.xml
+
+# Build-related files
+mvnw
+mvnw.cmd
+.mvn/
+
+# Log files
+*.log
+
+# Miscellaneous files and directories
+*.class
+*.jar
+*.war
+*.ear
+.DS_Store
+
+# Environment-specific files (remove or modify as needed)
+application-dev.properties
+application-prod.properties
