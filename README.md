@@ -52,6 +52,8 @@ Prepmaster website provides a user-friendly interface for students to access pra
 
 ![FAQ](images/FAQ.png)
 
+The frontend implementation can found in this repo: https://github.com/MohammedIbrahim8887/PrepMaster
+
 ## Production Deployment
 
 To deploy the Prepmaster API to the Renderer hosting service, follow these steps:
