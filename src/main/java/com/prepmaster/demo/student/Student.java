@@ -1,5 +1,6 @@
 package com.prepmaster.demo.student;
 
+import com.prepmaster.demo.admin.Admin;
 import com.prepmaster.demo.department.Department;
 import jakarta.persistence.*;
 
@@ -73,6 +74,19 @@ public class Student {
             columnDefinition = "TEXT"
     )
     private String password;
+
+    @ManyToOne(
+            fetch = FetchType.LAZY //Why
+    )
+    @JoinColumn(
+            name = "department_id",
+            nullable = false,
+            referencedColumnName = "id",
+            foreignKey = @ForeignKey(
+                    name = "department_student_id_fk"
+            )
+    )
+    private Department department;
 
     public Student() {
     }
@@ -163,6 +177,14 @@ public class Student {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     @Override

@@ -42,6 +42,20 @@ public class Course {
             columnDefinition = "TEXT"
     )
     private String description;
+
+    @ManyToOne(
+            fetch = FetchType.LAZY //Why
+    )
+    @JoinColumn(
+            name = "department_id",
+            nullable = false,
+            referencedColumnName = "id",
+            foreignKey = @ForeignKey(
+                    name = "department_course_id_fk"
+            )
+    )
+    private Department department;
+
     public Course() {
     }
 
@@ -81,13 +95,13 @@ public class Course {
     }
 
 
-//    public Department getDepartment() {
-//        return department;
-//    }
-//
-//    public void setDepartment(Department department) {
-//        this.department = department;
-//    }
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
 
     @Override
     public String toString() {

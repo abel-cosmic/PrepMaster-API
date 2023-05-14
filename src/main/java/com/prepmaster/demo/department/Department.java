@@ -1,8 +1,10 @@
 package com.prepmaster.demo.department;
 
 import com.prepmaster.demo.admin.Admin;
+import com.prepmaster.demo.course.Course;
 import com.prepmaster.demo.departmenthead.DepartmentHead;
 import com.prepmaster.demo.student.Student;
+import com.prepmaster.demo.teacher.Teacher;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -56,7 +58,7 @@ public class Department {
             nullable = false,
             referencedColumnName = "id",
             foreignKey = @ForeignKey(
-                    name = "admin_department_head_id_fk"
+                    name = "admin_department_id_fk"
             )
     )
     private Admin admin;
@@ -73,6 +75,30 @@ public class Department {
     )
     )
     private DepartmentHead departmentHead;
+
+    @OneToMany(
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, //DOC: makes courses heads if they don't exist
+            mappedBy = "department"
+            //DOC: fetch is lazy by default for 1-N relationships
+            //DOC: orphan type is false by default so if this is deleted courses tied to this won't be
+    )
+    private List<Course> courses = new ArrayList<>();
+
+    @OneToMany(
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, //DOC: makes teachers heads if they don't exist
+            mappedBy = "department"
+            //DOC: fetch is lazy by default for 1-N relationships
+            //DOC: orphan type is false by default so if this is deleted teachers tied to this won't be
+    )
+    private List<Teacher> teachers = new ArrayList<>();
+
+    @OneToMany(
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, //DOC: makes students heads if they don't exist
+            mappedBy = "department"
+            //DOC: fetch is lazy by default for 1-N relationships
+            //DOC: orphan type is false by default so if this is deleted students tied to this won't be
+    )
+    private List<Student> students = new ArrayList<>();
 
     public Department() {
     }
@@ -127,28 +153,66 @@ public class Department {
     public void setDepartmentHead(DepartmentHead departmentHead) {
         this.departmentHead = departmentHead;
     }
-    //
-//    public List<Student> getStudents() {
-//        return students;
-//    }
-//
-//    public void setStudents(List<Student> students) {
-//        this.students = students;
-//    }
-//    public void addStudent(Student student){
-//        if(!this.students.contains(student)){
-//            this.students.add(student);
-//            student.setDepartment(this);
-//        }
-//    }
-//    public void removeStudent(Student student){
-//        if(this.students.contains(student)){
-//            this.students.remove(student);
-//            student.setDepartment(null);
-//        }
-//    }
 
+    public List<Student> getStudents() {
+        return students;
+    }
 
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
+    public void addStudent(Student student){
+        if(!this.students.contains(student)){
+            this.students.add(student);
+            student.setDepartment(this);
+        }
+    }
+    public void removeStudent(Student student){
+        if(this.students.contains(student)){
+            this.students.remove(student);
+            student.setDepartment(null);
+        }
+    }
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
+    public void addCourse(Course course){
+        if(!this.courses.contains(course)){
+            this.courses.add(course);
+            course.setDepartment(this);
+        }
+    }
+    public void removeCourse(Course course){
+        if(this.courses.contains(course)){
+            this.courses.remove(course);
+            course.setDepartment(null);
+        }
+    }
+
+    public List<Teacher> getTeachers() {
+        return teachers;
+    }
+
+    public void setTeachers(List<Teacher> teachers) {
+        this.teachers = teachers;
+    }
+
+    public void addTeacher(Teacher teacher){
+        if(!this.teachers.contains(teacher)){
+            this.teachers.add(teacher);
+            teacher.setDepartment(this);
+        }
+    }
+    public void removeTeacher(Teacher teacher){
+        if(this.teachers.contains(teacher)){
+            this.teachers.remove(teacher);
+            teacher.setDepartment(null);
+        }
+    }
     @Override
     public String toString() {
         return "Department{" +
@@ -157,5 +221,6 @@ public class Department {
                 ", description='" + description + '\'' +
                 '}';
     }
+
 }
 
