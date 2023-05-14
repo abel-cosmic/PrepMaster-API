@@ -9,7 +9,7 @@ import static jakarta.persistence.GenerationType.SEQUENCE;
         uniqueConstraints = {
                 @UniqueConstraint(
                         name = "teacher_email_unique",
-                        columnNames = "name")
+                        columnNames = "email")
         }
 )
 

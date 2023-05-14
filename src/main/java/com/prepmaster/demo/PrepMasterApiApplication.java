@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 *  1. create your own branch
 *  2. create the entity/classes
 *  3. use the N-tier Architecture: Service layer, DOA, Controller,
-*     and repostory for each class.
+*     and  repository for each class.
 *  4. after checking for errors we will host the API in renderer.
 * */
 @SpringBootApplication
