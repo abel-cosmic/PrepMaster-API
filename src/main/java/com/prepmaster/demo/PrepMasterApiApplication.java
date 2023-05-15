@@ -13,6 +13,7 @@ import com.prepmaster.demo.question.Choice;
 import com.prepmaster.demo.question.Question;
 import com.prepmaster.demo.student.Student;
 import com.prepmaster.demo.teacher.Teacher;
+import com.prepmaster.demo.test.Test;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -51,7 +52,7 @@ public class PrepMasterApiApplication {
 			admin.addDepartmentHead(departmentHead);
 
 			Department department = makeDepartment();
-			department.setDepartmentHead(departmentHead);//cascade type all for department head in department
+			departmentHead.setDepartment(department);//cascade type all for department head in department
 
 			Course course = makeCourse();
 			department.addCourse(course);
@@ -76,6 +77,14 @@ public class PrepMasterApiApplication {
 			question1.addChoice(makeChoice('C'));
 			question1.addChoice(makeChoice('D'));
 			bundle.addQuestion(question1);
+
+			Student student = makeStudent();
+			department.addStudent(student);
+
+			Test test = makeTest();
+			test.setBundle(bundle);
+			test.setStudent(student);
+			bundle.addTest(test);
 
 			teacher.addBundle(bundle);
 			department.addStudent(makeStudent());
@@ -147,8 +156,7 @@ public class PrepMasterApiApplication {
 	private Question makeQuestion() {
 		Faker faker = new Faker();
 		char[] chars = {'A', 'B', 'C', 'D'};
-		Random random = new Random();
-		char answer = chars[random.nextInt(chars.length)];
+		char answer = chars[faker.random().nextInt(4)];
 		return new Question(
 				faker.lorem().sentence(5),
 				answer,
@@ -160,5 +168,10 @@ public class PrepMasterApiApplication {
 	private Choice makeChoice(char c) {
 		Faker faker = new Faker();
 		return new Choice(c + ". " + faker.lorem().sentence(10));
+	}
+
+	private Test makeTest(){
+		Faker faker = new Faker();
+		return new Test(faker.random().nextInt(3));
 	}
 }

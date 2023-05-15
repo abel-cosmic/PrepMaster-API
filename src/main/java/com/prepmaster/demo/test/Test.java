@@ -1,6 +1,9 @@
 package com.prepmaster.demo.test;
 
 
+import com.prepmaster.demo.bundle.Bundle;
+import com.prepmaster.demo.course.Course;
+import com.prepmaster.demo.student.Student;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -31,7 +34,7 @@ public class Test {
             nullable = false,
             columnDefinition = "INT"
     )
-    private String score;
+    private int score;
 
     @Column(
             name = "taken_at",
@@ -40,10 +43,35 @@ public class Test {
     )
     private LocalDateTime takenAt;
 
-    public Test(Long id, String score, LocalDateTime takenAt) {
-        this.id = id;
+    @ManyToOne(
+            fetch = FetchType.LAZY //Why
+    )
+    @JoinColumn(
+            name = "bundle_id",
+            nullable = false,
+            referencedColumnName = "id",
+            foreignKey = @ForeignKey(
+                    name = "bundle_test_id_fk"
+            )
+    )
+    private Bundle bundle;
+
+    @ManyToOne(
+            fetch = FetchType.LAZY //Why
+    )
+    @JoinColumn(
+            name = "student_id",
+            nullable = false,
+            referencedColumnName = "id",
+            foreignKey = @ForeignKey(
+                    name = "student_test_id_fk"
+            )
+    )
+    private Student student;
+
+    public Test(int score) {
         this.score = score;
-        this.takenAt = takenAt;
+        this.takenAt = LocalDateTime.now();
     }
 
     public Test() {
@@ -57,11 +85,11 @@ public class Test {
         this.id = id;
     }
 
-    public String getScore() {
+    public int getScore() {
         return score;
     }
 
-    public void setScore(String score) {
+    public void setScore(int score) {
         this.score = score;
     }
 
@@ -71,6 +99,22 @@ public class Test {
 
     public void setTakenAt(LocalDateTime takenAt) {
         this.takenAt = takenAt;
+    }
+
+    public Bundle getBundle() {
+        return bundle;
+    }
+
+    public void setBundle(Bundle bundle) {
+        this.bundle = bundle;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
     @Override

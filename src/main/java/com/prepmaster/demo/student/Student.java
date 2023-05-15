@@ -2,7 +2,11 @@ package com.prepmaster.demo.student;
 
 import com.prepmaster.demo.admin.Admin;
 import com.prepmaster.demo.department.Department;
+import com.prepmaster.demo.test.Test;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static jakarta.persistence.GenerationType.SEQUENCE;
 
@@ -87,6 +91,15 @@ public class Student {
             )
     )
     private Department department;
+
+    @OneToMany(
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, //DOC: makes students heads if they don't exist
+            mappedBy = "student",
+            fetch = FetchType.EAGER// so that the questions come with the bunndle
+            //DOC: fetch is lazy by default for 1-N relationships
+            //DOC: orphan type is false by default so if this is deleted students tied to this won't be
+    )
+    private List<Test> tests = new ArrayList<>();
 
     public Student() {
     }
@@ -185,6 +198,28 @@ public class Student {
 
     public void setDepartment(Department department) {
         this.department = department;
+    }
+
+
+    public List<Test> getTests() {
+        return tests;
+    }
+
+    public void setTests(List<Test> tests) {
+        this.tests = tests;
+    }
+
+    public void addTest(Test test){
+        if(!this.tests.contains(test)){
+            this.tests.add(test);
+            test.setStudent(this);
+        }
+    }
+    public void removeTest(Test test){
+        if(this.tests.contains(test)){
+            this.tests.remove(test);
+            test.setStudent(null);
+        }
     }
 
     @Override

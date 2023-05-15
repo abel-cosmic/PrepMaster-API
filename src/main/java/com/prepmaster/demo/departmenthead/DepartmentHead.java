@@ -81,7 +81,15 @@ public class DepartmentHead {
     private Admin admin;
 
     @OneToOne(
-            mappedBy = "departmentHead"
+            cascade = CascadeType.ALL// SHOULD WE CREATE DEPARTMENT HEAD ALONG SIDE DEPARTMENT
+    )
+    @JoinColumn(
+            name = "department_id",
+            nullable= false, // what happens if the department head is deleted
+            referencedColumnName = "id",
+            foreignKey = @ForeignKey(
+                    name = "department_department_head_id_fk"
+            )
     )
     private Department department;
     public DepartmentHead() {
@@ -191,6 +199,14 @@ public class DepartmentHead {
 
     public void setAdmin(Admin admin) {
         this.admin = admin;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     @Override
