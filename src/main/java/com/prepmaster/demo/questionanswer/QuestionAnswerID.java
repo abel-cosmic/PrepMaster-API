@@ -7,48 +7,49 @@ import com.prepmaster.demo.test.Test;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 @Embeddable
 public class QuestionAnswerID implements Serializable {
-    @ManyToOne(
-            fetch = FetchType.LAZY //Why
-    )
-    @JoinColumn(
-            name = "test_id",
-            nullable = false,
-            referencedColumnName = "id",
-            foreignKey = @ForeignKey(
-                    name = "test_question_answer_id_id_fk"
-            )
-    )
-    private Test test;
+    @Column(name="test_id")
+    private Long testId;
+    @Column(name = "question_id")
+    private Long questionId;
 
-    @ManyToOne(
-            fetch = FetchType.LAZY //Why
-    )
-    @JoinColumn(
-            name = "question_id",
-            nullable = false,
-            referencedColumnName = "id",
-            foreignKey = @ForeignKey(
-                    name = "question_question_answer_id_id_fk"
-            )
-    )
-    private Question question;
-
-    public Test getTest() {
-        return test;
+    public QuestionAnswerID() {
     }
 
-    public void setTest(Test test) {
-        this.test = test;
+    public QuestionAnswerID(Long testId, Long questionId) {
+        this.testId = testId;
+        this.questionId = questionId;
     }
 
-    public Question getQuestion() {
-        return question;
+    public Long getTestId() {
+        return testId;
     }
 
-    public void setQuestion(Question question) {
-        this.question = question;
+    public void setTestId(Long testId) {
+        this.testId = testId;
+    }
+
+    public Long getQuestionId() {
+        return questionId;
+    }
+
+    public void setQuestionId(Long questionId) {
+        this.questionId = questionId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        QuestionAnswerID that = (QuestionAnswerID) o;
+        return Objects.equals(testId, that.testId) && Objects.equals(questionId, that.questionId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(testId, questionId);
     }
 }

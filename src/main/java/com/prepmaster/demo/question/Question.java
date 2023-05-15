@@ -1,6 +1,7 @@
 package com.prepmaster.demo.question;
 
 import com.prepmaster.demo.bundle.Bundle;
+import com.prepmaster.demo.questionanswer.QuestionAnswer;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -63,7 +64,11 @@ public class Question {
             )
     )
     private Bundle bundle;
-
+    @OneToMany(
+            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
+            mappedBy = "question"
+    )
+    private List<QuestionAnswer> questionAnswers = new ArrayList<>();
     @OneToMany(
             cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, //DOC: makes students heads if they don't exist
             mappedBy = "question",
@@ -104,6 +109,17 @@ public class Question {
         this.difficulty = difficulty;
     }
 
+    public List<QuestionAnswer> getQuestionAnswers() {
+        return questionAnswers;
+    }
+    public void addQuestionAnswer(QuestionAnswer questionAnswer){
+        if(!questionAnswers.contains(questionAnswer)){
+            questionAnswers.add(questionAnswer);
+        }
+    }
+    public void removeQuestionAnswer(QuestionAnswer questionAnswer){
+            questionAnswers.remove(questionAnswer);
+    }
 
     public Long getId() {
         return id;
@@ -178,7 +194,6 @@ public class Question {
         return "Question{" +
                 "id=" + id +
                 ", question='" + question + '\'' +
-//                ", choices=" + choices +
                 ", answer=" + answer +
                 ", explanation='" + explanation + '\'' +
                 ", difficulty='" + difficulty + '\'' +

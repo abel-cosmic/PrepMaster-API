@@ -3,10 +3,13 @@ package com.prepmaster.demo.test;
 
 import com.prepmaster.demo.bundle.Bundle;
 import com.prepmaster.demo.course.Course;
+import com.prepmaster.demo.questionanswer.QuestionAnswer;
 import com.prepmaster.demo.student.Student;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import static jakarta.persistence.GenerationType.SEQUENCE;
 
@@ -68,6 +71,25 @@ public class Test {
             )
     )
     private Student student;
+    @OneToMany(
+            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
+            mappedBy = "test"
+    )
+    private List<QuestionAnswer> questionAnswers = new ArrayList<>();
+
+    public List<QuestionAnswer> getQuestionAnswers() {
+        return questionAnswers;
+    }
+
+    public void addQuestionAnswers(QuestionAnswer questionAnswer) {
+        if(!questionAnswers.contains(questionAnswer)){
+            questionAnswers.add(questionAnswer);
+        }
+    }
+
+    public void removeQuestionAnswers(QuestionAnswer questionAnswer) {
+        questionAnswers.remove(questionAnswer);
+    }
 
     public Test(int score) {
         this.score = score;
