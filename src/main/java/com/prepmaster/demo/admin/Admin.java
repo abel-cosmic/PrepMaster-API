@@ -2,7 +2,6 @@ package com.prepmaster.demo.admin;
 
 import com.prepmaster.demo.departmenthead.DepartmentHead;
 import com.prepmaster.demo.department.Department;
-import com.prepmaster.demo.student.Student;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;

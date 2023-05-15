@@ -2,7 +2,6 @@ package com.prepmaster.demo.test;
 
 
 import com.prepmaster.demo.bundle.Bundle;
-import com.prepmaster.demo.course.Course;
 import com.prepmaster.demo.questionanswer.QuestionAnswer;
 import com.prepmaster.demo.student.Student;
 import jakarta.persistence.*;

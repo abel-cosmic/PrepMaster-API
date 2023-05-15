@@ -1,9 +1,4 @@
 package com.prepmaster.demo.questionanswer;
-
-import com.prepmaster.demo.bundle.Bundle;
-import com.prepmaster.demo.question.Question;
-import com.prepmaster.demo.student.Student;
-import com.prepmaster.demo.test.Test;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -39,7 +34,9 @@ public class QuestionAnswerID implements Serializable {
     public void setQuestionId(Long questionId) {
         this.questionId = questionId;
     }
-
+    //we must generate the hashcode and equals function for the serializable class
+    // because the methods and the class is incomplete it must pass
+    // methods from the main class to be implemented inside it.
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

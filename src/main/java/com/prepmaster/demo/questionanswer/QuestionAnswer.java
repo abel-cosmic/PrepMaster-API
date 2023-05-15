@@ -7,8 +7,11 @@ import jakarta.persistence.*;
 @Entity(name = "QuestionAnswer")
 @Table(name = "question_answer")
 public class QuestionAnswer {
+    //this connects the serializable class to the main class
+    //QuestionAnswerId
     @EmbeddedId
     private QuestionAnswerID id;
+    //we make the relationship of the questionAnswer to test
     @ManyToOne
     @MapsId("testId")
     @JoinColumn(
@@ -18,6 +21,7 @@ public class QuestionAnswer {
             )
     )
     private Test test;
+    //we make the relationship of the questionAnswer to question
     @ManyToOne
     @MapsId("questionId")
     @JoinColumn(
