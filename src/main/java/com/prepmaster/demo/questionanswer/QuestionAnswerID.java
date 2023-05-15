@@ -1,50 +1,54 @@
 package com.prepmaster.demo.questionanswer;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
+import com.prepmaster.demo.bundle.Bundle;
+import com.prepmaster.demo.question.Question;
+import com.prepmaster.demo.student.Student;
+import com.prepmaster.demo.test.Test;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
 
 @Embeddable
 public class QuestionAnswerID implements Serializable {
-    @Column(name = "test_id")
-    private Long testId;
-    @Column(name = "question_id")
-    private Long questionId;
-    @Column(name = "student_id")
-    private Long studentId;
+    @ManyToOne(
+            fetch = FetchType.LAZY //Why
+    )
+    @JoinColumn(
+            name = "test_id",
+            nullable = false,
+            referencedColumnName = "id",
+            foreignKey = @ForeignKey(
+                    name = "test_question_answer_id_id_fk"
+            )
+    )
+    private Test test;
 
-    public QuestionAnswerID(Long testId, Long questionId, Long studentId) {
-        this.testId = testId;
-        this.questionId = questionId;
-        this.studentId = studentId;
+    @ManyToOne(
+            fetch = FetchType.LAZY //Why
+    )
+    @JoinColumn(
+            name = "question_id",
+            nullable = false,
+            referencedColumnName = "id",
+            foreignKey = @ForeignKey(
+                    name = "question_question_answer_id_id_fk"
+            )
+    )
+    private Question question;
+
+    public Test getTest() {
+        return test;
     }
 
-    public QuestionAnswerID() {
-
+    public void setTest(Test test) {
+        this.test = test;
     }
 
-    public Long getTestId() {
-        return testId;
+    public Question getQuestion() {
+        return question;
     }
 
-    public void setTestId(Long testId) {
-        this.testId = testId;
-    }
-
-    public Long getQuestionId() {
-        return questionId;
-    }
-
-    public void setQuestionId(Long questionId) {
-        this.questionId = questionId;
-    }
-
-    public Long getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(Long studentId) {
-        this.studentId = studentId;
+    public void setQuestion(Question question) {
+        this.question = question;
     }
 }
