@@ -1,56 +1,59 @@
 package com.prepmaster.demo.question;
 
-import com.prepmaster.demo.question.Question;
+import com.prepmaster.demo.teacher.Teacher;
 import jakarta.persistence.*;
 
 import static jakarta.persistence.GenerationType.SEQUENCE;
 
-@Entity(name = "Choices")
-@Table(name = "choices")
-public class Choices {
+@Entity(name = "Choice")
+@Table(name = "choice")
+public class Choice {
     @Id
     @SequenceGenerator(
-            name = "choices_sequence",
-            sequenceName = "choices_sequence",
+            name = "choice_sequence",
+            sequenceName = "choice_sequence",
             allocationSize = 1
     )
     @GeneratedValue(
             strategy = SEQUENCE,
-            generator = "choices_sequence"
+            generator = "choice_sequence"
     )
     @Column(
             name = "id",
             updatable = false
     )
     private Long id;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "question_id")
-    private Question question;
+
     @Column(
-            name = "first_name",
+            name = "choice_text",
             nullable = false,
             columnDefinition = "TEXT"
     )
     private String choiceText;
 
-    public Choices() {
+    @ManyToOne(
+            fetch = FetchType.LAZY //Why
+    )
+    @JoinColumn(
+            name = "question_id",
+            nullable = false,
+            referencedColumnName = "id",
+            foreignKey = @ForeignKey(
+                    name = "question_choice_id_fk"
+            )
+    )
+    private Question question;
+
+    public Choice() {
     }
 
-    public Choices(String choiceText) {
+    public Choice(String choiceText) {
         this.choiceText = choiceText;
     }
 
-    public Choices(Long id, String choiceText) {
+    public Choice(Long id, String choiceText) {
         this.id = id;
         this.choiceText = choiceText;
-    }
-
-    public Question getQuestion() {
-        return question;
-    }
-
-    public void setQuestion(Question question) {
-        this.question = question;
     }
 
     public Long getId() {
@@ -67,6 +70,14 @@ public class Choices {
 
     public void setChoiceText(String choiceText) {
         this.choiceText = choiceText;
+    }
+
+    public Question getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(Question question) {
+        this.question = question;
     }
 
     @Override

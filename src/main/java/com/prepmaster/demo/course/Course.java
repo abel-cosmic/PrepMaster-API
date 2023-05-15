@@ -1,7 +1,11 @@
 package com.prepmaster.demo.course;
 
+import com.prepmaster.demo.bundle.Bundle;
 import com.prepmaster.demo.department.Department;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static jakarta.persistence.GenerationType.SEQUENCE;
 
@@ -30,12 +34,6 @@ public class Course {
             updatable = false
     )
     private Long id;
-    @ManyToOne
-    @JoinColumn(
-            name = "department_id",
-            referencedColumnName = "id"
-    )
-    private Department department;
     @Column(
             name = "name",
             nullable = false,
@@ -49,6 +47,27 @@ public class Course {
     )
     private String description;
 
+    @ManyToOne(
+            fetch = FetchType.LAZY //Why
+    )
+    @JoinColumn(
+            name = "department_id",
+            nullable = false,
+            referencedColumnName = "id",
+            foreignKey = @ForeignKey(
+                    name = "department_course_id_fk"
+            )
+    )
+    private Department department;
+
+    @OneToMany(
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, //DOC: makes students heads if they don't exist
+            mappedBy = "course"
+            //DOC: fetch is lazy by default for 1-N relationships
+            //DOC: orphan type is false by default so if this is deleted students tied to this won't be
+    )
+    private List<Bundle> bundles = new ArrayList<>();
+
     public Course() {
     }
 
@@ -61,14 +80,6 @@ public class Course {
         this.id = id;
         this.name = name;
         this.description = description;
-    }
-
-    public Department getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(Department department) {
-        this.department = department;
     }
 
     public Long getId() {
@@ -93,6 +104,35 @@ public class Course {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
+    public List<Bundle> getBundles() {
+        return bundles;
+    }
+
+    public void setBundles(List<Bundle> bundles) {
+        this.bundles = bundles;
+    }
+
+    public void addBundle(Bundle bundle){
+        if(!this.bundles.contains(bundle)){
+            this.bundles.add(bundle);
+            bundle.setCourse(this);
+        }
+    }
+    public void removeBundle(Bundle bundle){
+        if(this.bundles.contains(bundle)){
+            this.bundles.remove(bundle);
+            bundle.setTeacher(null);
+        }
     }
 
     @Override
