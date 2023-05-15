@@ -197,6 +197,7 @@ public class Question {
                 ", answer=" + answer +
                 ", explanation='" + explanation + '\'' +
                 ", difficulty='" + difficulty + '\'' +
+                ", choices=" + choices +
                 '}';
     }
 }

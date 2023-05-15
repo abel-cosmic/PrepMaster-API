@@ -11,12 +11,21 @@ public class QuestionAnswer {
     private QuestionAnswerID id;
     @ManyToOne
     @MapsId("testId")
-
-    @JoinColumn(name="test_id")
+    @JoinColumn(
+            name="test_id",
+            foreignKey = @ForeignKey(
+                    name = "test_id_fk"
+            )
+    )
     private Test test;
     @ManyToOne
     @MapsId("questionId")
-    @JoinColumn(name="question_id")
+    @JoinColumn(
+            name="question_id",
+            foreignKey = @ForeignKey(
+                    name = "question_id_fk"
+            )
+    )
     private Question question;
 
 
