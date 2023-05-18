@@ -2,7 +2,6 @@ package com.prepmaster.demo.department;
 
 import com.prepmaster.demo.admin.Admin;
 import com.prepmaster.demo.course.Course;
-import com.prepmaster.demo.departmenthead.DepartmentHead;
 import com.prepmaster.demo.student.Student;
 import com.prepmaster.demo.teacher.Teacher;
 import jakarta.persistence.*;
@@ -64,9 +63,18 @@ public class Department {
     private Admin admin;
 
     @OneToOne(
-            mappedBy = "department"
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY //Default is Eager for 1-1
+            //when lazy this doesn't fetch the whole student object with it, go and mess with to string
     )
-    private DepartmentHead departmentHead;
+    @JoinColumn(
+            name = "department_head_id",
+            referencedColumnName = "id",
+            foreignKey = @ForeignKey(
+                    name = "department_head_id_department_id_fk"
+            )
+    )
+    private Teacher departmentHead;
 
     @OneToMany(
             cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, //DOC: makes courses heads if they don't exist
@@ -136,6 +144,14 @@ public class Department {
 
     public void setAdmin(Admin admin) {
         this.admin = admin;
+    }
+
+    public Teacher getDepartmentHead() {
+        return departmentHead;
+    }
+
+    public void setDepartmentHead(Teacher departmentHead) {
+        this.departmentHead = departmentHead;
     }
 
     public List<Student> getStudents() {

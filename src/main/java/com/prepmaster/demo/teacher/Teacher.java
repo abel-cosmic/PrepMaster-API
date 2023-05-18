@@ -71,6 +71,12 @@ public class Teacher {
             columnDefinition = "TEXT"
     )
     private String password;
+    @Column(
+            name = "is_department_head",
+            nullable = false,
+            columnDefinition = "BOOLEAN"
+    )
+    private Boolean isDepartmentHead;
 
     @ManyToOne(
             fetch = FetchType.LAZY //Why
@@ -84,6 +90,12 @@ public class Teacher {
             )
     )
     private Department department;
+
+    @OneToOne(
+            mappedBy = "departmentHead",
+            cascade = {CascadeType.PERSIST,CascadeType.REMOVE}
+    )
+    private Department headedDepartment;
 
     @OneToMany(
             cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, //DOC: makes students heads if they don't exist
@@ -101,13 +113,15 @@ public class Teacher {
             String email,
             String phoneNumber,
             String gender,
-            String password) {
+            String password,
+            Boolean isDepartmentHead) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.gender = gender;
         this.password = password;
+        this.isDepartmentHead = isDepartmentHead;
     }
 
     public Teacher(
@@ -183,6 +197,13 @@ public class Teacher {
         this.password = password;
     }
 
+    public Boolean getDepartmentHead() {
+        return isDepartmentHead;
+    }
+
+    public void setDepartmentHead(Boolean departmentHead) {
+        isDepartmentHead = departmentHead;
+    }
 
     public Department getDepartment() {
         return department;
@@ -190,6 +211,14 @@ public class Teacher {
 
     public void setDepartment(Department department) {
         this.department = department;
+    }
+
+    public Department getHeadedDepartment() {
+        return headedDepartment;
+    }
+
+    public void setHeadedDepartment(Department headedDepartment) {
+        this.headedDepartment = headedDepartment;
     }
 
     public List<Bundle> getBundles() {

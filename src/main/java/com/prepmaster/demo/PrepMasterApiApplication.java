@@ -4,25 +4,28 @@ import com.github.javafaker.Faker;
 import com.prepmaster.demo.admin.Admin;
 import com.prepmaster.demo.admin.AdminRepository;
 import com.prepmaster.demo.bundle.Bundle;
+import com.prepmaster.demo.bundle.BundleRepository;
 import com.prepmaster.demo.course.Course;
+import com.prepmaster.demo.course.CourseRepository;
 import com.prepmaster.demo.department.Department;
 import com.prepmaster.demo.department.DepartmentRepository;
-import com.prepmaster.demo.departmenthead.DepartmentHead;
-import com.prepmaster.demo.departmenthead.DepartmentHeadRepository;
 import com.prepmaster.demo.question.Choice;
 import com.prepmaster.demo.question.Question;
+import com.prepmaster.demo.question.QuestionRepository;
+import com.prepmaster.demo.questionanswer.QuestionAnswer;
+import com.prepmaster.demo.questionanswer.QuestionAnswerID;
+import com.prepmaster.demo.questionanswer.QuestionAnswerRepository;
 import com.prepmaster.demo.student.Student;
+import com.prepmaster.demo.student.StudentRepository;
 import com.prepmaster.demo.teacher.Teacher;
+import com.prepmaster.demo.teacher.TeacherRepository;
 import com.prepmaster.demo.test.Test;
+import com.prepmaster.demo.test.TestRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
 
 /*
 * TODO: tasks before doing anything
@@ -41,18 +44,18 @@ public class PrepMasterApiApplication {
 
 	@Bean
 	CommandLineRunner commandLineRunner(
-		AdminRepository adminRepository,
-		DepartmentHeadRepository departmentHeadRepository,
-		DepartmentRepository departmentRepository
+		AdminRepository adminRepository
 	) {
 		return args -> {
 			Admin admin = makeAdmin();
 
-			DepartmentHead departmentHead = makeDepartmentHead();
-			admin.addDepartmentHead(departmentHead);
-
 			Department department = makeDepartment();
-			departmentHead.setDepartment(department);//cascade type all for department head in department
+			admin.addDepartment(department);
+
+			Teacher departmentHead = makeTeacher();
+			departmentHead.setDepartmentHead(true);
+			department.setDepartmentHead(departmentHead);
+			department.addTeacher(departmentHead);
 
 			Course course = makeCourse();
 			department.addCourse(course);
@@ -65,17 +68,17 @@ public class PrepMasterApiApplication {
 			bundle.setCourse(course);
 
 			Question question = makeQuestion();
-			question.addChoice(makeChoice('A'));
-			question.addChoice(makeChoice('B'));
-			question.addChoice(makeChoice('C'));
-			question.addChoice(makeChoice('D'));
+			question.addChoice(makeChoice('A',0));
+			question.addChoice(makeChoice('B',1));
+			question.addChoice(makeChoice('C',2));
+			question.addChoice(makeChoice('D',3));
 			bundle.addQuestion(question);
 
 			Question question1 = makeQuestion();
-			question1.addChoice(makeChoice('A'));
-			question1.addChoice(makeChoice('B'));
-			question1.addChoice(makeChoice('C'));
-			question1.addChoice(makeChoice('D'));
+			question1.addChoice(makeChoice('A',0));
+			question1.addChoice(makeChoice('B',1));
+			question1.addChoice(makeChoice('C',2));
+			question1.addChoice(makeChoice('D',3));
 			bundle.addQuestion(question1);
 
 			Student student = makeStudent();
@@ -84,8 +87,12 @@ public class PrepMasterApiApplication {
 			Test test = makeTest();
 			test.setBundle(bundle);
 			test.setStudent(student);
-			bundle.addTest(test);
 
+			QuestionAnswer questionAnswer = new QuestionAnswer(new QuestionAnswerID(test.getId(), question.getId()),0,test,question);
+			question.addQuestionAnswer(questionAnswer);
+			test.addQuestionAnswer(questionAnswer);
+
+			bundle.addTest(test);
 			teacher.addBundle(bundle);
 			department.addStudent(makeStudent());
 
@@ -97,17 +104,6 @@ public class PrepMasterApiApplication {
 	private Admin makeAdmin(){
 		Faker faker = new Faker();
 		return  new Admin(faker.internet().emailAddress(), faker.company().name(), faker.internet().password());
-	}
-	private DepartmentHead makeDepartmentHead(){
-		Faker faker = new Faker();
-		return new DepartmentHead(
-				faker.name().firstName(),
-				faker.name().lastName(),
-				faker.internet().emailAddress(),
-				faker.phoneNumber().cellPhone(),
-				faker.random().nextInt(2) == 0 ? "M" : "F",
-				faker.internet().password()
-		);
 	}
 	private Department makeDepartment(){
 		Faker faker = new Faker();
@@ -131,7 +127,8 @@ public class PrepMasterApiApplication {
 				faker.internet().emailAddress(),
 				faker.phoneNumber().cellPhone(),
 				faker.random().nextInt(2) == 0 ? "M" : "F",
-				faker.internet().password()
+				faker.internet().password(),
+				false
 		);
 	}
 	private Student makeStudent() {
@@ -155,19 +152,17 @@ public class PrepMasterApiApplication {
 
 	private Question makeQuestion() {
 		Faker faker = new Faker();
-		char[] chars = {'A', 'B', 'C', 'D'};
-		char answer = chars[faker.random().nextInt(4)];
 		return new Question(
 				faker.lorem().sentence(5),
-				answer,
+				faker.random().nextInt(4),
 				faker.lorem().sentence(10),
 				faker.lorem().word()
 		);
 	}
 
-	private Choice makeChoice(char c) {
+	private Choice makeChoice(char c, int x) {
 		Faker faker = new Faker();
-		return new Choice(c + ". " + faker.lorem().sentence(10));
+		return new Choice(c + ". " + faker.lorem().sentence(10), x);
 	}
 
 	private Test makeTest(){

@@ -1,6 +1,5 @@
 package com.prepmaster.demo.admin;
 
-import com.prepmaster.demo.departmenthead.DepartmentHead;
 import com.prepmaster.demo.department.Department;
 import jakarta.persistence.*;
 
@@ -54,14 +53,7 @@ public class Admin {
     )
     private String password;
     @OneToMany(
-            cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, //DOC: makes department heads if they doesn't exist
-            mappedBy = "admin"
-            //DOC: fetch is lazy by default for 1-N relationships
-            //DOC: orphan type is false by default so if this is deleted Department heads tied to this won't be
-    )
-    private List<DepartmentHead> departmentHeads = new ArrayList<>();
-    @OneToMany(
-            cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, //DOC: makes department heads if they doesn't exist
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, //DOC: makes department heads if they don't exist
             mappedBy = "admin"
             //DOC: fetch is lazy by default for 1-N relationships
             //DOC: orphan type is false by default so if this is deleted Department heads tied to this won't be
@@ -119,27 +111,14 @@ public class Admin {
         this.password = password;
     }
 
-    public List<DepartmentHead> getDepartmentHeads() {
-        return departmentHeads;
+    public List<Department> getDepartments() {
+        return departments;
     }
 
-    public void setDepartmentHeads(List<DepartmentHead> departmentHeads) {
-        this.departmentHeads = departmentHeads;
+    public void setDepartments(List<Department> departments) {
+        this.departments = departments;
     }
 
-    public void addDepartmentHead(DepartmentHead departmentHead){
-        if (!departmentHeads.contains(departmentHead) ){
-            this.departmentHeads.add(departmentHead);
-            departmentHead.setAdmin(this);
-        }
-    }
-
-    public void removeDepartmentHead(DepartmentHead departmentHead){
-        if (departmentHeads.contains(departmentHead) ){
-            this.departmentHeads.remove(departmentHead);
-            departmentHead.setAdmin(null);
-        }
-    }
     public void addDepartment(Department department){
         if (!departments.contains(department) ){
             this.departments.add(department);

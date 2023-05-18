@@ -9,7 +9,7 @@ import static jakarta.persistence.GenerationType.SEQUENCE;
 @Table(name = "choice")
 public class Choice {
     @Id
-    @SequenceGenerator(
+    @SequenceGenerator( //TODO this class should not have it's own primary key fix later
             name = "choice_sequence",
             sequenceName = "choice_sequence",
             allocationSize = 1
@@ -31,6 +31,13 @@ public class Choice {
     )
     private String choiceText;
 
+    @Column(
+            name = "index",
+            nullable = false,
+            columnDefinition = "INT"
+    )
+    private int index;
+
     @ManyToOne(
             fetch = FetchType.LAZY //Why
     )
@@ -47,8 +54,9 @@ public class Choice {
     public Choice() {
     }
 
-    public Choice(String choiceText) {
+    public Choice(String choiceText, int index) {
         this.choiceText = choiceText;
+        this.index = index;
     }
 
     public Choice(Long id, String choiceText) {
@@ -78,6 +86,14 @@ public class Choice {
 
     public void setQuestion(Question question) {
         this.question = question;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 
     @Override

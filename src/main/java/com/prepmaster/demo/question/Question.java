@@ -36,9 +36,9 @@ public class Question {
     @Column(
             name = "answer",
             nullable = false,
-            columnDefinition = "TEXT"
+            columnDefinition = "INT"
     )
-    private char answer;
+    private int answerIndex;
     @Column(
             name = "explanation",
             nullable = false,
@@ -70,7 +70,7 @@ public class Question {
     )
     private List<QuestionAnswer> questionAnswers = new ArrayList<>();
     @OneToMany(
-            cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, //DOC: makes students heads if they don't exist
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, //DOC: makes choices if they don't exist
             mappedBy = "question",
             fetch = FetchType.EAGER// so that the choices come with the question
             //DOC: fetch is lazy by default for 1-N relationships
@@ -84,12 +84,13 @@ public class Question {
     public Question(
             String question,
 //            List<Choice> choices,
-            char answer,
+            int answerIndex,
             String explanation,
-            String difficulty) {
+            String difficulty
+            ) {
         this.question = question;
 //        this.choices = choices;
-        this.answer = answer;
+        this.answerIndex = answerIndex;
         this.explanation = explanation;
         this.difficulty = difficulty;
     }
@@ -97,14 +98,12 @@ public class Question {
     public Question(
             Long id,
             String question,
-//            List<Choice> choices,
-            char answer,
+            int answerIndex,
             String explanation,
             String difficulty) {
         this.id = id;
         this.question = question;
-//        this.choices = choices;
-        this.answer = answer;
+        this.answerIndex = answerIndex;
         this.explanation = explanation;
         this.difficulty = difficulty;
     }
@@ -137,12 +136,16 @@ public class Question {
         this.question = question;
     }
 
-    public char getAnswer() {
-        return answer;
+    public int getAnswerIndex() {
+        return answerIndex;
     }
 
-    public void setAnswer(char answer) {
-        this.answer = answer;
+    public void setAnswerIndex(int answerIndex) {
+        this.answerIndex = answerIndex;
+    }
+
+    public void setQuestionAnswers(List<QuestionAnswer> questionAnswers) {
+        this.questionAnswers = questionAnswers;
     }
 
     public String getExplanation() {
@@ -194,7 +197,7 @@ public class Question {
         return "Question{" +
                 "id=" + id +
                 ", question='" + question + '\'' +
-                ", answer=" + answer +
+                ", answer=" + answerIndex +
                 ", explanation='" + explanation + '\'' +
                 ", difficulty='" + difficulty + '\'' +
                 ", choices=" + choices +

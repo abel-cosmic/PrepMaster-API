@@ -12,6 +12,14 @@ public class QuestionAnswer {
     @EmbeddedId
     private QuestionAnswerID id;
     //we make the relationship of the questionAnswer to test
+
+    @Column(
+            name = "chosen_index",
+            nullable = false,
+            columnDefinition = "INT"
+    )
+    private int chosenIndex;
+
     @ManyToOne
     @MapsId("testId")
     @JoinColumn(
@@ -32,13 +40,20 @@ public class QuestionAnswer {
     )
     private Question question;
 
+    public QuestionAnswer(QuestionAnswerID id, int chosenIndex, Test test, Question question) {
+        this.id = id;
+        this.chosenIndex = chosenIndex;
+        this.test = test;
+        this.question = question;
+    }
 
     public QuestionAnswer() {
     }
 
-    public QuestionAnswer(Test test, Question question) {
+    public QuestionAnswer(Test test, Question question, int chosenIndex) {
         this.test = test;
         this.question = question;
+        this.chosenIndex= chosenIndex;
     }
 
     public QuestionAnswerID getId() {
@@ -65,12 +80,21 @@ public class QuestionAnswer {
         this.question = question;
     }
 
+    public int getChosenIndex() {
+        return chosenIndex;
+    }
+
+    public void setChosenIndex(int chosenIndex) {
+        this.chosenIndex = chosenIndex;
+    }
+
     @Override
     public String toString() {
         return "QuestionAnswer{" +
                 "id=" + id +
                 ", test=" + test +
                 ", question=" + question +
+                ", chosenIndex=" + chosenIndex +
                 '}';
     }
 }
