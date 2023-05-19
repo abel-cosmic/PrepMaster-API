@@ -71,7 +71,7 @@ public class Test {
     )
     private Student student;
     @OneToMany(
-            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
+//            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
             mappedBy = "test"
     )
     private List<QuestionAnswer> questionAnswers = new ArrayList<>();
@@ -80,7 +80,7 @@ public class Test {
         return questionAnswers;
     }
 
-    public void addQuestionAnswers(QuestionAnswer questionAnswer) {
+    public void addQuestionAnswer(QuestionAnswer questionAnswer) {
         if(!questionAnswers.contains(questionAnswer)){
             questionAnswers.add(questionAnswer);
         }
