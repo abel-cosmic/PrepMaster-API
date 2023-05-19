@@ -74,7 +74,7 @@ public class Question {
             mappedBy = "question",
             fetch = FetchType.EAGER// so that the choices come with the question
             //DOC: fetch is lazy by default for 1-N relationships
-            //DOC: orphan type is false by default so if this is deleted students tied to this won't be
+            //DOC: an orphan type is false by default, so if this is deleted students tied to this won't be
     )
     private List<Choice> choices = new ArrayList<>();
 
