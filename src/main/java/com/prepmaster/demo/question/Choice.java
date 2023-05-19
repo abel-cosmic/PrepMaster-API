@@ -98,9 +98,11 @@ public class Choice {
 
     @Override
     public String toString() {
-        return "Choices{" +
+        return "Choice{" +
                 "id=" + id +
                 ", choiceText='" + choiceText + '\'' +
+                ", index=" + index +
+                ", question=" + question +
                 '}';
     }
 }
