@@ -1,6 +1,7 @@
 package com.prepmaster.demo.test;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.prepmaster.demo.bundle.Bundle;
 import com.prepmaster.demo.questionanswer.QuestionAnswer;
 import com.prepmaster.demo.student.Student;
@@ -73,7 +74,8 @@ public class Test {
     private Student student;
     @OneToMany(
 //            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
-            mappedBy = "test"
+            mappedBy = "test",
+            orphanRemoval = true
     )
     private List<QuestionAnswer> questionAnswers = new ArrayList<>();
 
@@ -129,7 +131,7 @@ public class Test {
     public void setBundle(Bundle bundle) {
         this.bundle = bundle;
     }
-
+    @JsonIgnore
     public Student getStudent() {
         return student;
     }

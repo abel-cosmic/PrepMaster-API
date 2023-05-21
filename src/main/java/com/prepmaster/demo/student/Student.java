@@ -1,9 +1,12 @@
 package com.prepmaster.demo.student;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prepmaster.demo.admin.Admin;
 import com.prepmaster.demo.department.Department;
 import com.prepmaster.demo.test.Test;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,6 +80,8 @@ public class Student {
             nullable = false,
             columnDefinition = "TEXT"
     )
+    @NotBlank(message="password must not be empty")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     @ManyToOne(
@@ -183,7 +188,7 @@ public class Student {
     public void setGender(String gender) {
         this.gender = gender;
     }
-
+    @JsonIgnore
     public String getPassword() {
         return password;
     }
@@ -191,16 +196,20 @@ public class Student {
     public void setPassword(String password) {
         this.password = password;
     }
-
+    @JsonIgnore
     public Department getDepartment() {
         return department;
+    }
+    @JsonProperty(value = "departmentId")
+    public Long getDepartmentId(){
+        return department.getId();
     }
 
     public void setDepartment(Department department) {
         this.department = department;
     }
 
-
+    @JsonIgnore
     public List<Test> getTests() {
         return tests;
     }

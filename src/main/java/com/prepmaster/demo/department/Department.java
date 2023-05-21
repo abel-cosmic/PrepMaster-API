@@ -43,6 +43,7 @@ public class Department {
             nullable = false,
             columnDefinition = "TEXT"
     )
+
     private String name;
     @Column(
             name = "description",
