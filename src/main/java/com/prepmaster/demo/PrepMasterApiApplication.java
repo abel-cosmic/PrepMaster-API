@@ -4,23 +4,18 @@ import com.github.javafaker.Faker;
 import com.prepmaster.demo.admin.Admin;
 import com.prepmaster.demo.admin.AdminRepository;
 import com.prepmaster.demo.bundle.Bundle;
-import com.prepmaster.demo.bundle.BundleRepository;
 import com.prepmaster.demo.course.Course;
-import com.prepmaster.demo.course.CourseRepository;
 import com.prepmaster.demo.department.Department;
 import com.prepmaster.demo.department.DepartmentRepository;
 import com.prepmaster.demo.question.Choice;
 import com.prepmaster.demo.question.Question;
-import com.prepmaster.demo.question.QuestionRepository;
 import com.prepmaster.demo.questionanswer.QuestionAnswer;
 import com.prepmaster.demo.questionanswer.QuestionAnswerID;
-import com.prepmaster.demo.questionanswer.QuestionAnswerRepository;
 import com.prepmaster.demo.student.Student;
 import com.prepmaster.demo.student.StudentRepository;
 import com.prepmaster.demo.teacher.Teacher;
 import com.prepmaster.demo.teacher.TeacherRepository;
 import com.prepmaster.demo.test.Test;
-import com.prepmaster.demo.test.TestRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -44,7 +39,10 @@ public class PrepMasterApiApplication {
 
 	@Bean
 	CommandLineRunner commandLineRunner(
-		AdminRepository adminRepository
+		AdminRepository adminRepository,
+		DepartmentRepository departmentRepository,
+		StudentRepository studentRepository,
+		TeacherRepository teacherRepository
 	) {
 		return args -> {
 			Admin admin = makeAdmin();
@@ -99,6 +97,20 @@ public class PrepMasterApiApplication {
 			admin.addDepartment(department);//Note that you cant just make a department without having an admin it will not work
 			adminRepository.save(admin);
 
+			Admin admin1 = adminRepository.findById(1L).get();
+			System.out.println(admin1);
+			admin1.setOrganization("Hope");
+			adminRepository.save(admin1);
+			adminRepository.findById(1L).ifPresent(
+					System.out::println
+			);
+
+//			departmentRepository.deleteById(1L);
+//			adminRepository.deleteAdminById(1L);
+//			teacherRepository.deleteById(2L);
+//			adminRepository.findById(1L).ifPresent(
+//					System.out::println
+//			);
 		};
 	}
 	private Admin makeAdmin(){
