@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "35a7cde5-5c5b-4a0f-b2eb-cc2a6f0532f1",
+		"_postman_id": "52c89c86-7ada-4d62-a146-80fba948d0bc",
 		"name": "Prepmaster",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27531965"
 	},
 	"item": [
 		{
@@ -217,7 +218,10 @@
 					"name": "deleteCourse",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": ""
+						}
 					},
 					"response": []
 				}
@@ -227,10 +231,82 @@
 			"name": "department",
 			"item": [
 				{
-					"name": "New Request",
+					"name": "getDepartment",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/departments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"departments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createDepartment",
 					"request": {
 						"method": "GET",
 						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "student",
+			"item": [
+				{
+					"name": "getStudent",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/students",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"students"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createStudent",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"firstName\": \"abebe\",\n        \"lastName\": \"Hodkiewicz\",\n        \"email\": \"buena.tillman@gmail.com\",\n        \"phoneNumber\": \"1-307-038-5913\",\n        \"gender\": \"F\",\n        \"department_id\": 2,\n        \"password\":\"2321hjhwcd\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/students",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"students"
+							]
+						}
 					},
 					"response": []
 				}
