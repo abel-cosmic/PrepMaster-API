@@ -5,6 +5,7 @@ import com.prepmaster.demo.admin.Admin;
 import com.prepmaster.demo.admin.AdminRepository;
 import com.prepmaster.demo.bundle.Bundle;
 import com.prepmaster.demo.course.Course;
+import com.prepmaster.demo.course.CourseRepository;
 import com.prepmaster.demo.department.Department;
 import com.prepmaster.demo.department.DepartmentRepository;
 import com.prepmaster.demo.question.Choice;
@@ -42,7 +43,8 @@ public class PrepMasterApiApplication {
 		AdminRepository adminRepository,
 		DepartmentRepository departmentRepository,
 		StudentRepository studentRepository,
-		TeacherRepository teacherRepository
+		TeacherRepository teacherRepository,
+		CourseRepository courseRepository
 	) {
 		return args -> {
 			Admin admin = makeAdmin();
@@ -101,10 +103,17 @@ public class PrepMasterApiApplication {
 			System.out.println(admin1);
 			admin1.setOrganization("Hope");
 			adminRepository.save(admin1);
-			adminRepository.findById(1L).ifPresent(
-					System.out::println
-			);
-
+//			adminRepository.findById(1L).ifPresent(
+//					System.out::println
+//			);
+//			departmentRepository.findById(1L).ifPresent(
+//					System.out::println
+//			);
+//			courseRepository.findById(1L).ifPresent(
+//					c -> {
+//						System.out.println(c.getDepartment());
+//					}
+//			);
 //			departmentRepository.deleteById(1L);
 //			adminRepository.deleteAdminById(1L);
 //			teacherRepository.deleteById(2L);

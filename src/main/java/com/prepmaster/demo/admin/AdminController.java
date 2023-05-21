@@ -4,7 +4,7 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping(path = "/api/admin")
+@RequestMapping(path = "/api/admins")
 @AllArgsConstructor// creates a constructor, so we don't have too (Lombok)
 @RestController// Allows us to send http requests into it
 public class AdminController {

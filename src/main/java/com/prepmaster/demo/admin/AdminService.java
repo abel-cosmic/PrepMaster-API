@@ -12,7 +12,8 @@ public class AdminService {
     private final AdminRepository adminRepository;
 
     Admin getAdmin(Long id){
-        return adminRepository
+        log.info("Getting admin {}", id);
+        Admin admin = adminRepository
                 .findById(id)
                 .orElseThrow(
                         () -> {
@@ -21,11 +22,13 @@ public class AdminService {
                             return notFoundException;
                         }
                 );
+        log.info("Got admin {}", id);
+        return admin;
     }
     void createNewAdmin(Admin admin){
         log.info("Creating admin {}", admin);
         adminRepository.save(admin);
-        log.info("Created admin {} successfully", admin);
+        log.info("Created admin {} successfully", admin.getId());
     }
 
     void updateAdmin(Admin admin){
@@ -40,7 +43,7 @@ public class AdminService {
     }
 
     void deleteAdmin(Long id){
-        log.info("Updating admin {}", id);
+        log.info("Deleting admin {}", id);
         if (!adminRepository.existsById(id)) {
             NotFoundException notFoundException = new NotFoundException("Admin with ID " + id + " not found");
             log.error("error admin {} not found could not delete a non existing tuple", id , notFoundException);
