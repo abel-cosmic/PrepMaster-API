@@ -4,6 +4,8 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequestMapping(path = "/api/courses")
 @AllArgsConstructor
 @RestController
@@ -26,5 +28,10 @@ public class CourseController {
     @DeleteMapping(path = "{courseId}")
     void deleteAdmin(@PathVariable("courseId") Long id){
         courseService.deleteCourse(id);
+    }
+
+    @GetMapping
+    List<Course> getCourses(){
+        return courseService.getCourses();
     }
 }

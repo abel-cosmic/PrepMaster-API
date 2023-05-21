@@ -3,7 +3,7 @@ package com.prepmaster.demo.course;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class CourseRequestBody {
+public class CourseRequestBody   {
     private Course course;
     private Long departmentId;
 

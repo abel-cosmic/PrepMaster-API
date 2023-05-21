@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor //LOMBOK SEE VIDEO
 @Slf4j // so we can use log variable
@@ -76,6 +78,10 @@ public class CourseService {
         }
         courseRepository.deleteById(id);
         log.info("Deleted course {} successfully", id);
+    }
+
+    List<Course> getCourses(){
+        return courseRepository.findAll();
     }
 
 }
