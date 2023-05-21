@@ -14,4 +14,5 @@ public interface DepartmentRepository extends JpaRepository<Department,Long> {
     Optional<Department> findAllByAdminId(@Param("adminId")Long adminId);
     @Query("SELECT d FROM Department d WHERE d.departmentHead.id = :departmentHeadId")
     Optional<Department> findAllByDepartmentHeadId(@Param("departmentHeadId")Long departmentHeadId);
+
 }

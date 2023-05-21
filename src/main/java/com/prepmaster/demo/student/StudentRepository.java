@@ -15,4 +15,8 @@ public interface StudentRepository extends JpaRepository<Student,Long> {
     Optional<Student> findAllByDepartment(@Param("departmentId")Long departmentId);
     @Query("SELECT s FROM Student s WHERE s.email = :email")
     Optional<Student> findAllByEmail(@Param("email")String email);
+    @Transactional
+    @Modifying
+    @Query("DELETE FROM Student  s WHERE s.id = :id")
+    void deleteById(@Param("id") Long id);
 }

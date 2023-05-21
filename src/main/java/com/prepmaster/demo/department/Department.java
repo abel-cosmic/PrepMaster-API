@@ -1,5 +1,7 @@
 package com.prepmaster.demo.department;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prepmaster.demo.admin.Admin;
 import com.prepmaster.demo.course.Course;
 import com.prepmaster.demo.student.Student;
@@ -137,23 +139,31 @@ public class Department {
     public void setDescription(String description) {
         this.description = description;
     }
-
+    @JsonIgnore
     public Admin getAdmin() {
         return admin;
+    }
+    @JsonProperty(value = "adminId")
+    public Long getAdminId(){
+        return admin.getId();
     }
 
     public void setAdmin(Admin admin) {
         this.admin = admin;
     }
-
+    @JsonIgnore
     public Teacher getDepartmentHead() {
         return departmentHead;
+    }
+    @JsonProperty(value = "departmentHeadId")
+    public Long getDepartmentHeadId(){
+        return departmentHead.getId();
     }
 
     public void setDepartmentHead(Teacher departmentHead) {
         this.departmentHead = departmentHead;
     }
-
+    @JsonIgnore
     public List<Student> getStudents() {
         return students;
     }
@@ -173,6 +183,7 @@ public class Department {
             student.setDepartment(null);
         }
     }
+    @JsonIgnore
     public List<Course> getCourses() {
         return courses;
     }
@@ -192,7 +203,7 @@ public class Department {
             course.setDepartment(null);
         }
     }
-
+@JsonIgnore
     public List<Teacher> getTeachers() {
         return teachers;
     }
