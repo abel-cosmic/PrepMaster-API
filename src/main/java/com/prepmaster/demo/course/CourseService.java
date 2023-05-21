@@ -81,7 +81,10 @@ public class CourseService {
     }
 
     List<Course> getCourses(){
-        return courseRepository.findAll();
+        log.info("Getting all courses");
+        List<Course> courses = courseRepository.findAll();
+        log.info("Got all courses");
+        return courses;
     }
 
 }

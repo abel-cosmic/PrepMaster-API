@@ -22,11 +22,11 @@ public class CourseController {
         return courseService.getCourse(id);
     }
     @PutMapping
-    void updateAdmin(@Valid @RequestBody CourseRequestBody courseRequestBody){
+    void updateCourse(@Valid @RequestBody CourseRequestBody courseRequestBody){
         courseService.updateCourse(courseRequestBody);
     }
     @DeleteMapping(path = "{courseId}")
-    void deleteAdmin(@PathVariable("courseId") Long id){
+    void deleteCourse(@PathVariable("courseId") Long id){
         courseService.deleteCourse(id);
     }
 
