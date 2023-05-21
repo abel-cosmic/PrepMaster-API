@@ -15,7 +15,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/admins/2",
+							"raw": "http://localhost:8080/api/admins/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -24,7 +24,7 @@
 							"path": [
 								"api",
 								"admins",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -163,7 +163,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"course\" : {\n        \"id\": 4,\n        \"name\": \"SSAD\",\n        \"description\": \" TELLS YOU WHAT YOU NEED TO KNOW ABOUT THE COURSE HERE IN THE description\"\n    },\n    \"departmentId\": 1\n}",
+							"raw": "{\n    \"course\" : {\n        \"id\": 4,\n        \"name\": \"SSAD\",\n        \"description\": \" TELLS YOU WHAT YOU NEED TO KNOW ABOUT THE COURSE HERE IN THE description\"    \n    },\n    \"teacherId\": 1,\n    \"departmentId\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -231,7 +231,7 @@
 			"name": "department",
 			"item": [
 				{
-					"name": "getDepartment",
+					"name": "getDepartments",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -253,6 +253,34 @@
 				{
 					"name": "createDepartment",
 					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n     \"adminId\": 1,\n    \"department\" : {\n        \"id\": 4,\n        \"name\": \"computer Science\",\n        \"description\": \"new department created successfully\"\n    }\n     \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/departments",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"departments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateDepartment",
+					"request": {
 						"method": "GET",
 						"header": []
 					},
@@ -263,25 +291,6 @@
 		{
 			"name": "student",
 			"item": [
-				{
-					"name": "getStudent",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:8080/api/students",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"students"
-							]
-						}
-					},
-					"response": []
-				},
 				{
 					"name": "createStudent",
 					"request": {
@@ -305,6 +314,53 @@
 							"path": [
 								"api",
 								"students"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateStudent",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getStudents",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "getStudent",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "deleteStudent",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/students/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"students",
+								"1"
 							]
 						}
 					},
