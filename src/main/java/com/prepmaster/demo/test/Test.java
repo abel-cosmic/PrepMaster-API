@@ -59,7 +59,8 @@ public class Test {
     private Bundle bundle;
 
     @ManyToOne(
-            fetch = FetchType.LAZY //Why
+            fetch = FetchType.LAZY //Why            questionAnswers.add(questionAnswer);
+
     )
     @JoinColumn(
             name = "student_id",
@@ -82,7 +83,6 @@ public class Test {
 
     public void addQuestionAnswer(QuestionAnswer questionAnswer) {
         if(!questionAnswers.contains(questionAnswer)){
-            questionAnswers.add(questionAnswer);
         }
     }
 

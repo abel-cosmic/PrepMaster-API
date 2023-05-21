@@ -1,5 +1,6 @@
 package com.prepmaster.demo.admin;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.prepmaster.demo.department.Department;
 import jakarta.persistence.*;
 
@@ -53,8 +54,9 @@ public class Admin {
     )
     private String password;
     @OneToMany(
-            cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, //DOC: makes department heads if they don't exist
-            mappedBy = "admin"
+            mappedBy = "admin",
+            orphanRemoval = true,
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE} //DOC: makes department heads if they don't exist
             //DOC: fetch is lazy by default for 1-N relationships
             //DOC: orphan type is false by default so if this is deleted Department heads tied to this won't be
     )
@@ -111,6 +113,7 @@ public class Admin {
         this.password = password;
     }
 
+    @JsonIgnore
     public List<Department> getDepartments() {
         return departments;
     }
