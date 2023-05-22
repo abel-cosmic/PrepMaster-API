@@ -8,7 +8,7 @@ import com.prepmaster.demo.course.Course;
 import com.prepmaster.demo.course.CourseRepository;
 import com.prepmaster.demo.department.Department;
 import com.prepmaster.demo.department.DepartmentRepository;
-import com.prepmaster.demo.question.Choice;
+import com.prepmaster.demo.choice.Choice;
 import com.prepmaster.demo.question.Question;
 import com.prepmaster.demo.questionanswer.QuestionAnswer;
 import com.prepmaster.demo.questionanswer.QuestionAnswerID;

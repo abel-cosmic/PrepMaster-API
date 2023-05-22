@@ -1,5 +1,8 @@
-package com.prepmaster.demo.question;
+package com.prepmaster.demo.choice;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.prepmaster.demo.question.Question;
 import com.prepmaster.demo.teacher.Teacher;
 import jakarta.persistence.*;
 
@@ -79,9 +82,13 @@ public class Choice {
     public void setChoiceText(String choiceText) {
         this.choiceText = choiceText;
     }
-
+    @JsonIgnore
     public Question getQuestion() {
         return question;
+    }
+    @JsonProperty(value = "questionId")
+    public Long getQuestionId(){
+        return  question.getId();
     }
 
     public void setQuestion(Question question) {

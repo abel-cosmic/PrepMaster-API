@@ -2,6 +2,7 @@ package com.prepmaster.demo.question;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.prepmaster.demo.bundle.Bundle;
+import com.prepmaster.demo.choice.Choice;
 import com.prepmaster.demo.questionanswer.QuestionAnswer;
 import jakarta.persistence.*;
 
@@ -74,7 +75,6 @@ public class Question {
     @OneToMany(
             cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, //DOC: makes choices if they don't exist
             mappedBy = "question",
-            orphanRemoval = true,
             fetch = FetchType.EAGER// so that the choices come with the question
             //DOC: fetch is lazy by default for 1-N relationships
             //DOC: an orphan type is false by default, so if this is deleted students tied to this won't be

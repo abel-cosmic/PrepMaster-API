@@ -1,5 +1,6 @@
 package com.prepmaster.demo.questionanswer;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.prepmaster.demo.question.Question;
 import com.prepmaster.demo.test.Test;
 import jakarta.persistence.*;
@@ -63,7 +64,7 @@ public class QuestionAnswer {
     public void setId(QuestionAnswerID id) {
         this.id = id;
     }
-
+@JsonIgnore
     public Test getTest() {
         return test;
     }
@@ -72,6 +73,7 @@ public class QuestionAnswer {
         this.test = test;
     }
 
+@JsonIgnore
     public Question getQuestion() {
         return question;
     }

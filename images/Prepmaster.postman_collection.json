@@ -525,6 +525,103 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "choice",
+			"item": [
+				{
+					"name": "getChoices",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "getChoice",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "createChoice",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \n    \"choice\": {\n        \"id\": 1,\n        \"choiceText\": \"A. Dolorum sed voluptatem facilis quisquam fugit corporis maxime praesentium aliquid ipsum est cum sapiente eos.\",\n        \"index\": 0\n    },\n       \"questionId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/choices",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"choices"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteChoice",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/choices/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"choices",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateChoice",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \n    \"choice\": {\n        \"id\": 1,\n        \"choiceText\": \"A. Dolorum sed voluptatem facilis quisquam fugit corporis maxime praesentium aliquid ipsum est cum sapiente eos.\",\n        \"index\": 1\n    },\n       \"questionId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/choices",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"choices"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
