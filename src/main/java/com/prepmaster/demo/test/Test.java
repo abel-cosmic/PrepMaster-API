@@ -2,10 +2,12 @@ package com.prepmaster.demo.test;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prepmaster.demo.bundle.Bundle;
 import com.prepmaster.demo.questionanswer.QuestionAnswer;
 import com.prepmaster.demo.student.Student;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -32,6 +34,7 @@ public class Test {
     @Column(name = "id", updatable = false)
     private Long id;
 
+    @NotNull(message = "Score must not be NULL")
     @Column(
             name = "score",
             nullable = false,
@@ -39,6 +42,7 @@ public class Test {
     )
     private int score;
 
+    @NotNull(message = "Taken at must not be NULL")
     @Column(
             name = "taken_at",
             nullable = false,
@@ -73,24 +77,10 @@ public class Test {
     )
     private Student student;
     @OneToMany(
-//            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
-            mappedBy = "test",
-            orphanRemoval = true
+            cascade = {CascadeType.PERSIST,CascadeType.REMOVE},
+            mappedBy = "test"
     )
     private List<QuestionAnswer> questionAnswers = new ArrayList<>();
-
-    public List<QuestionAnswer> getQuestionAnswers() {
-        return questionAnswers;
-    }
-
-    public void addQuestionAnswer(QuestionAnswer questionAnswer) {
-        if(!questionAnswers.contains(questionAnswer)){
-        }
-    }
-
-    public void removeQuestionAnswers(QuestionAnswer questionAnswer) {
-        questionAnswers.remove(questionAnswer);
-    }
 
     public Test(int score) {
         this.score = score;
@@ -124,8 +114,14 @@ public class Test {
         this.takenAt = takenAt;
     }
 
+    @JsonIgnore
     public Bundle getBundle() {
         return bundle;
+    }
+
+    @JsonProperty("bundleId")
+    public Long getBundleId() {
+        return bundle.getId();
     }
 
     public void setBundle(Bundle bundle) {
@@ -136,8 +132,26 @@ public class Test {
         return student;
     }
 
+    @JsonProperty("studentId")
+    public Long getStudentId() {
+        return student.getId();
+    }
+
     public void setStudent(Student student) {
         this.student = student;
+    }
+    @JsonIgnore
+    public List<QuestionAnswer> getQuestionAnswers() {
+        return questionAnswers;
+    }
+
+    public void addQuestionAnswer(QuestionAnswer questionAnswer) {
+        if(!questionAnswers.contains(questionAnswer)){
+        }
+    }
+
+    public void removeQuestionAnswers(QuestionAnswer questionAnswer) {
+        questionAnswers.remove(questionAnswer);
     }
 
     @Override

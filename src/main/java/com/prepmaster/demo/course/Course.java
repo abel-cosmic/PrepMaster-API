@@ -117,7 +117,7 @@ public class Course {
     public Department getDepartment() {
         return department;
     }
-    @JsonProperty("department_id")
+    @JsonProperty("departmentId")
     public Long getDepartmentID(){//needed this for get requests
         return department.getId();
     }

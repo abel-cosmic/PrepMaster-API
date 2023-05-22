@@ -49,4 +49,12 @@ public class QuestionAnswerID implements Serializable {
     public int hashCode() {
         return Objects.hash(testId, questionId);
     }
+
+    @Override
+    public String toString() {
+        return "QuestionAnswerID{" +
+                "testId=" + testId +
+                ", questionId=" + questionId +
+                '}';
+    }
 }

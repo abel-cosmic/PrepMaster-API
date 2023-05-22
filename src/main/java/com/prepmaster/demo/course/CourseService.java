@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor //LOMBOK SEE VIDEO
 @Slf4j // so we can use log variable
@@ -14,14 +16,14 @@ public class CourseService {
     private final CourseRepository courseRepository;
     private final DepartmentRepository departmentRepository;
 
-    Course getCourse(Long id){
+    public Course getCourse(Long id){
         log.info("Getting course {}", id);
         Course course = courseRepository
                 .findById(id)
                 .orElseThrow(
                         () -> {
                             NotFoundException notFoundException = new NotFoundException("Admin with ID " + id + " not found");
-                            log.error("error admin {} not found", id , notFoundException);
+                            log.error("error course {} not found", id , notFoundException);
                             return notFoundException;
                         }
                 );
@@ -76,6 +78,13 @@ public class CourseService {
         }
         courseRepository.deleteById(id);
         log.info("Deleted course {} successfully", id);
+    }
+
+    List<Course> getCourses(){
+        log.info("Getting all courses");
+        List<Course> courses = courseRepository.findAll();
+        log.info("Got all courses");
+        return courses;
     }
 
 }

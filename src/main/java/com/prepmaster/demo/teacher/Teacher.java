@@ -1,9 +1,14 @@
 package com.prepmaster.demo.teacher;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prepmaster.demo.bundle.Bundle;
 import com.prepmaster.demo.department.Department;
 import com.prepmaster.demo.student.Student;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,43 +39,53 @@ public class Teacher {
             updatable = false
     )
     private Long id;
+    @NotBlank(message = "First name must not be empty")
     @Column(
             name = "first_name",
             nullable = false,
             columnDefinition = "TEXT"
     )
     private String firstName;
+    @NotBlank(message = "Last name must not be empty")
     @Column(
             name = "last_name",
             nullable = false,
             columnDefinition = "TEXT"
     )
     private String lastName;
+    @NotBlank(message = "Email must not be empty")
+    @Email(message = "Email must be valid")
     @Column(
             name = "email",
             nullable = false,
             columnDefinition = "TEXT"
     )
     private String email;
+    @NotBlank(message = "Phone number must not be empty")
     @Column(
             name = "phone_number",
             nullable = false,
             columnDefinition = "TEXT"
     )
-
     private String phoneNumber;
+    @NotBlank(message = "Gender must not be empty")
     @Column(
             name = "gender",
             nullable = false,
             columnDefinition = "TEXT"
     )
     private String gender;
+
+    @NotBlank(message = "Password must not be empty")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(
             name = "password",
             nullable = false,
             columnDefinition = "TEXT"
     )
     private String password;
+
+    @NotNull(message = "Is department head must not be null")
     @Column(
             name = "is_department_head",
             nullable = false,
@@ -189,6 +204,7 @@ public class Teacher {
         this.gender = gender;
     }
 
+    @JsonIgnore
     public String getPassword() {
         return password;
     }
@@ -205,14 +221,21 @@ public class Teacher {
         isDepartmentHead = departmentHead;
     }
 
+    @JsonIgnore
     public Department getDepartment() {
         return department;
+    }
+
+    @JsonProperty("departmentId")
+    public Long getDepartmentId() {
+        return department.getId();
     }
 
     public void setDepartment(Department department) {
         this.department = department;
     }
 
+    @JsonIgnore
     public Department getHeadedDepartment() {
         return headedDepartment;
     }
@@ -221,6 +244,7 @@ public class Teacher {
         this.headedDepartment = headedDepartment;
     }
 
+    @JsonIgnore
     public List<Bundle> getBundles() {
         return bundles;
     }
