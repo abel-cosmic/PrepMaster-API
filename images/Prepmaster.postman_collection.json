@@ -1,9 +1,8 @@
 {
 	"info": {
-		"_postman_id": "52c89c86-7ada-4d62-a146-80fba948d0bc",
+		"_postman_id": "35a7cde5-5c5b-4a0f-b2eb-cc2a6f0532f1",
 		"name": "Prepmaster",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "27531965"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -15,7 +14,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/admins/2",
+							"raw": "http://localhost:8080/api/admins/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -24,7 +23,7 @@
 							"path": [
 								"api",
 								"admins",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -163,7 +162,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"course\" : {\n        \"id\": 4,\n        \"name\": \"SSAD\",\n        \"description\": \" TELLS YOU WHAT YOU NEED TO KNOW ABOUT THE COURSE HERE IN THE description\"\n    },\n    \"departmentId\": 1\n}",
+							"raw": "{\n    \"course\" : {\n        \"name\": \"OSAD\",\n        \"description\": \" TELLS YOU WHAT YOU NEED TO KNOW ABOUT THE COURSE HERE IN THE description\"\n    },\n    \"departmentId\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -192,7 +191,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": " {\n    \"id\": 2,\n    \"name\": \"SSAD\",\n    \"description\": \" THis should be the updated by now\"\n}",
+							"raw": " {\n   \"course\" : {\n        \"id\": 2,\n        \"name\": \"OSAD\",\n        \"description\": \" This is the updated description\"\n    },\n    \"departmentId\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -217,10 +216,40 @@
 				{
 					"name": "deleteCourse",
 					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/courses/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"courses",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllCources",
+					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": ""
+							"raw": "http://localhost:8080/api/courses",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"courses"
+							]
 						}
 					},
 					"response": []
@@ -231,27 +260,7 @@
 			"name": "department",
 			"item": [
 				{
-					"name": "getDepartment",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/departments",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"departments"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "createDepartment",
+					"name": "New Request",
 					"request": {
 						"method": "GET",
 						"header": []
@@ -261,35 +270,37 @@
 			]
 		},
 		{
-			"name": "student",
+			"name": "Teacher",
 			"item": [
 				{
-					"name": "getStudent",
+					"name": "getTeacher",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/students",
+							"raw": "http://localhost:8080/api/teachers/1",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"api",
-								"students"
+								"teachers",
+								"1"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "createStudent",
+					"name": "createTeacher",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n        \"firstName\": \"abebe\",\n        \"lastName\": \"Hodkiewicz\",\n        \"email\": \"buena.tillman@gmail.com\",\n        \"phoneNumber\": \"1-307-038-5913\",\n        \"gender\": \"F\",\n        \"department_id\": 2,\n        \"password\":\"2321hjhwcd\"\n}",
+							"raw": "{\n    \"teacher\": {\n        \"firstName\": \"Abel\",\n        \"lastName\": \"Shibabaw\",\n        \"email\": \"cosmic.shibabaw@hotmail.com\",\n        \"phoneNumber\": \"+ 251 930 0243 03\",\n        \"gender\": \"M\",\n        \"password\": \"changePasswordeerereeresf22\",\n        \"departmentHead\": false\n    },\n    \"departmentId\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -297,14 +308,219 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/api/students",
+							"raw": "http://localhost:8080/api/teachers",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"api",
-								"students"
+								"teachers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateTeacher",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"teacher\": {\n        \"id\": 1,\n        \"firstName\": \"Dagim\",\n        \"lastName\": \"Tesfaye\",\n        \"email\": \"dag.tes@hotmail.com\",\n        \"phoneNumber\": \"+ 251 94322 43 03\",\n        \"gender\": \"M\",\n        \"password\": \"smerer\",\n        \"departmentHead\": true\n    },\n    \"departmentId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/teachers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"teachers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteTeacher",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/teachers/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"teachers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTeachers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/teachers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"teachers"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "bundle",
+			"item": [
+				{
+					"name": "getBundle",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/bundles/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"bundles",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createBundle",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"bundle\": {\n        \"name\": \"Graphics test 9 \",\n        \"description\": \"Let's see how well you can use java3D\",\n        \"timeAllowed\": \"2023-05-25\"\n    },\n    \"courseId\": 1,\n    \"teacherId\": 1 \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/bundles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"bundles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateBundle",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"bundle\": {\n        \"name\": \"Graphics test 9 \",\n        \"description\": \"Let's see how well you can use java3D and Java2D\",\n        \"timeAllowed\": \"2026-05-25\"\n    },\n    \"courseId\": 1,\n    \"teacherId\": 1 \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/bundles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"bundles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteBundle",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/bundles/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"bundles",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getBundles",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"bundle\": {\n        \"name\": \"Graphics test 9 \",\n        \"description\": \"Let's see how well you can use java3D\",\n        \"timeAllowed\": \"2023-05-25\"\n    },\n    \"courseId\": 1,\n    \"teacherId\": 1 \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/bundles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"bundles"
 							]
 						}
 					},

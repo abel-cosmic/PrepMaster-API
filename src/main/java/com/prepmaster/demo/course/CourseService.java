@@ -16,14 +16,14 @@ public class CourseService {
     private final CourseRepository courseRepository;
     private final DepartmentRepository departmentRepository;
 
-    Course getCourse(Long id){
+    public Course getCourse(Long id){
         log.info("Getting course {}", id);
         Course course = courseRepository
                 .findById(id)
                 .orElseThrow(
                         () -> {
                             NotFoundException notFoundException = new NotFoundException("Admin with ID " + id + " not found");
-                            log.error("error admin {} not found", id , notFoundException);
+                            log.error("error course {} not found", id , notFoundException);
                             return notFoundException;
                         }
                 );

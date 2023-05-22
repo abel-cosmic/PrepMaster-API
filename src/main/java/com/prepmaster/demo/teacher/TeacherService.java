@@ -1,7 +1,5 @@
 package com.prepmaster.demo.teacher;
 
-import com.prepmaster.demo.course.Course;
-import com.prepmaster.demo.course.CourseRequestBody;
 import com.prepmaster.demo.department.Department;
 import com.prepmaster.demo.department.DepartmentRepository;
 import com.prepmaster.demo.exception.NotFoundException;
@@ -19,7 +17,7 @@ public class TeacherService {
     private final TeacherRepository teacherRepository;
     private final DepartmentRepository departmentRepository;
 
-    Teacher getTeacher(Long id){
+    public Teacher getTeacher(Long id){
         log.info("Getting teacher {}", id);
         Teacher teacher = teacherRepository
                 .findById(id)

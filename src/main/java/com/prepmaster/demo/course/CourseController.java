@@ -16,7 +16,6 @@ public class CourseController {
     void createCourse(@Valid @RequestBody CourseRequestBody courseRequestBody){
         courseService.createNewCourse(courseRequestBody);
     }
-
     @GetMapping(path = "{courseId}")
     Course readCourse(@Valid @PathVariable("courseId") Long id) {
         return courseService.getCourse(id);
