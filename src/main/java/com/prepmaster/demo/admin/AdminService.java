@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class AdminService {
     private final AdminRepository adminRepository;
 
-    Admin getAdmin(Long id){
+    public Admin getAdmin(Long id){
         log.info("Getting admin {}", id);
         Admin admin = adminRepository
                 .findById(id)

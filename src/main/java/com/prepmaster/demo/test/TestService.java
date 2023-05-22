@@ -4,7 +4,7 @@ import com.prepmaster.demo.bundle.Bundle;
 import com.prepmaster.demo.bundle.BundleService;
 import com.prepmaster.demo.exception.NotFoundException;
 import com.prepmaster.demo.student.Student;
-import com.prepmaster.demo.student.StudentRepository;
+import com.prepmaster.demo.student.StudentService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,7 @@ import java.util.List;
 @Slf4j
 public class TestService {
     private final TestRepository testRepository;
-    private final StudentRepository studentRepository;
+    private final StudentService studentService;
     private final BundleService bundleService;
 
     public Test getTest(Long id){
@@ -37,15 +37,7 @@ public class TestService {
         Test test = testRequestBody.getTest();
         log.info("Creating test {}", test);
         Bundle bundle = bundleService.getBundle(testRequestBody.getBundleId());
-        Long studentId = testRequestBody.getStudentId();
-        Student student = studentRepository.findById(studentId)
-                        .orElseThrow(
-                                () -> {
-                                    NotFoundException notFoundException = new NotFoundException("Student with ID " + studentId + " not found");
-                                    log.error("error student {} not found", studentId , notFoundException);
-                                    return notFoundException;
-                                }
-                        );
+        Student student = studentService.getStudent(testRequestBody.getStudentId());
         test.setBundle(bundle);
         test.setStudent(student);
         testRepository.save(test);
@@ -56,15 +48,7 @@ public class TestService {
         Test test = testRequestBody.getTest();
         log.info("Updating test {}", test);
         Bundle bundle = bundleService.getBundle(testRequestBody.getBundleId());
-        Long studentId = testRequestBody.getStudentId();
-        Student student = studentRepository.findById(studentId)
-                        .orElseThrow(
-                                () -> {
-                                    NotFoundException notFoundException = new NotFoundException("Student with ID " + studentId + " not found");
-                                    log.error("error student {} not found", studentId , notFoundException);
-                                    return notFoundException;
-                                }
-                        );
+        Student student = studentService.getStudent(testRequestBody.getStudentId());
         test.setBundle(bundle);
         test.setStudent(student);
         testRepository.save(test);

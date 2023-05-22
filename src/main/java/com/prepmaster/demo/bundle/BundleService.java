@@ -25,7 +25,7 @@ public class BundleService {
                 .findById(id)
                 .orElseThrow(
                         () -> {
-                            NotFoundException notFoundException = new NotFoundException("Test with ID " + id + " not found");
+                            NotFoundException notFoundException = new NotFoundException("Bundle with ID " + id + " not found");
                             log.error("error bundle {} not found", id , notFoundException);
                             return notFoundException;
                         }

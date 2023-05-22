@@ -1,7 +1,7 @@
 package com.prepmaster.demo.course;
 
 import com.prepmaster.demo.department.Department;
-import com.prepmaster.demo.department.DepartmentRepository;
+import com.prepmaster.demo.department.DepartmentService;
 import com.prepmaster.demo.exception.NotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +14,7 @@ import java.util.List;
 @Slf4j // so we can use log variable
 public class CourseService {
     private final CourseRepository courseRepository;
-    private final DepartmentRepository departmentRepository;
+    private final DepartmentService departmentService;
 
     public Course getCourse(Long id){
         log.info("Getting course {}", id);
@@ -33,15 +33,7 @@ public class CourseService {
     void createNewCourse(CourseRequestBody courseRequestBody){
         Course course = courseRequestBody.getCourse();
         log.info("Creating course {}", course);
-        Long departmentId = courseRequestBody.getDepartmentId();
-        Department department = departmentRepository.findById(departmentId) //TODO : change with service repo method
-                .orElseThrow(
-                        () -> {
-                            NotFoundException notFoundException = new NotFoundException("Department with ID " + departmentId + " not found");
-                            log.error("error department {} not found", departmentId , notFoundException);
-                            return notFoundException;
-                        }
-                );
+        Department department = departmentService.getDepartment(courseRequestBody.getDepartmentId());
         course.setDepartment(department);
         courseRepository.save(course);
         log.info("Created course {} successfully", course.getId());
@@ -50,15 +42,7 @@ public class CourseService {
     void updateCourse(CourseRequestBody courseRequestBody){
         Course course = courseRequestBody.getCourse();
         log.info("Updating course {}", course.getId());
-        Long departmentId = courseRequestBody.getDepartmentId();
-        Department department = departmentRepository.findById(departmentId) //TODO : change with service repo method
-                .orElseThrow(
-                        () -> {
-                            NotFoundException notFoundException = new NotFoundException("Department with ID " + departmentId + " not found");
-                            log.error("error department {} not found", departmentId , notFoundException);
-                            return notFoundException;
-                        }
-                );
+        Department department = departmentService.getDepartment(courseRequestBody.getDepartmentId());
         course.setDepartment(department);
         if (!courseRepository.existsById(course.getId())) {
             NotFoundException notFoundException = new NotFoundException("Course with ID " + course.getId() + " not found");

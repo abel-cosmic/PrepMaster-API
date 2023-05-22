@@ -1,8 +1,7 @@
 package com.prepmaster.demo.question;
 
 import com.prepmaster.demo.bundle.Bundle;
-import com.prepmaster.demo.bundle.BundleRepository;
-import com.prepmaster.demo.course.Course;
+import com.prepmaster.demo.bundle.BundleService;
 import com.prepmaster.demo.exception.NotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +13,7 @@ import java.util.List;
 @Slf4j // so we can use log variable
 public class QuestionService {
     private final QuestionRepository questionRepository;
-    private final BundleRepository bundleRepository;
+    private final BundleService bundleService;
     public List<Question> getQuestions() {
         return questionRepository.findAll();
     }
@@ -37,15 +36,7 @@ public class QuestionService {
     public void createNewQuestion(QuestionRequestBody questionRequestBody) {
         Question question = questionRequestBody.getQuestion();
         log.info("creating question {}",question);
-        Long bundleId = questionRequestBody.getBundleId();
-        Bundle bundle = bundleRepository.findById(bundleId)
-                .orElseThrow(
-                        ()->{
-                            NotFoundException notFoundException = new NotFoundException("bundle with ID " + bundleId + " not found");
-                            log.error("error bundle {} not found", bundleId , notFoundException);
-                            return notFoundException;
-                        }
-                );
+        Bundle bundle = bundleService.getBundle( questionRequestBody.getBundleId());
         question.setBundle(bundle);
         questionRepository.save(question);
         log.info("Created course {} successfully", question.getId());
@@ -65,15 +56,7 @@ public class QuestionService {
     public void updateQuestion(QuestionRequestBody questionRequestBody) {
         Question question = questionRequestBody.getQuestion();
         log.info("creating question {}",question);
-        Long bundleId = questionRequestBody.getBundleId();
-        Bundle bundle = bundleRepository.findById(bundleId)
-                .orElseThrow(
-                        ()->{
-                            NotFoundException notFoundException = new NotFoundException("bundle with ID " + bundleId + " not found");
-                            log.error("error bundle {} not found", bundleId , notFoundException);
-                            return notFoundException;
-                        }
-                );
+        Bundle bundle = bundleService.getBundle( questionRequestBody.getBundleId());
         question.setBundle(bundle);
         if (!questionRepository.existsById(question.getId())) {
             NotFoundException notFoundException = new NotFoundException("question with ID " + question.getId() + " not found");

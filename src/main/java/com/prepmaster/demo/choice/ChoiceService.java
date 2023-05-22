@@ -1,9 +1,9 @@
 package com.prepmaster.demo.choice;
 
-import com.prepmaster.demo.bundle.Bundle;
 import com.prepmaster.demo.exception.NotFoundException;
 import com.prepmaster.demo.question.Question;
 import com.prepmaster.demo.question.QuestionRepository;
+import com.prepmaster.demo.question.QuestionService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,8 @@ import java.util.List;
 @Slf4j // so we can use log variable
 public class ChoiceService {
     private final ChoiceRepository choiceRepository;
-    private final QuestionRepository questionRepository;
+        private final QuestionService questionService;
+        private final QuestionRepository questionRepository;
     public List<Choice> getChoices() {
         return choiceRepository.findAll();
     }
@@ -39,19 +40,11 @@ public class ChoiceService {
     public void createNewChoice(ChoiceRequestBody choiceRequestBody) {
         Choice choice = choiceRequestBody.getChoice();
         log.info("creating choice {}",choice);
-        Long questionId = choiceRequestBody.getQuestionId();
-        Question question = questionRepository.findById(questionId)
-                .orElseThrow(
-                        ()->{
-                            NotFoundException notFoundException = new NotFoundException("choice with ID " + questionId + " not found");
-                            log.error("error choice {} not found", questionId , notFoundException);
-                            return notFoundException;
-                        }
-                );
+        Question question = questionService.getQuestion(choiceRequestBody.getQuestionId());
         List<Choice> choices = new ArrayList<>();
         choices.add(choice);
         question.setChoices(choices);
-        questionRepository.save(question);
+        questionRepository.save(question); //what does this do
         log.info("Created choice {} successfully", question.getId());
     }
 

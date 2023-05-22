@@ -1,14 +1,11 @@
 package com.prepmaster.demo.questionanswer;
 
-import com.prepmaster.demo.bundle.Bundle;
-import com.prepmaster.demo.exception.NotFoundException;
 import com.prepmaster.demo.question.Question;
-import com.prepmaster.demo.question.QuestionRepository;
+import com.prepmaster.demo.question.QuestionService;
 import com.prepmaster.demo.test.Test;
 import com.prepmaster.demo.test.TestService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,18 +16,11 @@ import java.util.List;
 public class QuestionAnswerService {
     private final QuestionAnswerRepository questionAnswerRepository;
     private final TestService testService;
-    private final QuestionRepository questionRepository;
+    private final QuestionService questionService;
 
     public QuestionAnswer getQuestionAnswer(QuestionAnswerID id){
         log.info("Getting question answer {}", id);
-        Question question = questionRepository.findById(id.getQuestionId())
-                .orElseThrow(
-                        () -> {
-                            NotFoundException notFoundException = new NotFoundException("question with ID " + id.getQuestionId().toString() + " not found");
-                            log.error("error question {} not found", id.getQuestionId().toString() , notFoundException);
-                            return notFoundException;
-                        }
-                );
+        Question question = questionService.getQuestion(id.getQuestionId());
         QuestionAnswer questionAnswer = questionAnswerRepository
                 .findByTestAndQuestion(testService.getTest(id.getTestId()),question);
         log.info("Got question answer {}", questionAnswer.getId());
@@ -40,15 +30,7 @@ public class QuestionAnswerService {
         QuestionAnswer questionAnswer = questionAnswerRequestBody.getQuestionAnswer();
         log.info("Creating question answer {}", questionAnswer);
         Test test = testService.getTest(questionAnswerRequestBody.getTestId());
-        Long questionId = questionAnswerRequestBody.getQuestionId();
-        Question question = questionRepository.findById(questionId)
-                        .orElseThrow(
-                                () -> {
-                                    NotFoundException notFoundException = new NotFoundException("question with ID " + questionId + " not found");
-                                    log.error("error question {} not found", questionId , notFoundException);
-                                    return notFoundException;
-                                }
-                        );
+        Question question =questionService.getQuestion(questionAnswerRequestBody.getQuestionId());
         QuestionAnswerID questionAnswerID = new QuestionAnswerID(test.getId(),question.getId());
         questionAnswer.setId(questionAnswerID);
         questionAnswer.setTest(test);
@@ -61,15 +43,7 @@ public class QuestionAnswerService {
         QuestionAnswer questionAnswer = questionAnswerRequestBody.getQuestionAnswer();
         log.info("Updating question answer {}", questionAnswer);
         Test test = testService.getTest(questionAnswerRequestBody.getTestId());
-        Long questionId = questionAnswerRequestBody.getQuestionId();
-        Question question = questionRepository.findById(questionId)
-                        .orElseThrow(
-                                () -> {
-                                    NotFoundException notFoundException = new NotFoundException("question with ID " + questionId + " not found");
-                                    log.error("error question {} not found", questionId , notFoundException);
-                                    return notFoundException;
-                                }
-                        );
+        Question question =questionService.getQuestion(questionAnswerRequestBody.getQuestionId());
         QuestionAnswerID questionAnswerID = new QuestionAnswerID(test.getId(),question.getId());
         questionAnswer.setId(questionAnswerID);
         questionAnswer.setTest(test);

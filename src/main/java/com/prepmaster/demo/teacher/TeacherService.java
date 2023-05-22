@@ -15,7 +15,7 @@ import java.util.List;
 @Slf4j
 public class TeacherService {
     private final TeacherRepository teacherRepository;
-    private final DepartmentRepository departmentRepository;
+    private final DepartmentRepository departmentRepository;// this could not be helped
 
     public Teacher getTeacher(Long id){
         log.info("Getting teacher {}", id);
