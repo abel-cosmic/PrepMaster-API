@@ -16,9 +16,4 @@ public interface QuestionRepository extends JpaRepository<Question,Long> {
     @Query("SELECT q, q.answerIndex FROM Question q LEFT JOIN FETCH q.choices WHERE q.id = :questionId")
     Object[] findQuestionWithChoicesAndAnswerIndex(@Param("questionId") Long questionId);
 
-    @Transactional
-    @Modifying
-    @Query("DELETE FROM Question q WHERE q.id = :questionId")
-    void deleteById(@Param("questionId") Long questionId);
-
 }

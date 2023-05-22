@@ -1,8 +1,11 @@
 package com.prepmaster.demo.questionanswer;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prepmaster.demo.question.Question;
 import com.prepmaster.demo.test.Test;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 @Entity(name = "QuestionAnswer")
 @Table(name = "question_answer")
@@ -13,6 +16,7 @@ public class QuestionAnswer {
     private QuestionAnswerID id;
     //we make the relationship of the questionAnswer to test
 
+    @NotNull(message = "Chosen index allowed must not be NULL")
     @Column(
             name = "chosen_index",
             nullable = false,
@@ -56,6 +60,7 @@ public class QuestionAnswer {
         this.chosenIndex= chosenIndex;
     }
 
+    @JsonIgnore
     public QuestionAnswerID getId() {
         return id;
     }
@@ -63,17 +68,28 @@ public class QuestionAnswer {
     public void setId(QuestionAnswerID id) {
         this.id = id;
     }
-
+    @JsonIgnore
     public Test getTest() {
         return test;
+    }
+
+    @JsonProperty("testId")
+    public Long getTestId() {
+        return test.getId();
     }
 
     public void setTest(Test test) {
         this.test = test;
     }
 
+    @JsonIgnore
     public Question getQuestion() {
         return question;
+    }
+
+    @JsonProperty("questionId")
+    public Long getQuestionId() {
+        return question.getId();
     }
 
     public void setQuestion(Question question) {

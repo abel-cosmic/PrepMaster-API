@@ -1,7 +1,11 @@
 package com.prepmaster.demo.admin;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prepmaster.demo.department.Department;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,13 +37,16 @@ public class Admin {
             updatable = false
     )
     private Long id;
-
+    @NotBlank(message = "Email must not be empty")
+    @Email(message = "Email must be valid")
     @Column(
             name = "email",
             nullable = false,
             columnDefinition = "TEXT"
     )
     private String email;
+
+    @NotBlank(message = "Organization must not be empty")
     @Column(
             name = "organization",
             nullable = false,
@@ -51,10 +58,13 @@ public class Admin {
             nullable = false,
             columnDefinition = "TEXT"
     )
+    @NotBlank(message = "Password must not be empty")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
     @OneToMany(
-            cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, //DOC: makes department heads if they don't exist
-            mappedBy = "admin"
+            mappedBy = "admin",
+            orphanRemoval = true,
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE} //DOC: makes department heads if they don't exist
             //DOC: fetch is lazy by default for 1-N relationships
             //DOC: orphan type is false by default so if this is deleted Department heads tied to this won't be
     )
@@ -111,6 +121,7 @@ public class Admin {
         this.password = password;
     }
 
+    @JsonIgnore
     public List<Department> getDepartments() {
         return departments;
     }

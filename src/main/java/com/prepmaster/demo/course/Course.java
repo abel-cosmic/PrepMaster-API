@@ -1,8 +1,11 @@
 package com.prepmaster.demo.course;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prepmaster.demo.bundle.Bundle;
 import com.prepmaster.demo.department.Department;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,12 +37,16 @@ public class Course {
             updatable = false
     )
     private Long id;
+
+    @NotBlank(message = "Name must not be empty")
     @Column(
             name = "name",
             nullable = false,
             columnDefinition = "TEXT"
     )
     private String name;
+
+    @NotBlank(message = "Description must not be empty")
     @Column(
             name = "description",
             nullable = false,
@@ -48,7 +55,7 @@ public class Course {
     private String description;
 
     @ManyToOne(
-            fetch = FetchType.LAZY //Why
+            fetch = FetchType.LAZY
     )
     @JoinColumn(
             name = "department_id",
@@ -106,14 +113,19 @@ public class Course {
         this.description = description;
     }
 
+    @JsonIgnore
     public Department getDepartment() {
         return department;
     }
-
+    @JsonProperty("departmentId")
+    public Long getDepartmentID(){//needed this for get requests
+        return department.getId();
+    }
     public void setDepartment(Department department) {
         this.department = department;
     }
 
+    @JsonIgnore
     public List<Bundle> getBundles() {
         return bundles;
     }

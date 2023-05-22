@@ -1,10 +1,14 @@
 package com.prepmaster.demo.bundle;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prepmaster.demo.course.Course;
 import com.prepmaster.demo.question.Question;
 import com.prepmaster.demo.teacher.Teacher;
 import com.prepmaster.demo.test.Test;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -30,18 +34,21 @@ public class Bundle {
             updatable = false
     )
     private Long id;
+    @NotBlank(message = "Name must not be empty")
     @Column(
             name = "name",
             nullable = false,
             columnDefinition = "TEXT"
     )
     private String name;
+    @NotBlank(message = "Description must not be empty")
     @Column(
             name = "description",
             nullable = false,
             columnDefinition = "TEXT"
     )
     private String description;
+    @NotNull(message = "Time allowed must not be NULL")
     @Column(
             name = "timeAllowed",
             nullable = false,
@@ -75,7 +82,7 @@ public class Bundle {
     )
     private Course course;
 
-    @OneToMany(
+    @OneToMany(// so it deleted all without orphan removal weird
             cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, //DOC: makes students heads if they don't exist
             mappedBy = "bundle",
             fetch = FetchType.EAGER// so that the questions come with the bunndle
@@ -104,16 +111,6 @@ public class Bundle {
         this.timeAllowed = LocalDate.now();
     }
 
-    public Bundle(
-            Long id,
-            String name,
-            String description,
-            LocalDate timeAllowed) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.timeAllowed = timeAllowed;
-    }
     public Long getId() {
         return id;
     }
@@ -146,22 +143,34 @@ public class Bundle {
         this.timeAllowed = timeAllowed;
     }
 
+    @JsonIgnore
     public Teacher getTeacher() {
         return teacher;
     }
 
+    @JsonProperty("teacherId")
+    public Long getTeacherId() {
+        return teacher.getId();
+    }
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
     }
 
+    @JsonIgnore
     public Course getCourse() {
         return course;
+    }
+
+    @JsonProperty("courseId")
+    public Long getCourseId() {
+        return course.getId();
     }
 
     public void setCourse(Course course) {
         this.course = course;
     }
 
+    @JsonIgnore
     public List<Question> getQuestions() {
         return questions;
     }
@@ -183,6 +192,7 @@ public class Bundle {
         }
     }
 
+    @JsonIgnore
     public List<Test> getTests() {
         return tests;
     }

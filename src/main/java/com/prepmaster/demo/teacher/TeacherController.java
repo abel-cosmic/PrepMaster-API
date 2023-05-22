@@ -1,0 +1,40 @@
+package com.prepmaster.demo.teacher;
+
+
+import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RequestMapping(path = "/api/teachers")
+@AllArgsConstructor
+@RestController
+public class TeacherController {
+    private TeacherService teacherService;
+
+    @PostMapping
+    void createTeacher(@Valid @RequestBody TeacherRequestBody teacherRequestBody){
+        teacherService.createNewTeacher(teacherRequestBody);
+    }
+
+    @GetMapping(path = "{teacherId}")
+    Teacher readTeacher(@Valid @PathVariable("teacherId") Long id){
+        return teacherService.getTeacher(id);
+    }
+
+    @PutMapping
+    void updateTeacher(@Valid @RequestBody TeacherRequestBody teacherRequestBody){
+        teacherService.updateCourse(teacherRequestBody);
+    }
+
+    @DeleteMapping(path = "{teacherId}")
+    void deleteTeacher(@PathVariable("teacherId") Long id){
+        teacherService.deleteTeacher(id);
+    }
+
+    @GetMapping
+    List<Teacher> getTeachers(){
+        return teacherService.getTeachers();
+    }
+}
