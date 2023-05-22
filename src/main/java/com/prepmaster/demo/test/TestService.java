@@ -19,7 +19,7 @@ public class TestService {
     private final StudentRepository studentRepository;
     private final BundleService bundleService;
 
-    Test getTest(Long id){
+    public Test getTest(Long id){
         log.info("Getting test {}", id);
         Test test = testRepository
                 .findById(id)
