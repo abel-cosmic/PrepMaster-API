@@ -1,8 +1,6 @@
 package com.prepmaster.demo.teacher;
 
 
-import com.prepmaster.demo.course.Course;
-import com.prepmaster.demo.course.CourseRequestBody;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @RestController
 public class TeacherController {
-    private  TeacherService teacherService;
+    private TeacherService teacherService;
 
     @PostMapping
     void createTeacher(@Valid @RequestBody TeacherRequestBody teacherRequestBody){

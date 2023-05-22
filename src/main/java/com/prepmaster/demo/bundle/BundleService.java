@@ -19,13 +19,13 @@ public class BundleService {
     private final CourseService courseService;
     private final TeacherService teacherService;
 
-    Bundle getBundle(Long id){
+    public Bundle getBundle(Long id){
         log.info("Getting bundle {}", id);
         Bundle bundle = bundleRepository
                 .findById(id)
                 .orElseThrow(
                         () -> {
-                            NotFoundException notFoundException = new NotFoundException("Admin with ID " + id + " not found");
+                            NotFoundException notFoundException = new NotFoundException("Test with ID " + id + " not found");
                             log.error("error bundle {} not found", id , notFoundException);
                             return notFoundException;
                         }

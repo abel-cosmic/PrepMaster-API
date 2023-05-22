@@ -10,7 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @RestController
 public class BundleController {
-    BundleService bundleService;
+    private BundleService bundleService;
 
     @PostMapping
     void createBundle(@Valid @RequestBody BundleRequestBody bundleRequestBody){
@@ -24,12 +24,10 @@ public class BundleController {
     void updateBundle(@Valid @RequestBody BundleRequestBody bundleRequestBody){
         bundleService.updateBundle(bundleRequestBody);
     }
-
     @DeleteMapping(path = "{bundleId}")
     void deleteBundle(@PathVariable("bundleId") Long id){
         bundleService.deleteBundle(id);
     }
-
     @GetMapping
     List<Bundle> getBundles(){
         return bundleService.getBundles();
