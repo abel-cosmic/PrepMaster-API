@@ -12,7 +12,7 @@ import java.util.List;
 public class StudentController {
     private StudentService studentService;
     @PostMapping
-    void createStudent(@Valid @RequestBody StudentRequestBody studentRequestBody){
+    void createStudent(@Valid @RequestBody StudentRequestBody studentRequestBody ){
         studentService.createNewStudent(studentRequestBody);
     }
     @GetMapping(path="{studentId}")
@@ -23,15 +23,12 @@ public class StudentController {
     List<Student> getStudents(){
         return studentService.getStudents();
     }
-
-//    void deleteQuestionAnswer(
-//            @Valid @PathVariable("questionId") Long questionId,
-//            @Valid  @PathVariable("testId") Long testId
-//    ) {
-//        questionAnswerService.deleteQuestionAnswer(new QuestionAnswerID(testId,questionId));
-//    }
-//    @P
-//    void updateStudent(@Valid @RequestBody Student student){
-//        studentService.updateStudent(student);
-//    }
+    @PutMapping
+    void updateStudent(@Valid @RequestBody StudentRequestBody studentRequestBody){
+        studentService.updateStudent(studentRequestBody);
+    }
+    @DeleteMapping(path="{studentId}")
+    void deleteStudent(@Valid @PathVariable("studentId")Long id){
+          studentService.deleteStudent(id);
+    }
 }
