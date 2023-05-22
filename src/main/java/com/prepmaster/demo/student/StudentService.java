@@ -1,5 +1,7 @@
 package com.prepmaster.demo.student;
 
+import com.prepmaster.demo.department.Department;
+import com.prepmaster.demo.department.DepartmentService;
 import com.prepmaster.demo.exception.NotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,8 +14,13 @@ import java.util.List;
 @Slf4j // so we can use log variable
 public class StudentService {
     private final StudentRepository studentRepository;
-    public void createNewStudent(Student student) {
+    private final DepartmentService departmentService;
+
+    public void createNewStudent(StudentRequestBody studentRequestBody) {
+        Student student = studentRequestBody.getStudent();
         log.info("Creating student {}", student);
+        Department department = departmentService.getDepartment(studentRequestBody.getDepartmentId());
+        student.setDepartment(department);
         studentRepository.save(student);
         log.info("Created student {} successfully", student);
     }

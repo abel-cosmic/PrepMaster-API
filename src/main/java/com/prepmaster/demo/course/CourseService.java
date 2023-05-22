@@ -33,8 +33,7 @@ public class CourseService {
     void createNewCourse(CourseRequestBody courseRequestBody){
         Course course = courseRequestBody.getCourse();
         log.info("Creating course {}", course);
-        Department department = departmentService.getDepartment(courseRequestBody.getDepartmentId());
-        course.setDepartment(department);
+        extracted(courseRequestBody, course);
         courseRepository.save(course);
         log.info("Created course {} successfully", course.getId());
     }
@@ -42,8 +41,7 @@ public class CourseService {
     void updateCourse(CourseRequestBody courseRequestBody){
         Course course = courseRequestBody.getCourse();
         log.info("Updating course {}", course.getId());
-        Department department = departmentService.getDepartment(courseRequestBody.getDepartmentId());
-        course.setDepartment(department);
+        extracted(courseRequestBody, course);
         if (!courseRepository.existsById(course.getId())) {
             NotFoundException notFoundException = new NotFoundException("Course with ID " + course.getId() + " not found");
             log.error("error course {} not found could not update a non existing tuple", course.getId() , notFoundException);
@@ -53,6 +51,10 @@ public class CourseService {
         log.info("Updated course {} successfully", course.getId());
     }
 
+    private void extracted(CourseRequestBody courseRequestBody, Course course) {
+        Department department = departmentService.getDepartment(courseRequestBody.getDepartmentId());
+        course.setDepartment(department);
+    }
     void deleteCourse(Long id){
         log.info("Deleting course {}", id);
         if (!courseRepository.existsById(id)) {

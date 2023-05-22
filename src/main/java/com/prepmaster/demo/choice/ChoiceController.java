@@ -17,7 +17,7 @@ public class ChoiceController {
     }
     @GetMapping(path = "{choiceId}")
     Choice readChoice(@Valid @PathVariable("choiceId")Long id){
-        return choiceService.getChioce(id);
+        return choiceService.getChoice(id);
     }
     @PostMapping
     void createChoice(@Valid @RequestBody ChoiceRequestBody choiceRequestBody){
@@ -29,7 +29,7 @@ public class ChoiceController {
     }
     @PutMapping
     void updateChoice(@Valid @RequestBody ChoiceRequestBody choiceRequestBody){
-        choiceService.createUpdateChoice(choiceRequestBody);
+        choiceService.updateChoice(choiceRequestBody);
     }
 
 }

@@ -35,33 +35,14 @@ public class TeacherService {
     void createNewTeacher(TeacherRequestBody teacherRequestBody){
         Teacher teacher = teacherRequestBody.getTeacher();
         log.info("Creating teacher {}", teacher);
-        Long departmentId = teacherRequestBody.getDepartmentId();
-        Department department = departmentRepository.findById(departmentId) //TODO : change with service repo method
-                .orElseThrow(
-                        () -> {
-                            NotFoundException notFoundException = new NotFoundException("Department with ID " + departmentId + " not found");
-                            log.error("error department {} not found", departmentId , notFoundException);
-                            return notFoundException;
-                        }
-                );
-        teacher.setDepartment(department);
+        extracted(teacherRequestBody, teacher);
         teacherRepository.save(teacher);
         log.info("Created teacher {} successfully", teacher.getId());
     }
-
-    void updateCourse(TeacherRequestBody teacherRequestBody){
+    void updateTeacher(TeacherRequestBody teacherRequestBody){
         Teacher teacher = teacherRequestBody.getTeacher();
         log.info("Updating teacher {}", teacher.getId());
-        Long departmentId = teacherRequestBody.getDepartmentId();
-        Department department = departmentRepository.findById(departmentId) //TODO : change with service repo method
-                .orElseThrow(
-                        () -> {
-                            NotFoundException notFoundException = new NotFoundException("Department with ID " + departmentId + " not found");
-                            log.error("error department {} not found", departmentId , notFoundException);
-                            return notFoundException;
-                        }
-                );
-        teacher.setDepartment(department);
+        extracted(teacherRequestBody, teacher);
         if (!teacherRepository.existsById(teacher.getId())) {
             NotFoundException notFoundException = new NotFoundException("Teacher with ID " + teacher.getId() + " not found");
             log.error("error teacher {} not found could not update a non existing tuple", teacher.getId() , notFoundException);
@@ -70,7 +51,18 @@ public class TeacherService {
         teacherRepository.save(teacher);
         log.info("Updated teacher {} successfully", teacher.getId());
     }
-
+    private void extracted(TeacherRequestBody teacherRequestBody, Teacher teacher) {
+        Long departmentId = teacherRequestBody.getDepartmentId();
+        Department department = departmentRepository.findById(departmentId) //TODO : change with service repo method
+                .orElseThrow(
+                        () -> {
+                            NotFoundException notFoundException = new NotFoundException("Department with ID " + departmentId + " not found");
+                            log.error("error department {} not found", departmentId , notFoundException);
+                            return notFoundException;
+                        }
+                );
+        teacher.setDepartment(department);
+    }
     void deleteTeacher(Long id){
         log.info("Deleting teacher {}", id);
         if (!teacherRepository.existsById(id)) {

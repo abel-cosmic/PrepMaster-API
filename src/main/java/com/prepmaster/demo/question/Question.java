@@ -203,7 +203,6 @@ public class Question {
                 ", answer=" + answerIndex +
                 ", explanation='" + explanation + '\'' +
                 ", difficulty='" + difficulty + '\'' +
-                ", choices=" + choices +
                 '}';
     }
 }
