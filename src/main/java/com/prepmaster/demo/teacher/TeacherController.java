@@ -26,7 +26,7 @@ public class TeacherController {
 
     @PutMapping
     void updateTeacher(@Valid @RequestBody TeacherRequestBody teacherRequestBody){
-        teacherService.updateCourse(teacherRequestBody);
+        teacherService.updateTeacher(teacherRequestBody);
     }
 
     @DeleteMapping(path = "{teacherId}")

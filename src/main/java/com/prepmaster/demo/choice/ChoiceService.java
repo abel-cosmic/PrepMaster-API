@@ -8,7 +8,6 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,7 +21,7 @@ public class ChoiceService {
         return choiceRepository.findAll();
     }
 
-    public Choice getChioce(Long id) {
+    public Choice getChoice(Long id) {
         log.info("Getting choice {}", id);
         Choice choice = choiceRepository
                 .findById(id)
@@ -40,12 +39,9 @@ public class ChoiceService {
     public void createNewChoice(ChoiceRequestBody choiceRequestBody) {
         Choice choice = choiceRequestBody.getChoice();
         log.info("creating choice {}",choice);
-        Question question = questionService.getQuestion(choiceRequestBody.getQuestionId());
-        List<Choice> choices = new ArrayList<>();
-        choices.add(choice);
-        question.setChoices(choices);
-        questionRepository.save(question); //what does this do
-        log.info("Created choice {} successfully", question.getId());
+        extracted(choiceRequestBody, choice);
+        choiceRepository.save(choice);
+        log.info("Created choice {} successfully", choice.getId());
     }
 
     public void deleteChoice(Long id) {
@@ -59,27 +55,22 @@ public class ChoiceService {
         log.info("Deleted choice {} successfully", id);
     }
 
-    public void createUpdateChoice(ChoiceRequestBody choiceRequestBody) {
+    public void updateChoice(ChoiceRequestBody choiceRequestBody) {
         Choice choice = choiceRequestBody.getChoice();
-        log.info("creating choice {}",choice);
-        Long questionId = choiceRequestBody.getQuestionId();
-        Question question = questionRepository.findById(questionId)
-                .orElseThrow(
-                        ()->{
-                            NotFoundException notFoundException = new NotFoundException("choice with ID " + questionId + " not found");
-                            log.error("error choice {} not found", questionId , notFoundException);
-                            return notFoundException;
-                        }
-                );
-        List<Choice> choices = new ArrayList<>();
-        choices.add(choice);
-        question.setChoices(choices);
+        log.info("Updating choice {}",choice);
+        extracted(choiceRequestBody, choice);
         if (!choiceRepository.existsById(choice.getId())) {
             NotFoundException notFoundException = new NotFoundException("choice with ID " + choice.getId() + " not found");
             log.error("error choice {} not found could not update a non existing tuple", choice.getId() , notFoundException);
             return;
         }
-        questionRepository.save(question);
-        log.info("Created choice {} successfully", question.getId());
+        choiceRepository.save(choice);
+        log.info("Updated choice {} successfully", choice.getId());
+    }
+
+
+    private void extracted(ChoiceRequestBody choiceRequestBody, Choice choice) {
+        Question question = questionService.getQuestion(choiceRequestBody.getQuestionId());
+        choice.setQuestion(question);
     }
 }

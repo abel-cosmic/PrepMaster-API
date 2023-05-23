@@ -29,12 +29,7 @@ public class QuestionAnswerService {
     void createQuestionAnswer(QuestionAnswerRequestBody questionAnswerRequestBody){
         QuestionAnswer questionAnswer = questionAnswerRequestBody.getQuestionAnswer();
         log.info("Creating question answer {}", questionAnswer);
-        Test test = testService.getTest(questionAnswerRequestBody.getTestId());
-        Question question =questionService.getQuestion(questionAnswerRequestBody.getQuestionId());
-        QuestionAnswerID questionAnswerID = new QuestionAnswerID(test.getId(),question.getId());
-        questionAnswer.setId(questionAnswerID);
-        questionAnswer.setTest(test);
-        questionAnswer.setQuestion(question);
+        extracted(questionAnswerRequestBody, questionAnswer);
         //TODO check if this already exists before saving
         questionAnswerRepository.save(questionAnswer);
         log.info("Created question answer {} successfully", questionAnswer.getId());
@@ -42,14 +37,17 @@ public class QuestionAnswerService {
     void updateQuestionAnswer(QuestionAnswerRequestBody questionAnswerRequestBody){
         QuestionAnswer questionAnswer = questionAnswerRequestBody.getQuestionAnswer();
         log.info("Updating question answer {}", questionAnswer);
+        extracted(questionAnswerRequestBody, questionAnswer);
+        questionAnswerRepository.save(questionAnswer);
+        log.info("Updated question answer {} successfully", questionAnswer.getId());
+    }
+    private void extracted(QuestionAnswerRequestBody questionAnswerRequestBody, QuestionAnswer questionAnswer) {
         Test test = testService.getTest(questionAnswerRequestBody.getTestId());
         Question question =questionService.getQuestion(questionAnswerRequestBody.getQuestionId());
         QuestionAnswerID questionAnswerID = new QuestionAnswerID(test.getId(),question.getId());
         questionAnswer.setId(questionAnswerID);
         questionAnswer.setTest(test);
         questionAnswer.setQuestion(question);
-        questionAnswerRepository.save(questionAnswer);
-        log.info("Updated question answer {} successfully", questionAnswer.getId());
     }
 
     void deleteQuestionAnswer(QuestionAnswerID id){

@@ -36,23 +36,23 @@ public class TestService {
     void createNewTest(TestRequestBody testRequestBody){
         Test test = testRequestBody.getTest();
         log.info("Creating test {}", test);
-        Bundle bundle = bundleService.getBundle(testRequestBody.getBundleId());
-        Student student = studentService.getStudent(testRequestBody.getStudentId());
-        test.setBundle(bundle);
-        test.setStudent(student);
-        testRepository.save(test);
+        extracted(testRequestBody, test);
         log.info("Created test {} successfully", test.getId());
     }
 
     void updateTest(TestRequestBody testRequestBody){
         Test test = testRequestBody.getTest();
         log.info("Updating test {}", test);
+        extracted(testRequestBody, test);
+        log.info("Updated test {} successfully", test.getId());
+    }
+
+    private void extracted(TestRequestBody testRequestBody, Test test) {
         Bundle bundle = bundleService.getBundle(testRequestBody.getBundleId());
         Student student = studentService.getStudent(testRequestBody.getStudentId());
         test.setBundle(bundle);
         test.setStudent(student);
         testRepository.save(test);
-        log.info("Updated test {} successfully", test.getId());
     }
 
     void deleteTest(Long id){

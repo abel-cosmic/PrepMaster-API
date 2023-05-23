@@ -36,8 +36,7 @@ public class QuestionService {
     public void createNewQuestion(QuestionRequestBody questionRequestBody) {
         Question question = questionRequestBody.getQuestion();
         log.info("creating question {}",question);
-        Bundle bundle = bundleService.getBundle( questionRequestBody.getBundleId());
-        question.setBundle(bundle);
+        extracted(questionRequestBody, question);
         questionRepository.save(question);
         log.info("Created course {} successfully", question.getId());
     }
@@ -56,8 +55,7 @@ public class QuestionService {
     public void updateQuestion(QuestionRequestBody questionRequestBody) {
         Question question = questionRequestBody.getQuestion();
         log.info("creating question {}",question);
-        Bundle bundle = bundleService.getBundle( questionRequestBody.getBundleId());
-        question.setBundle(bundle);
+        extracted(questionRequestBody, question);
         if (!questionRepository.existsById(question.getId())) {
             NotFoundException notFoundException = new NotFoundException("question with ID " + question.getId() + " not found");
             log.error("error question {} not found could not update a non existing tuple", question.getId() , notFoundException);
@@ -65,5 +63,9 @@ public class QuestionService {
         }
         questionRepository.save(question);
         log.info("Created question {} successfully", question.getId());
+    }
+    private void extracted(QuestionRequestBody questionRequestBody, Question question) {
+        Bundle bundle = bundleService.getBundle( questionRequestBody.getBundleId());
+        question.setBundle(bundle);
     }
 }

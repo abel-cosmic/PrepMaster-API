@@ -37,10 +37,7 @@ public class BundleService {
     void createNewBundle(BundleRequestBody bundleRequestBody){
         Bundle bundle = bundleRequestBody.getBundle();
         log.info("Creating bundle {}", bundle);
-        Course course = courseService.getCourse(bundleRequestBody.getCourseId());
-        Teacher teacher = teacherService.getTeacher(bundleRequestBody.getTeacherId());
-        bundle.setCourse(course);
-        bundle.setTeacher(teacher);
+        extracted(bundleRequestBody, bundle);
         bundleRepository.save(bundle);
         log.info("Created bundle {} successfully", bundle.getId());
     }
@@ -48,12 +45,17 @@ public class BundleService {
     void updateBundle(BundleRequestBody bundleRequestBody){
         Bundle bundle = bundleRequestBody.getBundle();
         log.info("Updating bundle {}", bundle);
+        extracted(bundleRequestBody, bundle);
+        //TODO CHECK IF BUNDLE EXISTS
+        bundleRepository.save(bundle);
+        log.info("Updated bundle {} successfully", bundle.getId());
+    }
+
+    private void extracted(BundleRequestBody bundleRequestBody, Bundle bundle) {
         Course course = courseService.getCourse(bundleRequestBody.getCourseId());
         Teacher teacher = teacherService.getTeacher(bundleRequestBody.getTeacherId());
         bundle.setCourse(course);
         bundle.setTeacher(teacher);
-        bundleRepository.save(bundle);
-        log.info("Updated bundle {} successfully", bundle.getId());
     }
 
     void deleteBundle(Long id){
