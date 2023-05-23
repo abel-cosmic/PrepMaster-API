@@ -9,6 +9,7 @@ import java.util.List;
 @RequestMapping(path = "/api/students")
 @AllArgsConstructor// creates a constructor, so we don't have too (Lombok)
 @RestController// Allows us to send http requests into it
+@CrossOrigin(origins = "http://localhost:5173")
 public class StudentController {
     private StudentService studentService;
     @PostMapping

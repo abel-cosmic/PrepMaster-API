@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "/api/admins")
 @AllArgsConstructor// creates a constructor, so we don't have too (Lombok)
 @RestController// Allows us to send http requests into it
+@CrossOrigin(origins = "http://localhost:5173")
 public class AdminController {
     private AdminService adminService;
 
