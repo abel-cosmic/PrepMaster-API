@@ -34,4 +34,8 @@ public class StudentController {
 //    void updateStudent(@Valid @RequestBody Student student){
 //        studentService.updateStudent(student);
 //    }
+    @GetMapping(path="{studentId}/statistics")
+    StudentStatistics getStatistics(@Valid @PathVariable("studentId")Long id){
+        return  studentService.getStatistics(id);
+    }
 }

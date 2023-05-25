@@ -725,7 +725,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"questionAnswer\": {\n        \"chosenIndex\": 4\n    },\n    \"questionId\": 2,\n    \"testId\": 1\n}",
+							"raw": "{\n    \"questionAnswer\": {\n        \"chosenIndex\": 4\n    },\n    \"questionId\": 4,\n    \"testId\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -821,6 +821,27 @@
 								"api",
 								"students",
 								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getStudentStats",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/students/1/statistics",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"students",
+								"1",
+								"statistics"
 							]
 						}
 					},
@@ -1196,7 +1217,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"question\":{\n        \"id\": 4,\n        \"explanation\": \"new data here\",\n        \"difficulty\": \"dolore\",\n        \"question\": \"wdjkcbkwjnwiodcnwo\"\n    },\n    \"bundleId\":1\n}",
+							"raw": "{\n    \"question\":{\n        \"explanation\": \"new data here\",\n        \"difficulty\": \"dolore\",\n        \"question\": \"wdjkcbkwjnwiodcnwo\"\n    },\n    \"bundleId\":1\n}",
 							"options": {
 								"raw": {
 									"language": "json"

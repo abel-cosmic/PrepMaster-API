@@ -9,10 +9,33 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 @Repository
 public interface StudentRepository extends JpaRepository<Student,Long> {
-    @Query("SELECT s FROM Student s WHERE s.id = :id")
-    Optional<Student> findById(@Param("id") Long id);
-    @Query("SELECT s FROM Student s WHERE s.department.id = :departmentId")
-    Optional<Student> findAllByDepartment(@Param("departmentId")Long departmentId);
-    @Query("SELECT s FROM Student s WHERE s.email = :email")
-    Optional<Student> findAllByEmail(@Param("email")String email);
+//    @Query("SELECT s FROM Student s WHERE s.id = :id")
+//    Optional<Student> findById(@Param("id") Long id);
+//    @Query("SELECT s FROM Student s WHERE s.department.id = :departmentId")
+//    Optional<Student> findAllByDepartment(@Param("departmentId")Long departmentId);
+//    @Query("SELECT s FROM Student s WHERE s.email = :email")
+//    Optional<Student> findAllByEmail(@Param("email")String email);
+    @Query(
+        "SELECT count(*) AS c FROM QuestionAnswer qa " +
+        "JOIN Test t ON t.id = qa.test.id " +
+        "JOIN Student s ON t.student.id = s.id " +
+        "JOIN Question q ON qa.question.id = q.id " +
+        "WHERE q.answerIndex = qa.chosenIndex AND s.id = ?1"
+    )
+    Optional<Integer> getNumberOfQuestionsSolved(Long id);
+
+    @Query(
+        "SELECT COUNT(*) AS c " +
+        "FROM QuestionAnswer qa " +
+        "JOIN Test t ON t.id = qa.test.id " +
+        "WHERE t.student.id = ?1"
+    )
+    Optional<Integer> getNumberOfQuestionsAttempted(Long id);
+
+    @Query(
+        "SELECT COUNT(*) AS c " +
+        "FROM Test t " +
+        "WHERE t.student.id = ?1 "
+    )
+    Optional<Integer> getNumberOfTestsTaken(Long id);
 }
