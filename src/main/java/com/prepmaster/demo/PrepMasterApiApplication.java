@@ -4,11 +4,11 @@ import com.github.javafaker.Faker;
 import com.prepmaster.demo.admin.Admin;
 import com.prepmaster.demo.admin.AdminRepository;
 import com.prepmaster.demo.bundle.Bundle;
+import com.prepmaster.demo.choice.Choice;
 import com.prepmaster.demo.course.Course;
 import com.prepmaster.demo.course.CourseRepository;
 import com.prepmaster.demo.department.Department;
 import com.prepmaster.demo.department.DepartmentRepository;
-import com.prepmaster.demo.choice.Choice;
 import com.prepmaster.demo.question.Question;
 import com.prepmaster.demo.questionanswer.QuestionAnswer;
 import com.prepmaster.demo.questionanswer.QuestionAnswerID;
@@ -21,9 +21,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 /*

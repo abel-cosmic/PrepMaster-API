@@ -11,17 +11,8 @@
 				{
 					"name": "getAdmin",
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"email\": \"dagimcodes@gmail.com\",\n    \"organization\": \"Catedral\",\n    \"password\": \"asdfsdfpjwe0923u023\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
 							"raw": "http://localhost:8080/api/admins/1",
 							"protocol": "http",
@@ -121,6 +112,28 @@
 								"api",
 								"admins",
 								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAdminStatistics",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/admins/1/statistics",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admins",
+								"1",
+								"statistics"
 							]
 						}
 					},

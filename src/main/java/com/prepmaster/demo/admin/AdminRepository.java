@@ -23,4 +23,18 @@ public interface AdminRepository  extends JpaRepository<Admin,Long> {
     @Modifying
     @Query("DELETE FROM Admin a WHERE a.id = :id")
     int deleteAdminById(@Param("id") Long id);// before this is called all the orphans must be removed it won't be done automatically
+
+    @Query("SELECT COUNT(*) AS c FROM Student")
+    Optional<Integer> getNumberOfStudents();
+
+    @Query("SELECT COUNT(*) AS c FROM Teacher ")
+    Optional<Integer> getNumberOfTeachers();
+
+    @Query("SELECT COUNT(*) AS c FROM Course")
+    Optional<Integer> getNumberOfCourses();
+
+    @Query("SELECT COUNT(*) AS c FROM Department")
+    Optional<Integer> getNumberOfDepartments();
+
+//    @Query(" SEL")
 }
