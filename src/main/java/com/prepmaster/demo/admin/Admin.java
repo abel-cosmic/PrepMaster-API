@@ -59,7 +59,7 @@ public class Admin {
             columnDefinition = "TEXT"
     )
     @NotBlank(message = "Password must not be empty")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
     @OneToMany(
             mappedBy = "admin",
