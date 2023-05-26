@@ -81,7 +81,6 @@ public class Student {
             columnDefinition = "TEXT"
     )
     @NotBlank(message="password must not be empty")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     @ManyToOne(
@@ -188,7 +187,7 @@ public class Student {
     public void setGender(String gender) {
         this.gender = gender;
     }
-    @JsonIgnore
+
     public String getPassword() {
         return password;
     }

@@ -9,6 +9,7 @@ import java.util.List;
 @RequestMapping(path = "/api/choices")
 @AllArgsConstructor
 @RestController
+@CrossOrigin(origins = "http://localhost:5173")
 public class ChoiceController {
     private ChoiceService choiceService;
     @GetMapping

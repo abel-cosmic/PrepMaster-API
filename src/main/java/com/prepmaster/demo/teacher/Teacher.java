@@ -77,7 +77,7 @@ public class Teacher {
     private String gender;
 
     @NotBlank(message = "Password must not be empty")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(
             name = "password",
             nullable = false,
@@ -204,7 +204,7 @@ public class Teacher {
         this.gender = gender;
     }
 
-    @JsonIgnore
+//    @JsonIgnore
     public String getPassword() {
         return password;
     }

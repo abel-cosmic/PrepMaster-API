@@ -9,10 +9,11 @@ import java.util.List;
 @RequestMapping(path = "/api/students")
 @AllArgsConstructor// creates a constructor, so we don't have too (Lombok)
 @RestController// Allows us to send http requests into it
+@CrossOrigin(origins = "http://localhost:5173")
 public class StudentController {
     private StudentService studentService;
     @PostMapping
-    void createStudent(@Valid @RequestBody StudentRequestBody studentRequestBody){
+    void createStudent(@Valid @RequestBody StudentRequestBody studentRequestBody ){
         studentService.createNewStudent(studentRequestBody);
     }
     @GetMapping(path="{studentId}")
@@ -24,16 +25,14 @@ public class StudentController {
         return studentService.getStudents();
     }
 
-//    void deleteQuestionAnswer(
-//            @Valid @PathVariable("questionId") Long questionId,
-//            @Valid  @PathVariable("testId") Long testId
-//    ) {
-//        questionAnswerService.deleteQuestionAnswer(new QuestionAnswerID(testId,questionId));
-//    }
-//    @P
-//    void updateStudent(@Valid @RequestBody Student student){
-//        studentService.updateStudent(student);
-//    }
+    @PutMapping
+    void updateStudent(@Valid @RequestBody StudentRequestBody studentRequestBody){
+        studentService.updateStudent(studentRequestBody);
+    }
+    @DeleteMapping(path="{studentId}")
+    void deleteStudent(@Valid @PathVariable("studentId")Long id){
+          studentService.deleteStudent(id);
+    }
     @GetMapping(path="{studentId}/statistics")
     StudentStatistics getStatistics(@Valid @PathVariable("studentId")Long id){
         return  studentService.getStatistics(id);

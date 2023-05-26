@@ -9,6 +9,7 @@ import java.util.List;
 @RequestMapping(path = "/api/tests")
 @AllArgsConstructor
 @RestController
+@CrossOrigin(origins = "http://localhost:5173")
 public class TestController {
     private final TestService testService;
 

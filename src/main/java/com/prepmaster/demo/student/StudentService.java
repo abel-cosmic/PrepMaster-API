@@ -16,14 +16,12 @@ import java.util.Optional;
 public class StudentService {
     private final StudentRepository studentRepository;
     private final DepartmentService departmentService;
-
     public void createNewStudent(StudentRequestBody studentRequestBody) {
         Student student = studentRequestBody.getStudent();
-        log.info("Creating student {}", student);
-        Department department = departmentService.getDepartment(studentRequestBody.getDepartmentId());
-        student.setDepartment(department);
+        log.info("Updating course {}", student.getId());
+        extracted(studentRequestBody, student);
         studentRepository.save(student);
-        log.info("Created student {} successfully", student);
+        log.info("Updated student {} successfully", student.getId());
     }
 
     public Student getStudent(Long id) {
@@ -40,6 +38,36 @@ public class StudentService {
 
     public List<Student> getStudents() {
         return studentRepository.findAll();
+    }
+    
+
+    public void updateStudent(StudentRequestBody studentRequestBody) {
+        Student student = studentRequestBody.getStudent();
+        log.info("Updating course {}", student.getId());
+        extracted(studentRequestBody, student);
+        if (!studentRepository.existsById(student.getId())) {
+            NotFoundException notFoundException = new NotFoundException("Course with ID " + student.getId() + " not found");
+            log.error("error course {} not found could not update a non existing tuple", student.getId() , notFoundException);
+            return;
+        }
+        studentRepository.save(student);
+        log.info("Updated student {} successfully", student.getId());
+    }
+
+    private void extracted(StudentRequestBody studentRequestBody, Student student) {
+        Department department = departmentService.getDepartment(studentRequestBody.getDepartmentId());
+        student.setDepartment(department);
+    }
+
+    public void deleteStudent(Long id) {
+        log.info("Deleting course {}", id);
+        if (!studentRepository.existsById(id)) {
+            NotFoundException notFoundException = new NotFoundException("Course with ID " + id + " not found");
+            log.error("error course {} not found could not delete a non existing tuple", id , notFoundException);
+            return;
+        }
+        studentRepository.deleteById(id);
+        log.info("Deleted course {} successfully", id);
     }
 
     public StudentStatistics getStatistics(Long id) {
