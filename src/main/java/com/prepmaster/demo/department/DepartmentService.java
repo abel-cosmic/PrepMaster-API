@@ -74,6 +74,7 @@ public class DepartmentService {
     }
 
     public DepartmentStatistics getStatistics(Long id) {
+        log.info("Getting department {} statistics", id);
         Optional<Integer> numberOfStudents = departmentRepository.getNumberOfStudents(id);
         Optional<Integer> numberOfTeachers = departmentRepository.getNumberOfTeachers(id);
         Optional<Integer> numberOfCourse = departmentRepository.getNumberOfCourses(id);
@@ -92,6 +93,7 @@ public class DepartmentService {
             log.error("error fetching data for department {}", id, apiRequestException);
             throw apiRequestException;
         }
+        log.info("Got department {} statistics", id);
         return new DepartmentStatistics(
                 numberOfStudents.get(),
                 numberOfTeachers.get(),

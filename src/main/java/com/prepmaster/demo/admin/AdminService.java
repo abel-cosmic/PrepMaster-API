@@ -56,7 +56,9 @@ public class AdminService {
         log.info("Deleted admin {} successfully", id);
     }
 
+
     AdminStatistics getStatistics(long id) {
+        log.info("Getting admin {} statistics", id);
         Optional<Integer> numberOfStudents = adminRepository.getNumberOfStudents();
         Optional<Integer> numberOfTeachers = adminRepository.getNumberOfTeachers();
         Optional<Integer> numberOfCourses = adminRepository.getNumberOfCourses();
@@ -71,6 +73,7 @@ public class AdminService {
             log.error("error fetching data for student {}", id, apiRequestException);
             throw apiRequestException;
         }
+        log.info("Got admin {} statistics", id);
         return new AdminStatistics(
                 numberOfStudents.get(),
                 numberOfTeachers.get(),

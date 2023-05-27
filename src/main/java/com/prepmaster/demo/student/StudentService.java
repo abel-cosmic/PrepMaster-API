@@ -71,6 +71,7 @@ public class StudentService {
     }
 
     public StudentStatistics getStatistics(Long id) {
+        log.info("Getting student {} statistics", id);
         Optional<Integer> numberOfQuestionsSolved = studentRepository.getNumberOfQuestionsSolved(id);
         Optional<Integer> numberOfQuestionsAttempted = studentRepository.getNumberOfQuestionsAttempted(id);
         Optional<Integer> numberOfTestsTaken = studentRepository.getNumberOfTestsTaken(id);
@@ -83,6 +84,7 @@ public class StudentService {
             log.error("error fetching data for student {}", id, apiRequestException);
             throw apiRequestException;
         }
+        log.info("Got student {} statistics", id);
         return new StudentStatistics(
                 numberOfQuestionsSolved.get(),
                 numberOfQuestionsAttempted.get(),
