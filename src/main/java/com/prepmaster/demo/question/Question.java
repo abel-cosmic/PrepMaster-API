@@ -173,8 +173,8 @@ public class Question {
     public void setBundle(Bundle bundle) {
         this.bundle = bundle;
     }
-    @JsonIgnore
 
+//    @JsonIgnore
     public List<Choice> getChoices() {
         return choices;
     }

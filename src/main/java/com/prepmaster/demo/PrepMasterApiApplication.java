@@ -4,11 +4,11 @@ import com.github.javafaker.Faker;
 import com.prepmaster.demo.admin.Admin;
 import com.prepmaster.demo.admin.AdminRepository;
 import com.prepmaster.demo.bundle.Bundle;
+import com.prepmaster.demo.choice.Choice;
 import com.prepmaster.demo.course.Course;
 import com.prepmaster.demo.course.CourseRepository;
 import com.prepmaster.demo.department.Department;
 import com.prepmaster.demo.department.DepartmentRepository;
-import com.prepmaster.demo.choice.Choice;
 import com.prepmaster.demo.question.Question;
 import com.prepmaster.demo.questionanswer.QuestionAnswer;
 import com.prepmaster.demo.questionanswer.QuestionAnswerID;
@@ -68,18 +68,23 @@ public class PrepMasterApiApplication {
 			bundle.setCourse(course);
 
 			Question question = makeQuestion();
-			question.addChoice(makeChoice('A',0));
-			question.addChoice(makeChoice('B',1));
-			question.addChoice(makeChoice('C',2));
-			question.addChoice(makeChoice('D',3));
+			question.addChoice(makeChoice('A', 0));
+			question.addChoice(makeChoice('B', 1));
+			question.addChoice(makeChoice('C', 2));
+			question.addChoice(makeChoice('D', 3));
 			bundle.addQuestion(question);
-
 			Question question1 = makeQuestion();
-			question1.addChoice(makeChoice('A',0));
-			question1.addChoice(makeChoice('B',1));
-			question1.addChoice(makeChoice('C',2));
-			question1.addChoice(makeChoice('D',3));
+			question1.addChoice(makeChoice('A', 0));
+			question1.addChoice(makeChoice('B', 1));
+			question1.addChoice(makeChoice('C', 2));
+			question1.addChoice(makeChoice('D', 3));
 			bundle.addQuestion(question1);
+			Question question2 = makeQuestion();
+			question2.addChoice(makeChoice('A', 0));
+			question2.addChoice(makeChoice('B', 1));
+			question2.addChoice(makeChoice('C', 2));
+			question2.addChoice(makeChoice('D', 3));
+			bundle.addQuestion(question2);
 
 			Student student = makeStudent();
 			department.addStudent(student);
@@ -89,8 +94,14 @@ public class PrepMasterApiApplication {
 			test.setStudent(student);
 
 			QuestionAnswer questionAnswer = new QuestionAnswer(new QuestionAnswerID(test.getId(), question.getId()),0,test,question);
+			QuestionAnswer questionAnswer1 = new QuestionAnswer(new QuestionAnswerID(test.getId(), question1.getId()),2,test,question1);
+			QuestionAnswer questionAnswer2 = new QuestionAnswer(new QuestionAnswerID(test.getId(), question2.getId()),2,test,question2);
 			question.addQuestionAnswer(questionAnswer);
+			question1.addQuestionAnswer(questionAnswer1);
+			question2.addQuestionAnswer(questionAnswer2);
 			test.addQuestionAnswer(questionAnswer);
+			test.addQuestionAnswer(questionAnswer1);
+			test.addQuestionAnswer(questionAnswer2);
 
 			bundle.addTest(test);
 			teacher.addBundle(bundle);
@@ -99,10 +110,16 @@ public class PrepMasterApiApplication {
 			admin.addDepartment(department);//Note that you cant just make a department without having an admin it will not work
 			adminRepository.save(admin);
 
-			Admin admin1 = adminRepository.findById(1L).get();
-			System.out.println(admin1);
-			admin1.setOrganization("Hope");
-			adminRepository.save(admin1);
+//			System.out.println(question);
+//			System.out.println(question1);
+//			question.getChoices().forEach(
+//					System.out::println
+//			);
+//			Admin admin1 = adminRepository.findById(1L).get();
+//			System.out.println(admin1);
+//			admin1.setOrganization("Hope");
+//			adminRepository.save(admin1);
+
 //			adminRepository.findById(1L).ifPresent(
 //					System.out::println
 //			);

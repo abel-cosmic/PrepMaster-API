@@ -170,7 +170,7 @@ public class Bundle {
         this.course = course;
     }
 
-    @JsonIgnore
+//    @JsonIgnore
     public List<Question> getQuestions() {
         return questions;
     }

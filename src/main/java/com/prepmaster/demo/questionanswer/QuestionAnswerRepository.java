@@ -18,4 +18,6 @@ public interface QuestionAnswerRepository extends JpaRepository<QuestionAnswer,L
     @Modifying
     @Query("DELETE FROM QuestionAnswer qa WHERE qa.id = :questionAnswerId")
     void deleteById(@Param("questionAnswerId") QuestionAnswerID questionAnswerId);
+
+//    @Query("")
 }

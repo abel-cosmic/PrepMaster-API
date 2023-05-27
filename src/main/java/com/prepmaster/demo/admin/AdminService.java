@@ -1,9 +1,12 @@
 package com.prepmaster.demo.admin;
 
+import com.prepmaster.demo.exception.ApiRequestException;
 import com.prepmaster.demo.exception.NotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor //LOMBOK SEE VIDEO
@@ -53,4 +56,26 @@ public class AdminService {
         log.info("Deleted admin {} successfully", id);
     }
 
+    AdminStatistics getStatistics(long id) {
+        Optional<Integer> numberOfStudents = adminRepository.getNumberOfStudents();
+        Optional<Integer> numberOfTeachers = adminRepository.getNumberOfTeachers();
+        Optional<Integer> numberOfCourses = adminRepository.getNumberOfCourses();
+        Optional<Integer> numberOfDepartments = adminRepository.getNumberOfDepartments();
+        if (
+                numberOfStudents.isEmpty() ||
+                        numberOfTeachers.isEmpty() ||
+                        numberOfCourses.isEmpty() ||
+                        numberOfDepartments.isEmpty()
+        ) {
+            ApiRequestException apiRequestException = new ApiRequestException("Unable to fetch dta");
+            log.error("error fetching data for student {}", id, apiRequestException);
+            throw apiRequestException;
+        }
+        return new AdminStatistics(
+                numberOfStudents.get(),
+                numberOfTeachers.get(),
+                numberOfCourses.get(),
+                numberOfDepartments.get()
+        );
+    }
 }

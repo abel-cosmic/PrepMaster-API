@@ -2,11 +2,13 @@ package com.prepmaster.demo.question;
 
 import com.prepmaster.demo.bundle.Bundle;
 import com.prepmaster.demo.bundle.BundleService;
+import com.prepmaster.demo.choice.Choice;
 import com.prepmaster.demo.exception.NotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 @Service
 @AllArgsConstructor //LOMBOK SEE VIDEO
@@ -53,6 +55,7 @@ public class QuestionService {
     }
 
     public void updateQuestion(QuestionRequestBody questionRequestBody) {
+        //TODO ADD THE CHOICES TO THE UPDATED OBJECT
         Question question = questionRequestBody.getQuestion();
         log.info("creating question {}",question);
         extracted(questionRequestBody, question);

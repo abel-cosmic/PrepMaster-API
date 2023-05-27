@@ -1,7 +1,5 @@
 package com.prepmaster.demo.question;
 
-import com.prepmaster.demo.course.Course;
-import com.prepmaster.demo.course.CourseRequestBody;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;

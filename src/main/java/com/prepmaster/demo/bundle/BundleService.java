@@ -54,8 +54,13 @@ public class BundleService {
     private void extracted(BundleRequestBody bundleRequestBody, Bundle bundle) {
         Course course = courseService.getCourse(bundleRequestBody.getCourseId());
         Teacher teacher = teacherService.getTeacher(bundleRequestBody.getTeacherId());
+//        List<Question> questions = bundleRequestBody.getQuestions();
+//        questions.forEach(
+//                bundle::addQuestion
+//        );
         bundle.setCourse(course);
         bundle.setTeacher(teacher);
+
     }
 
     void deleteBundle(Long id){

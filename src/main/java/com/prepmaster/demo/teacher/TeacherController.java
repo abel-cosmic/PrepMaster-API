@@ -38,4 +38,9 @@ public class TeacherController {
     List<Teacher> getTeachers(){
         return teacherService.getTeachers();
     }
+
+    @GetMapping(path="{teacherId}/statistics")
+    TeacherStatistics getStatistics(@Valid @PathVariable("teacherId")Long id){
+        return  teacherService.getStatistics(id);
+    }
 }

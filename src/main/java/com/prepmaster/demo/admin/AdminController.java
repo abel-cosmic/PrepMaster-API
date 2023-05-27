@@ -31,4 +31,9 @@ public class AdminController {
     void deleteAdmin(@PathVariable("adminId") Long id){
         adminService.deleteAdmin(id);
     }
+
+    @GetMapping(path = "{adminId}/statistics")
+    AdminStatistics getStatistics(@Valid @PathVariable("adminId")Long id){
+        return adminService.getStatistics(id);
+    }
 }

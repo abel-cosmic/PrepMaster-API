@@ -10,4 +10,5 @@ import lombok.Setter;
 public class BundleRequestBody {
     private Bundle bundle;
     private Long courseId, teacherId;
+
 }
