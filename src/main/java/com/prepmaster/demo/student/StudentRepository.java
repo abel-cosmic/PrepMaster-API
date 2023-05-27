@@ -14,9 +14,9 @@ public interface StudentRepository extends JpaRepository<Student,Long> {
 //    @Query("SELECT s FROM Student s WHERE s.email = :email")
 //    Optional<Student> findAllByEmail(@Param("email")String email);
     @Query(
-        "SELECT count(*) AS c FROM QuestionAnswer qa " +
-        "JOIN Test t ON t.id = qa.test.id " +
-        "JOIN Student s ON t.student.id = s.id " +
+        "SELECT count(*) AS c " +
+        "FROM QuestionAnswer qa " +
+        "JOIN Student s ON qa.test.student.id = s.id "+
         "JOIN Question q ON qa.question.id = q.id " +
         "WHERE q.answerIndex = qa.chosenIndex AND s.id = ?1"
     )
@@ -25,8 +25,7 @@ public interface StudentRepository extends JpaRepository<Student,Long> {
     @Query(
         "SELECT COUNT(*) AS c " +
         "FROM QuestionAnswer qa " +
-        "JOIN Test t ON t.id = qa.test.id " +
-        "WHERE t.student.id = ?1"
+        "WHERE qa.test.student.id = ?1"
     )
     Optional<Integer> getNumberOfQuestionsAttempted(Long id);
 

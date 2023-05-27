@@ -20,20 +20,16 @@ public interface TeacherRepository extends JpaRepository<Teacher,Long> {
     @Query(
             "SELECT count(*) AS c " +
             "FROM QuestionAnswer qa " +
-            "JOIN Test t ON t.id = qa.test.id " +
-            "JOIN Bundle b ON t.bundle.id = b.id " +
-            "JOIN Teacher tr on b.teacher.id = tr.id " +
+            "JOIN Teacher t ON qa.test.bundle.teacher.id = t.id " +
             "JOIN Question q on qa.question.id = q.id " +
-            "WHERE q.answerIndex = qa.chosenIndex and tr.id = ?1"
+            "WHERE q.answerIndex = qa.chosenIndex and t.id = ?1"
     )
     Optional<Integer> getNumberOfQuestionsSolved(Long id);
 
     @Query(
             "SELECT COUNT(*) AS c " +
             "FROM QuestionAnswer qa " +
-            "JOIN Test t on t.id = qa.test.id " +
-            "JOIN Bundle b on b.id = t.bundle.id " +
-            "WHERE b.teacher.id = ?1"
+            "WHERE qa.test.bundle.teacher.id = ?1"
     )
     Optional<Integer> getNumberOfQuestionsAttempted(Long id);
     @Query(
@@ -45,17 +41,15 @@ public interface TeacherRepository extends JpaRepository<Teacher,Long> {
 
     @Query(
             "SELECT COUNT(*) AS c " +
-            "FROM Bundle b " +
-            "JOIN Question q ON b.id = q.bundle.id " +
-            "WHERE b.teacher.id = ?1"
+            "FROM Question q " +
+            "WHERE q.bundle.teacher.id = ?1"
     )
     Optional<Integer> getNumberOfQuestions(Long id);
 
     @Query(
             "SELECT COUNT(*) AS c " +
-            "FROM Bundle b " +
-            "JOIN Test t ON b.id = t.bundle.id " +
-            "WHERE b.teacher.id = ?1"
+            "FROM Test t " +
+            "WHERE t.bundle.teacher.id = ?1"
     )
     Optional<Integer> getNumberOfTestsTaken(Long id);
 }

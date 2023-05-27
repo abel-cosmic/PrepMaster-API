@@ -32,4 +32,9 @@ public class DepartmentController {
     void deleteDepartment (@Valid @PathVariable("departmentId")Long id) {
          departmentService.deleteDepartment(id);
     }
+
+    @GetMapping(path = "{departmentId}/statistics")
+    DepartmentStatistics getStatistics(@Valid @PathVariable("departmentId")Long id){
+        return departmentService.getStatistics(id);
+    }
 }

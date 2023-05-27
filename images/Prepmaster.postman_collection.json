@@ -1219,6 +1219,28 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "getDepartmentsStats",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/departments/1/statistics",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"departments",
+								"1",
+								"statistics"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
