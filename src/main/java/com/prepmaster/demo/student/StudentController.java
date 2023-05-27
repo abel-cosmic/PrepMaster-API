@@ -24,7 +24,6 @@ public class StudentController {
     List<Student> getStudents(){
         return studentService.getStudents();
     }
-
     @PutMapping
     void updateStudent(@Valid @RequestBody StudentRequestBody studentRequestBody){
         studentService.updateStudent(studentRequestBody);

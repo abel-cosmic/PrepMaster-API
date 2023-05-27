@@ -2,12 +2,14 @@ package com.prepmaster.demo.teacher;
 
 import com.prepmaster.demo.department.Department;
 import com.prepmaster.demo.department.DepartmentRepository;
+import com.prepmaster.demo.exception.ApiRequestException;
 import com.prepmaster.demo.exception.NotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -88,5 +90,31 @@ public class TeacherService {
         List<Teacher> teachers = teacherRepository.findAll();
         log.info("Got all teachers");
         return teachers;
+    }
+
+    TeacherStatistics getStatistics (long id) {
+        Optional<Integer> numberOfQuestionsSolved = teacherRepository.getNumberOfQuestionsSolved(id);
+        Optional<Integer> numberOfQuestionsAttempted = teacherRepository.getNumberOfQuestionsAttempted(id);
+        Optional<Integer> numberOfTestsTaken = teacherRepository.getNumberOfTestsTaken(id);
+        Optional<Integer> numberOfBundles = teacherRepository.getNumberOfBundles(id);
+        Optional<Integer> numberOfQuestions = teacherRepository.getNumberOfQuestions(id);
+        if (
+                numberOfQuestionsSolved.isEmpty() ||
+                numberOfQuestionsAttempted.isEmpty() ||
+                numberOfBundles.isEmpty() ||
+                numberOfQuestions.isEmpty() ||
+                numberOfTestsTaken.isEmpty()
+        ) {
+            ApiRequestException apiRequestException = new ApiRequestException("Unable to fetch dta");
+            log.error("error fetching data for student {}", id, apiRequestException);
+            throw apiRequestException;
+        }
+        return new TeacherStatistics(
+                numberOfQuestionsSolved.get(),
+                numberOfQuestionsAttempted.get(),
+                numberOfTestsTaken.get(),
+                numberOfBundles.get(),
+                numberOfQuestions.get()
+        );
     }
 }
