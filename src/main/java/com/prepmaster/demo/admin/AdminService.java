@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -56,6 +57,10 @@ public class AdminService {
         log.info("Deleted admin {} successfully", id);
     }
 
+    public List<Admin> getAllAdmins(){
+        log.info("Getting all admins");
+        return adminRepository.findAll();
+    }
 
     AdminStatistics getStatistics(long id) {
         log.info("Getting admin {} statistics", id);

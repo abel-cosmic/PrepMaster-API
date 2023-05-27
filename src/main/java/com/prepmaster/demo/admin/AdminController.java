@@ -4,6 +4,8 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequestMapping(path = "/api/admins")
 @AllArgsConstructor// creates a constructor, so we don't have too (Lombok)
 @RestController// Allows us to send http requests into it
@@ -35,5 +37,10 @@ public class AdminController {
     @GetMapping(path = "{adminId}/statistics")
     AdminStatistics getStatistics(@Valid @PathVariable("adminId")Long id){
         return adminService.getStatistics(id);
+    }
+
+    @GetMapping()
+    List<Admin> getAllAdmins(){
+        return adminService.getAllAdmins();
     }
 }
