@@ -2,6 +2,7 @@ package com.prepmaster.demo.department;
 
 import com.prepmaster.demo.admin.Admin;
 import com.prepmaster.demo.admin.AdminService;
+import com.prepmaster.demo.exception.ApiRequestException;
 import com.prepmaster.demo.exception.NotFoundException;
 import com.prepmaster.demo.teacher.Teacher;
 import com.prepmaster.demo.teacher.TeacherService;
@@ -10,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor //LOMBOK SEE VIDEO
@@ -69,5 +71,34 @@ public class DepartmentService {
         }
         departmentRepository.deleteById(id);
         log.info("Deleted department {} successfully", id);
+    }
+
+    public DepartmentStatistics getStatistics(Long id) {
+        Optional<Integer> numberOfStudents = departmentRepository.getNumberOfStudents(id);
+        Optional<Integer> numberOfTeachers = departmentRepository.getNumberOfTeachers(id);
+        Optional<Integer> numberOfCourse = departmentRepository.getNumberOfCourses(id);
+        Optional<Integer> numberOfBundles = departmentRepository.getNumberOfBundles(id);
+        Optional<Integer> numberOfQuestions = departmentRepository.getNumberOfQuestions(id);
+        Optional<Integer> numberOfTests = departmentRepository.getNumberOfTests(id);
+        if (
+                numberOfStudents.isEmpty() ||
+                        numberOfTeachers.isEmpty() ||
+                        numberOfCourse.isEmpty() ||
+                        numberOfBundles.isEmpty() ||
+                        numberOfQuestions.isEmpty() ||
+                        numberOfTests.isEmpty()
+        ) {
+            ApiRequestException apiRequestException = new ApiRequestException("Unable to fetch dta");
+            log.error("error fetching data for department {}", id, apiRequestException);
+            throw apiRequestException;
+        }
+        return new DepartmentStatistics(
+                numberOfStudents.get(),
+                numberOfTeachers.get(),
+                numberOfCourse.get(),
+                numberOfBundles.get(),
+                numberOfQuestions.get(),
+                numberOfTests.get()
+        );
     }
 }
