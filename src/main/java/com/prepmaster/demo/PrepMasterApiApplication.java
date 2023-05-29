@@ -184,7 +184,8 @@ public class PrepMasterApiApplication {
 		Faker faker = new Faker();
 		return new Bundle(
 				faker.educator().course() + " test " + faker.random().nextInt(10) + " ",
-				faker.lorem().paragraph()
+				faker.lorem().paragraph(),
+				faker.random().nextInt(10) // Generate a random integer for timeAllowed
 		);
 	}
 

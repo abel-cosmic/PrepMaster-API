@@ -52,9 +52,9 @@ public class Bundle {
     @Column(
             name = "timeAllowed",
             nullable = false,
-            columnDefinition = "TIMESTAMP WITHOUT TIME ZONE"
+            columnDefinition = "INT"
     )
-    private LocalDate timeAllowed; //TODO CHANGE DATA TYPE
+    private int timeAllowed; //TODO CHANGE DATA TYPE
 
     @ManyToOne(
             fetch = FetchType.LAZY //Why
@@ -105,10 +105,12 @@ public class Bundle {
 
     public Bundle(
             String name,
-            String description) {
+            String description,
+            int timeAllowed
+    ) {
         this.name = name;
         this.description = description;
-        this.timeAllowed = LocalDate.now();
+        this.timeAllowed = timeAllowed;
     }
 
     public Long getId() {
@@ -135,11 +137,11 @@ public class Bundle {
         this.description = description;
     }
 
-    public LocalDate getTimeAllowed() {
+    public int getTimeAllowed() {
         return timeAllowed;
     }
 
-    public void setTimeAllowed(LocalDate timeAllowed) {
+    public void setTimeAllowed(int timeAllowed) {
         this.timeAllowed = timeAllowed;
     }
 
