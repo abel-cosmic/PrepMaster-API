@@ -30,6 +30,26 @@
 					"response": []
 				},
 				{
+					"name": "geAllAdmins",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/admins",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "createAdmin",
 					"request": {
 						"method": "POST",
@@ -1130,7 +1150,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"adminId\": 1,\n    \"departmentHeadId\": 1,\n    \"department\" : {\n        \"name\": \"Computer Science\",\n        \"description\": \"new department created successfully\"\n    }\n     \n}",
+							"raw": "{\n    \"adminId\": 1,\n    \"departmentHeadId\": 1,\n    \"department\" : {\n        \"name\": \"Computer Scien3csfe3\",\n        \"description\": \"new department created successfully\"\n    }\n     \n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1274,7 +1294,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"question\":{\n        \"explanation\": \"new data here\",\n        \"difficulty\": \"dolore\",\n        \"question\": \"wdjkcbkwjnwiodcnwo\"\n    },\n    \"bundleId\":1\n}",
+							"raw": "{\n    \"question\":{\n        \"explanation\": \"new data here\",\n        \"difficulty\": \"dolore\",\n        \"question\": \"wdjkcbkwjnwiodcnwo\"\n    },\n    \"bundleId\":1,\n    \"choices\": [\n        {\n            \"choiceText\": \"A. Dolorum sed voluptatem facilis quisquam fugit corporis maxime praesentium aliquid ipsum est cum sapiente eos.\",\n            \"index\": 0\n        },\n        {\n            \"choiceText\": \"B. Voluptate voluptas repellendus vel quidem natus sint ullam facilis suscipit animi dolorem laboriosam eum saepe voluptatem.\",\n            \"index\": 1\n        },\n        {\n            \"choiceText\": \"C. Exercitationem voluptates sed fugit qui vero asperiores deleniti dicta reiciendis quibusdam enim ipsam explicabo laborum aut.\",\n            \"index\": 2\n        },\n        {\n            \"choiceText\": \"D. Eos inventore reprehenderit dignissimos recusandae quaerat sequi distinctio tempora unde rem iusto sit consequatur pariatur labore.\",\n            \"index\": 3\n        }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1322,7 +1342,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"question\":{\n        \"id\": 5,\n        \"explanation\": \"new data here\",\n        \"difficulty\": \"dolore\",\n        \"question\": \"wdjkcbkwjnwiodcnwo\"\n    },\n    \"bundleId\":1\n}",
+							"raw": "{\n    \"question\":{\n        \"id\": 4,\n        \"explanation\": \"updated data here\",\n        \"difficulty\": \"dolore\",\n        \"question\": \"wdjkcbkwjnwiodcnwo\"\n    },\n    \"bundleId\":1,\n    \"choices\": [\n            {\n                \"id\": 13,\n                \"choiceText\": \"A. Dolorum sed voluptatem facilis quisquam fugit corporis maxime praesentium aliquid ipsum est cum sapiente eos.\",\n                \"index\": 0,\n                \"questionId\": 4\n            },\n            {\n                \"id\": 14,\n                \"choiceText\": \"B. Voluptate voluptas repellendus vel quidem natus sint ullam facilis suscipit animi dolorem laboriosam eum saepe voluptatem.\",\n                \"index\": 1,\n                \"questionId\": 4\n            },\n            {\n                \"id\": 15,\n                \"choiceText\": \"C. Exercitationem voluptates sed fugit qui vero asperiores deleniti dicta reiciendis quibusdam enim ipsam explicabo laborum aut.\",\n                \"index\": 2,\n                \"questionId\": 4\n            },\n            {\n                \"id\": 16,\n                \"choiceText\": \"D. Eos inventore reprehenderit dignissimos recusandae quaerat sequi distinctio tempora unde rem iusto sit consequatur pariatur labore.\",\n                \"index\": 3,\n                \"questionId\": 4\n            }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"

@@ -68,7 +68,10 @@ public class QuestionService {
         log.info("Created question {} successfully", question.getId());
     }
     private void extracted(QuestionRequestBody questionRequestBody, Question question) {
-        Bundle bundle = bundleService.getBundle( questionRequestBody.getBundleId());
+        Bundle bundle = bundleService.getBundle(questionRequestBody.getBundleId());
         question.setBundle(bundle);
+        questionRequestBody.getChoices().forEach(
+                question::addChoice
+        );
     }
 }
