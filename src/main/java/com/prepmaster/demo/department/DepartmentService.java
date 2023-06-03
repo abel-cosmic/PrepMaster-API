@@ -38,14 +38,23 @@ public class DepartmentService {
     public void createNewDepartment(DepartmentRequestBody departmentRequestBody) {
         Department department = departmentRequestBody.getDepartment();
         log.info("Creating department {}", department);
-        extracted(departmentRequestBody, department);
+        Admin admin = adminService.getAdmin(departmentRequestBody.getAdminId());
+        Teacher departmentHead = departmentRequestBody.getDepartmentHead();
+        department.setAdmin(admin);
+        department.addTeacher(departmentHead);
+        department.setDepartmentHead(departmentHead);
         departmentRepository.save(department);
         log.info("Created department {} successfully", department.getId());
     }
-    public void updateDepartment(DepartmentRequestBody departmentRequestBody) {
+    public void updateDepartment(DepartmentRequestBodyUpdate departmentRequestBody) {
         Department department = departmentRequestBody.getDepartment();
         log.info("Creating department {}", department);
-        extracted(departmentRequestBody, department);
+        Admin admin = adminService.getAdmin(departmentRequestBody.getAdminId());
+        Teacher departmentHead = teacherService.getTeacher( departmentRequestBody.getDepartmentHeadId());
+        department.setAdmin(admin);
+        department.setDepartmentHead(departmentHead);
+        department.addTeacher(departmentHead);
+        departmentRepository.save(department);
         if (!departmentRepository.existsById(department.getId())) {
             NotFoundException notFoundException = new NotFoundException("department with ID " + department.getId() + " not found");
             log.error("error department {} not found could not update a non existing tuple", department.getId() , notFoundException);
@@ -53,13 +62,6 @@ public class DepartmentService {
         }
         departmentRepository.save(department);
         log.info("Updated course {} successfully", department.getId());
-    }
-
-    private void extracted(DepartmentRequestBody departmentRequestBody, Department department) {
-        Admin admin = adminService.getAdmin(departmentRequestBody.getAdminId());
-        Teacher departmentHead = teacherService.getTeacher(departmentRequestBody.getDepartmentHeadId());
-        department.setAdmin(admin);
-        department.setDepartmentHead(departmentHead);
     }
 
     public void deleteDepartment(Long id) {

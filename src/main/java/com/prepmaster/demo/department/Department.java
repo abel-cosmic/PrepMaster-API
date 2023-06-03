@@ -156,7 +156,7 @@ public class Department {
     public Teacher getDepartmentHead() {
         return departmentHead;
     }
-    @JsonProperty(value = "departmentHeadId")
+    @JsonProperty(value = "departmentHead")
     public Long getDepartmentHeadId(){
         return departmentHead.getId();
     }

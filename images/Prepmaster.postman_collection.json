@@ -1150,7 +1150,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"adminId\": 1,\n    \"departmentHeadId\": 1,\n    \"department\" : {\n        \"name\": \"Computer Scien3csfe3\",\n        \"description\": \"new department created successfully\"\n    }\n     \n}",
+							"raw": "{\n    \"adminId\": 1,\n    \"departmentHead\": {\n        \"firstName\": \"Moha\",\n        \"lastName\": \"Shibabaw\",\n        \"email\": \"cosmic.shibabaw@hotmail.com\",\n        \"phoneNumber\": \"+ 251 930 0243 03\",\n        \"gender\": \"M\",\n        \"password\": \"changePasswordeerereeresf22\",\n        \"departmentHead\": true\n    },\n    \"department\" : {\n        \"name\": \"Computer\",\n        \"description\": \"new department created successfully\"\n    }\n     \n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1178,7 +1178,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"adminId\": 1,\n    \"departmentHeadId\": 2,\n    \"department\" : {\n        \"id\": 2,\n        \"name\": \"new department\",\n        \"description\": \"new department created successfully\"\n    }\n     \n}",
+							"raw": "{\n    \"adminId\": 1,\n    \"department\" : {\n        \"id\": 2,\n        \"name\": \"new department\",\n        \"description\": \"new department created successfully\"\n    },\n    \"departmentHeadId\": 2\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1365,9 +1365,21 @@
 				},
 				{
 					"name": "getQuestions",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \n    \"choice\": {\n        \"choiceText\": \"A. Dolorum sed voluptatem facilis quisquam fugit corporis maxime praesentium aliquid ipsum est cum sapiente eos.\",\n        \"index\": 0\n    },\n       \"questionId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "localhost:8080/api/questions",
 							"host": [
@@ -1377,6 +1389,27 @@
 							"path": [
 								"api",
 								"questions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAnswer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/questions/2/answer",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"questions",
+								"2",
+								"answer"
 							]
 						}
 					},

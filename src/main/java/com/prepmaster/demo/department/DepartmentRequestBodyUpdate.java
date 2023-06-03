@@ -8,8 +8,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class DepartmentRequestBody {
+public class DepartmentRequestBodyUpdate {
     private Department department;
     private Long adminId;
-    private Teacher departmentHead;
+    private Long departmentHeadId;
 }

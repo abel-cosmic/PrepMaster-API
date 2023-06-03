@@ -17,7 +17,7 @@ public class DepartmentController {
         departmentService.createNewDepartment(departmentRequestBody);
     }
     @PutMapping
-    void updateDepartment(@Valid @RequestBody DepartmentRequestBody departmentRequestBody){
+    void updateDepartment(@Valid @RequestBody DepartmentRequestBodyUpdate departmentRequestBody){
         departmentService.updateDepartment(departmentRequestBody);
     }
     @GetMapping
