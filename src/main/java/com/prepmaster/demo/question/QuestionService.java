@@ -2,14 +2,14 @@ package com.prepmaster.demo.question;
 
 import com.prepmaster.demo.bundle.Bundle;
 import com.prepmaster.demo.bundle.BundleService;
-import com.prepmaster.demo.choice.Choice;
+import com.prepmaster.demo.exception.ApiRequestException;
 import com.prepmaster.demo.exception.NotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-
-import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
+
 @Service
 @AllArgsConstructor //LOMBOK SEE VIDEO
 @Slf4j // so we can use log variable
@@ -73,5 +73,16 @@ public class QuestionService {
         questionRequestBody.getChoices().forEach(
                 question::addChoice
         );
+    }
+     String getAnswerText(Long id){
+        log.info("Getting answer text for question {}",id);
+        Optional<String> answerText = questionRepository.findChoiceTextByQuestionIdAndAnswer(id);
+        if (answerText.isEmpty()){
+            ApiRequestException apire = new ApiRequestException("answer choice text for question with ID "+ id + " not found");
+            log.error("error fetching answer text for question {}", id, apire);
+            throw apire;
+        }
+        log.info("Getting answer text for question {}",id);
+        return answerText.get();
     }
 }

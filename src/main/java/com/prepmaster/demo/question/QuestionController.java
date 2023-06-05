@@ -33,4 +33,8 @@ public class QuestionController {
         questionService.deleteQuestion(id);
     }
 
+    @GetMapping(path = "{questionId}/answer")
+    String getAnswerText(@Valid @PathVariable("questionId") Long id) {
+        return questionService.getAnswerText(id);
+    }
 }
