@@ -65,3 +65,8 @@ spring-boot-sample-data-jpa-postgresql/target/
 spring-boot-project-data-jpa-postgresql/target/
 spring-boot-test-data-jpa-postgresql/target/
 >>>>>>> origin/main
+
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
