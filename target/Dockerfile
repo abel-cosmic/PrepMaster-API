@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y \
     postgresql
 
 # Set the working directory inside the container
-WORKDIR /app
+WORKDIR /PrepMaster-API
 
 # Copy the Spring Boot JAR file into the container
 COPY ../target/demo-0.0.1-SNAPSHOT.jar demo.jar
