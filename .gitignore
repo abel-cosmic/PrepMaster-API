@@ -1,6 +1,6 @@
 
 # Compiled output
-target/
+#target/
 
 # IDE-specific files and directories
 .idea/
