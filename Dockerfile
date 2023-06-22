@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 
 # Copy the Spring Boot JAR file into the container
-COPY target/demo-0.0.1-SNAPSHOT.jar demo.jar
+COPY ../target/demo-0.0.1-SNAPSHOT.jar demo.jar
 
 # Expose the port on which your Spring Boot API will run (if applicable)
 EXPOSE 8080

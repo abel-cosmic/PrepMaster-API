@@ -155,7 +155,7 @@
       <workItem from="1686945091202" duration="6546000" />
       <workItem from="1687334373341" duration="274000" />
       <workItem from="1687334841627" duration="566000" />
-      <workItem from="1687457060698" duration="5667000" />
+      <workItem from="1687457060698" duration="5859000" />
     </task>
     <task id="LOCAL-00001" summary="added classes&#10;&#10;i have added the classes for our &#10;entity table with the necessary attributes&#10;but i have not added the associative entities &#10;because we will add them using embeddable and extra.">
       <created>1684006500535</created>
