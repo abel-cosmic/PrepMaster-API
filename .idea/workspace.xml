@@ -10,7 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cad54b41-1ec9-40f2-9b21-b01c4eb72d33" name="Changes" comment="added relationships&#10;&#10;i have updated the following things &#10;1. the erd dagi you forgot to add the cardinality for admin_id in department_head.(i have corrected the arrangement too :).&#10;2. i have tried to see if the relationships are coming correctly">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,7 +155,7 @@
       <workItem from="1686945091202" duration="6546000" />
       <workItem from="1687334373341" duration="274000" />
       <workItem from="1687334841627" duration="566000" />
-      <workItem from="1687457060698" duration="5227000" />
+      <workItem from="1687457060698" duration="5546000" />
     </task>
     <task id="LOCAL-00001" summary="added classes&#10;&#10;i have added the classes for our &#10;entity table with the necessary attributes&#10;but i have not added the associative entities &#10;because we will add them using embeddable and extra.">
       <created>1684006500535</created>

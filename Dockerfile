@@ -15,4 +15,4 @@ COPY ./target/demo-0.0.1-SNAPSHOT.jar demo.jar
 EXPOSE 8080
 
 # Specify the command to run when the container starts
-CMD ["java", "-jar", "demo.jar"]
+CMD ["java", "-jar", "demo-0.0.1-SNAPSHOT.jar demo.jar"]
