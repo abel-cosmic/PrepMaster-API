@@ -9,12 +9,12 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.prepmaster</groupId>
-	<artifactId>demo</artifactId>
+	<artifactId>Prepmaster-API</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>prepMasterAPI</name>
 	<description>prepMasterAPI project for Spring Boot</description>
 	<properties>
-		<java.version>20</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
