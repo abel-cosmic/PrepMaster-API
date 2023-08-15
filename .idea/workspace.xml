@@ -9,7 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cad54b41-1ec9-40f2-9b21-b01c4eb72d33" name="Changes" comment="Added new docker file">
+    <list default="true" id="cad54b41-1ec9-40f2-9b21-b01c4eb72d33" name="Changes" comment="commented out docker ignore file">
       <change beforePath="$PROJECT_DIR$/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/.dockerignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
@@ -163,7 +163,7 @@
       <workItem from="1687457060698" duration="6312000" />
       <workItem from="1688132786593" duration="655000" />
       <workItem from="1692128621531" duration="2388000" />
-      <workItem from="1692132885773" duration="2861000" />
+      <workItem from="1692132885773" duration="3948000" />
     </task>
     <task id="LOCAL-00001" summary="added classes&#10;&#10;i have added the classes for our &#10;entity table with the necessary attributes&#10;but i have not added the associative entities &#10;because we will add them using embeddable and extra.">
       <created>1684006500535</created>
@@ -230,7 +230,15 @@
       <option name="project" value="LOCAL" />
       <updated>1692135053437</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="commented out docker ignore file">
+      <option name="closed" value="true" />
+      <created>1692135782977</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1692135782977</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -266,7 +274,8 @@
     <MESSAGE value="added choice table &#10;&#10;i have added the neccessary table on my side &#10;now i will join their relationship and work on the tables i did &#10;until now." />
     <MESSAGE value="added relationships&#10;&#10;i have updated the following things &#10;1. the erd dagi you forgot to add the cardinality for admin_id in department_head.(i have corrected the arrangement too :).&#10;2. i have tried to see if the relationships are coming correctly" />
     <MESSAGE value="Added new docker file" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added new docker file" />
+    <MESSAGE value="commented out docker ignore file" />
+    <option name="LAST_COMMIT_MESSAGE" value="commented out docker ignore file" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
