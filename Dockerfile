@@ -5,7 +5,7 @@ FROM openjdk:20-ea-4-jdk
 WORKDIR /app
 
 # Copy the JAR file into the container
-COPY target/demo-0.0.1-SNAPSHOT.jar app.jar
+COPY target/Prepmaster-API-0.0.1-SNAPSHOT.jar app.jar
 
 # Expose the port your Spring Boot application is listening on
 EXPOSE 8080
