@@ -1,67 +1,67 @@
 
-# Compiled output
-#target/
+# # Compiled output
+# #target/
 
-# IDE-specific files and directories
-.idea/
-.vscode/
-.project
-.classpath
-.settings/
-*.iml
-.idea/workspace.xml
-.idea/dataSources.xml
-.idea/encodings.xml
-.idea/misc.xml
+# # IDE-specific files and directories
+# .idea/
+# .vscode/
+# .project
+# .classpath
+# .settings/
+# *.iml
+# .idea/workspace.xml
+# .idea/dataSources.xml
+# .idea/encodings.xml
+# .idea/misc.xml
 
-# Build-related files
-mvnw
-mvnw.cmd
-.mvn/
+# # Build-related files
+# mvnw
+# mvnw.cmd
+# .mvn/
 
-# Log files
-*.log
+# # Log files
+# *.log
 
-# Miscellaneous files and directories
-*.class
-*.jar
-*.war
-*.ear
-.DS_Store
+# # Miscellaneous files and directories
+# *.class
+# *.jar
+# *.war
+# *.ear
+# .DS_Store
 
-# Environment-specific files (remove or modify as needed)
-application-dev.properties
-application-prod.properties
-application.properties
+# # Environment-specific files (remove or modify as needed)
+# application-dev.properties
+# application-prod.properties
+# application.properties
 
-# Maven
-#target/
-pom.xml.tag
-pom.xml.releaseBackup
-pom.xml.versionsBackup
-pom.xml.next
-release.properties
-dependency-reduced-pom.xml
-buildNumber.properties
-.mvn/wrapper/maven-wrapper.jar
-.mvn/wrapper/maven-wrapper.properties
-.idea/
+# # Maven
+# #target/
+# pom.xml.tag
+# pom.xml.releaseBackup
+# pom.xml.versionsBackup
+# pom.xml.next
+# release.properties
+# dependency-reduced-pom.xml
+# buildNumber.properties
+# .mvn/wrapper/maven-wrapper.jar
+# .mvn/wrapper/maven-wrapper.properties
+# .idea/
 
-# Spring Boot
-spring-boot-starter/target/
-spring-boot-sample/target/
-spring-boot-project/target/
-spring-boot-test/target/
+# # Spring Boot
+# spring-boot-starter/target/
+# spring-boot-sample/target/
+# spring-boot-project/target/
+# spring-boot-test/target/
 
-# Spring Boot Data JPA
-spring-boot-starter-data-jpa/target/
-spring-boot-sample-data-jpa/target/
-spring-boot-project-data-jpa/target/
-spring-boot-test-data-jpa/target/
+# # Spring Boot Data JPA
+# spring-boot-starter-data-jpa/target/
+# spring-boot-sample-data-jpa/target/
+# spring-boot-project-data-jpa/target/
+# spring-boot-test-data-jpa/target/
 
-# Spring Boot PostgreSQL Driver
-spring-boot-starter-data-jpa-postgresql/target/
-spring-boot-sample-data-jpa-postgresql/target/
-spring-boot-project-data-jpa-postgresql/target/
-spring-boot-test-data-jpa-postgresql/target/
->>>>>>> origin/main
+# # Spring Boot PostgreSQL Driver
+# spring-boot-starter-data-jpa-postgresql/target/
+# spring-boot-sample-data-jpa-postgresql/target/
+# spring-boot-project-data-jpa-postgresql/target/
+# spring-boot-test-data-jpa-postgresql/target/
+# >>>>>>> origin/main
